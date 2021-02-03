@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- *@ClassName Student
- *@Description 考生信息
+ *@ClassName StudentRealNameInfo
+ *@Description 基本信息
  *@Author  TangCaiping
  *@Date 2021/2/2 20:16
  *@Version 1.0
@@ -17,12 +17,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Data
-public class Student {
-	private Long studentNo;
+public class StudentRealNameInfo {
+	private Long studentId;
 	private String studentName;
-	private String studentInfoNo;
-	private String admissionTicketNo;
-	private String schoolName;
-	private String departmentName;
-	private String professionName;
+	private String idType;
+	private String idNumber;
+	private String telNumber;
+	
 }
