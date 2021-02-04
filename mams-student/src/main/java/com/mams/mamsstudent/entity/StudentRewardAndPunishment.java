@@ -19,6 +19,6 @@ import lombok.ToString;
 public class StudentRewardAndPunishment {
 	private Long studentId;
 	private String rewardMessage;
-	private String Punishment;
+	private String punishmentMessage;
 	
 }

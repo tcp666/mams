@@ -32,7 +32,6 @@ public class StudentExamApplication {
 	private String majorCourses3;
 	private String publicCourses1;
 	private String publicCourses2;
+	private String publicCourses3;
 	private String extendMessage;
-	
-	
 }

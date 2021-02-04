@@ -15,6 +15,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @Data
 public class StudentBaseInfo {
+	private Long no;
 	private Long studentId;
 	private String nation;
 	private String gender;

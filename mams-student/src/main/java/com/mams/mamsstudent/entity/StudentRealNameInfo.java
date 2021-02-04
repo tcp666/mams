@@ -23,5 +23,6 @@ public class StudentRealNameInfo {
 	private String idType;
 	private String idNumber;
 	private String telNumber;
+	private String email;
 	
 }
