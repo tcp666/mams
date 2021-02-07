@@ -20,6 +20,8 @@ import lombok.ToString;
 public class StudentRealNameInfo {
 	private Long studentId;
 	private String studentName;
+	private String userName;
+	private String password;
 	private String idType;
 	private String idNumber;
 	private String telNumber;
