@@ -1,0 +1,4 @@
+server:
+  port: 8088
+resources:
+  static-locations: classpath:/static/,classpath:/views

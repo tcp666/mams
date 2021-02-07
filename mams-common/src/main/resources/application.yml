@@ -1,2 +1,7 @@
 server:
-  port: 80
+  port: 8081
+resources:
+    static-locations: classpath:/static/,classpath:/views
+spring:
+  thymeleaf:
+    prefix=classpath:/static/:
