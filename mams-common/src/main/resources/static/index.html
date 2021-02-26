@@ -2,9 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #index {
+            margin: 0 auto;
+            padding: 0px;
+            width: 600px;
+            height: auto;
+            display: block;
+            /*background: yellow;*/
+        }
+
+        .info {
+            width: 100%;
+            height: auto;
+        }
+
+        .info > .nav {
+            width: 200px;
+            height: 40px;
+            font-size: larger;
+            text-decoration: red;
+        }
+
+        .info > .msg {
+            width: 100%;
+            height: auto;
+        }
+
+        .msg > label {
+            width: 100px;
+            height: 35px;git
+
+        }
+
+        .msg > input {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-
+<div id="index">
+    <div class="info">
+        <div class="nav">
+            <lable>注册</lable>
+            <lable>登录</lable>
+        </div>
+        <div class="msg">
+            <lable>用户名</lable>
+            <input id="username" type="text" placeholder="username" />
+            <lable>密码</lable>
+            <input id="password" type="password"  placeholder="password" />
+            <lable>验证码</lable>
+            <input type="text">
+            <lable></lable>
+            <button>登录</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
  *@Version 1.0
  */
 @RestController
+@RequestMapping("/common")
 public class UserController {
 	@RequestMapping("/index")
 	public String index(){
-		return "static/index.html";
+		return "index";
 	}
 }
