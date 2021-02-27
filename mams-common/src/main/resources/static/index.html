@@ -10,24 +10,32 @@
         }
 
         #index {
-            margin: 0 auto;
-            padding: 0px;
-            width: 600px;
+            margin: 45px auto;
+            width: 100%;
             height: auto;
             display: block;
-            /*background: yellow;*/
         }
 
         .info {
-            width: 100%;
+            width: 40%;
             height: auto;
+            margin: 0 auto;
+
         }
 
         .info > .nav {
-            width: 200px;
+            width: 100%;
             height: 40px;
-            font-size: larger;
-            text-decoration: red;
+            font-size: 20px;
+            line-height: 40px;
+            /*text-decoration: red;*/
+        }
+
+        .nav > label {
+            width: 100px;
+            height: 20px;
+            z-index: 10;
+            border-bottom: 2px solid transparent;
         }
 
         .info > .msg {
@@ -35,14 +43,26 @@
             height: auto;
         }
 
-        .msg > label {
+        .msg > .tips {
+            font-style: normal;
             width: 100px;
-            height: 35px;git
-
+            height: 15px;
+            color: #ff8346;
+            font-size: 15px;
+            line-height: 15px;
         }
 
         .msg > input {
+            font-style: normal;
+            width: 60%;
+            height: 35px;
+            border-collapse: collapse;
+            font-size: 20px;
+            line-height: 20px;
             display: block;
+            border-radius: 5px;
+            border: none;
+            outline: none;
         }
     </style>
 </head>
@@ -50,18 +70,22 @@
 <div id="index">
     <div class="info">
         <div class="nav">
-            <lable>注册</lable>
-            <lable>登录</lable>
+            <lable><a href="">注册</a></lable>
+            <lable><a href="">登录</a></lable>
         </div>
         <div class="msg">
-            <lable>用户名</lable>
-            <input id="username" type="text" placeholder="username" />
-            <lable>密码</lable>
-            <input id="password" type="password"  placeholder="password" />
-            <lable>验证码</lable>
-            <input type="text">
-            <lable></lable>
-            <button>登录</button>
+            <lable class="tips">用户名</lable>
+            <input id="username" placeholder="username" type="text"/>
+            <lable class="tips">密码</lable>
+            <input id="password" placeholder="password" type="password"/>
+            <lable>邮箱地址</lable>
+            <input placeholder="email" type="email">
+            <lable class="tips">请输入验证码...</lable>
+            <input placeholder="checkcode" type="text">
+            <lable>&nbsp</lable>
+            <input type="button" value="点击发送验证码">
+            <lable>&nbsp</lable>
+            <input type="button" value="登录">
         </div>
     </div>
 </div>
