@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @Author TangCaiping
  * @Date 2021/2/2 11:35
  * @Version 1.0
+ * CrossOrigin: 解决跨域问题
+ *
  */
 @RestController
 @RequestMapping("/common")
