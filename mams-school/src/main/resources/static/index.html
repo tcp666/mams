@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="js/jquery1111.min.js"></script>
 <body>
 hello-school
+<a href="http://127.0.0.1:8081/index.html">另一个服务</a>
+<a onclick="send()">点击一下</a>
+<script>
+    function send() {
+        $.ajax({
+            url: "http://127.0.0.1:8081/common/index",
+            type: "POST",
+            success: function (data) {
+                alert(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+
+        })
+    }
+</script>
 </body>
 </html>

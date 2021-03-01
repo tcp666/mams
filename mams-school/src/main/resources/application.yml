@@ -1,4 +1,5 @@
 server:
   port: 8082
 resources:
-  static-locations: classpath:/static/,classpath:/views
+  static-locations:
+    classpath: /static/classpath:/views
