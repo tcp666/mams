@@ -130,7 +130,7 @@
             <lable class="tips">请输入验证码...</lable>
             <input id="signUpCheckCode" placeholder="check code" type="text">
             <lable>&nbsp</lable>
-            <input type="button" value="点击发送验证码">
+            <input type="button" value="点击发送验证码" @click="signUpSendCheckCode">
             <lable>&nbsp</lable>
             <input  id="signUpPage" type="button" value="点击注册" @click="register">
         </div>
@@ -191,7 +191,22 @@
                             dataType: "json",
                             data: this.studentRealNameInfo,
                         }).then(function (value) {
-                            console.log(value)
+                            console.log(value.value)
+                        });
+                    }
+                },
+                signUpSendCheckCode:function () {
+
+                    if (!this.signUp){
+                        this.sigUpData();
+                        console.log(this.studentRealNameInfo);
+                        axios({
+                            method: 'post',
+                            url: '/student/sendCheckCode',
+                            dataType: "json",
+                            data: this.studentRealNameInfo,
+                        }).then(function (value) {
+                            console.log(value.value)
                         });
                     }
                 }

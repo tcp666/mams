@@ -47,7 +47,8 @@ public class UserController {
 	}
 	
 	@RequestMapping("/sendCheckCode")
-	public Result<String> sendCheckCode(StudentRealNameInfo info) throws MessagingException {
+	@ResponseBody
+	public Result<String> sendCheckCode(@RequestBody StudentRealNameInfo info) throws MessagingException {
 		return Result.success(Verify.sendMsg(info.getEmail(),Verify.getCheckCode()));
 	}
 }
