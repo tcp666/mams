@@ -40,11 +40,11 @@ public class Verify {
         // 获取邮件对象
         Message message = new MimeMessage(session);
         // 设置发件人邮箱地址
-        message.setFrom(new InternetAddress("578499233@qq.com"));
+        message.setFrom(new InternetAddress("202736360@qq.com"));
         // 设置收件人邮箱地址
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
         // 设置邮件标题
-        message.setSubject("infoS");
+        message.setSubject("MAMS");
 
         // 生成4位数字验证码
         StringBuilder sb = new StringBuilder(checkcode);
@@ -55,7 +55,7 @@ public class Verify {
         // 得到邮差对象
         Transport transport = session.getTransport();
         // 连接自己的邮箱账户
-        transport.connect("578499233@qq.com", "oijohftqyzmpbchf");// 密码为QQ邮箱开通的stmp服务后得到的客户端授权码
+        transport.connect("202736360@qq.com", "jnisadzbzehsbifc");// 密码为QQ邮箱开通的stmp服务后得到的客户端授权码
         // 发送邮件
         transport.sendMessage(message, message.getAllRecipients());
         transport.close();

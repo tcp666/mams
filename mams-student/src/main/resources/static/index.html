@@ -49,6 +49,7 @@
             border-collapse: collapse;
             color: white;
         }
+
         /*.nav > label > a[id='signUpNav'] {*/
         /*    font-style: normal;*/
         /*    text-decoration: none;*/
@@ -113,7 +114,7 @@
             <lable class="tips">请输入密码</lable>
             <input id="signInPassword" placeholder="password" type="password"/>
             <lable class="tips">请输入验证码...</lable>
-            <input placeholder="check code" type="text">
+            <input id="signInCheckCode" placeholder="check code" type="text">
             <lable>&nbsp</lable>
             <input type="button" value="点击发送验证码">
             <lable>&nbsp</lable>
@@ -125,13 +126,13 @@
             <lable class="tips">请设置密码</lable>
             <input id="signUpPassword" placeholder="password" type="password"/>
             <lable>本人邮箱地址</lable>
-            <input placeholder="email" type="email">
+            <input id="signUpEmail" placeholder="email" type="email">
             <lable class="tips">请输入验证码...</lable>
-            <input placeholder="check code" type="text">
+            <input id="signUpCheckCode" placeholder="check code" type="text">
             <lable>&nbsp</lable>
             <input type="button" value="点击发送验证码">
             <lable>&nbsp</lable>
-            <input id="signUpPage" type="button" value="点击注册" @click="register">
+            <input  id="signUpPage" type="button" value="点击注册" @click="register">
         </div>
         <span><label><a href="">联系客服</a></label></span>
     </div>
@@ -141,7 +142,9 @@
     var index = new Vue({
             el: "#index",
             data: {
-                signUp: false
+                signUp: false,
+                studentRealNameInfo: {},
+                checkCode: null
             },
             methods: {
                 registerPage: function () {
@@ -150,9 +153,49 @@
                 loginPage: function (obj) {
                     this.signUp = true
                 },
-                register:function () {
+                sigInData: function () {
+                    var isEmai = false;
+                    var userName = document.getElementById("signInUsername").value;
+                    if (userName.endsWith("@qq.com"))
+                        isEmai = true;
+                    var password = document.getElementById("signInPassword").value;
+                    var signUpCheckCode = document.getElementById("signUpCheckCode").value;
+                    this.checkCode = signUpCheckCode;
+                    if (isEmai)
+                        this.studentRealNameInfo = {email: userName, password: password};
+                    else
+                        this.studentRealNameInfo = {userName: userName, password: password};
+                },
+                sigUpData: function () {
+                    var signUpUsername = document.getElementById("signUpUsername").value;
+                    var signUpPassword = document.getElementById("signUpPassword").value;
+                    var signUpEmail = document.getElementById("signUpEmail").value;
+                    var signUpCheckCode = document.getElementById("signUpCheckCode").value;
+                    this.checkCode=signUpCheckCode;
 
+                    this.studentRealNameInfo={
+                        userName:signUpUsername,
+                        password:signUpPassword,
+                        email:signUpEmail
+                    };
+
+                },
+                register:function () {
+                    console.log("************************")
+                    if (!this.signUp){
+                        this.sigUpData();
+                        console.log(this.studentRealNameInfo);
+                        axios({
+                            method: 'post',
+                            url: '/student/register',
+                            dataType: "json",
+                            data: this.studentRealNameInfo,
+                        }).then(function (value) {
+                            console.log(value)
+                        });
+                    }
                 }
+                
 
             }
         }

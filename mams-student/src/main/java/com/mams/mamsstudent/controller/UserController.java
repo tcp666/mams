@@ -1,12 +1,17 @@
 package com.mams.mamsstudent.controller;
 
 
+import com.mams.mamscommon.utils.Verify;
 import com.mams.mamsstudent.entity.StudentRealNameInfo;
 import com.mams.mamsstudent.service.StudentRealNameInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.mams.mamscommon.utils.Result;
+
+import javax.mail.MessagingException;
 
 /**
  * @ClassName UserController
@@ -27,15 +32,22 @@ public class UserController {
 	}
 	
 	@RequestMapping("/register")
-	public Result<StudentRealNameInfo> register(StudentRealNameInfo studentRealNameInfo) {
-		if (studentRealNameInfo.getPassword() == null)
+	@ResponseBody
+	public Result<StudentRealNameInfo> register(@RequestBody StudentRealNameInfo studentRealNameInfo) {
+		System.out.println(studentRealNameInfo);
+		if (studentRealNameInfo.getPassword() == "")
 			return Result.fail("password 为空!");
-		if (studentRealNameInfo.getUserName() == null)
+		if (studentRealNameInfo.getUserName() == "")
 			return Result.fail("username 为空!");
-		if (studentRealNameInfo.getEmail() == null)
+		if (studentRealNameInfo.getEmail() == "")
 			return Result.fail("email 为空!");
 		if (studentRealNameInfoService.register(studentRealNameInfo) > 0)
 			return Result.success(studentRealNameInfo);
 		return Result.fail(studentRealNameInfo);
+	}
+	
+	@RequestMapping("/sendCheckCode")
+	public Result<String> sendCheckCode(StudentRealNameInfo info) throws MessagingException {
+		return Result.success(Verify.sendMsg(info.getEmail(),Verify.getCheckCode()));
 	}
 }
