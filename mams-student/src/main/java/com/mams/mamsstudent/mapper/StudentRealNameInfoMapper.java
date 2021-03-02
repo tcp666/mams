@@ -21,4 +21,6 @@ public interface StudentRealNameInfoMapper {
 	
 	@Insert("insert into student_real_name_info(user_name,email,password) values(#{userName},#{email},#{password})")
 	Integer register(StudentRealNameInfo studentRealNameInfo);
+	
+	
 }

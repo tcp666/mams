@@ -56,7 +56,7 @@
         /*    border-collapse: collapse;*/
         /*    color: blue;*/
         /*}*/
-        .nav > label > a:hover {
+        .nav > label > a[id="signUpNav"] {
             color: blue;
         }
 
@@ -106,19 +106,19 @@
     <div class="info">
         <div class="nav">
             <label><a @click="registerPage" id="signUpNav">注册</a></label>
-            <label><a @click="loginPage">登录</a></label>
+            <label><a @click="loginPage" id="signInNav">登录</a></label>
         </div>
         <div class="msg" v-if="signUp">
-            <lable class="tips">请输入用户名或邮箱</lable>
-            <input id="signInUsername" placeholder="username" type="text"/>
+            <lable class="tips">请输入邮箱</lable>
+            <input id="signInEmail" placeholder="email" type="text"/>
             <lable class="tips">请输入密码</lable>
             <input id="signInPassword" placeholder="password" type="password"/>
             <lable class="tips">请输入验证码...</lable>
             <input id="signInCheckCode" placeholder="check code" type="text">
             <lable>&nbsp</lable>
-            <input type="button" value="点击发送验证码">
+            <input @click="signInSendCheckCode" type="button" value="点击发送验证码">
             <lable>&nbsp</lable>
-            <input id="signInPage" type="button" value="点击登录">
+            <input @click="login" id="signInPage" type="button" value="点击登录">
         </div>
         <div class="msg" v-else>
             <lable class="tips">请设置用户名</lable>
@@ -130,9 +130,9 @@
             <lable class="tips">请输入验证码...</lable>
             <input id="signUpCheckCode" placeholder="check code" type="text">
             <lable>&nbsp</lable>
-            <input type="button" value="点击发送验证码" @click="signUpSendCheckCode">
+            <input @click="signUpSendCheckCode" type="button" value="点击发送验证码">
             <lable>&nbsp</lable>
-            <input  id="signUpPage" type="button" value="点击注册" @click="register">
+            <input @click="register" id="signUpPage" type="button" value="点击注册">
         </div>
         <span><label><a href="">联系客服</a></label></span>
     </div>
@@ -144,14 +144,21 @@
             data: {
                 signUp: false,
                 studentRealNameInfo: {},
-                checkCode: null
+                checkCode: null,
+                responseCheckCode: ""
             },
             methods: {
                 registerPage: function () {
+                    document.getElementById("signUpNav").style.color = "blue";
+                    document.getElementById("signInNav").style.color = "white";
                     this.signUp = false
+
                 },
-                loginPage: function (obj) {
+                loginPage: function () {
+                    document.getElementById("signInNav").style.color = "blue";
+                    document.getElementById("signUpNav").style.color = "white";
                     this.signUp = true
+
                 },
                 sigInData: function () {
                     var isEmai = false;
@@ -171,18 +178,28 @@
                     var signUpPassword = document.getElementById("signUpPassword").value;
                     var signUpEmail = document.getElementById("signUpEmail").value;
                     var signUpCheckCode = document.getElementById("signUpCheckCode").value;
-                    this.checkCode=signUpCheckCode;
+                    this.checkCode = signUpCheckCode;
 
-                    this.studentRealNameInfo={
-                        userName:signUpUsername,
-                        password:signUpPassword,
-                        email:signUpEmail
+                    this.studentRealNameInfo = {
+                        userName: signUpUsername,
+                        password: signUpPassword,
+                        email: signUpEmail
                     };
 
                 },
-                register:function () {
-                    console.log("************************")
-                    if (!this.signUp){
+                sigInData: function () {
+                    var signInUsername = document.getElementById("signInEmail").value;
+                    var signInPassword = document.getElementById("signInPassword").value;
+                    var signInCheckCode = document.getElementById("signInCheckCode").value;
+                    this.checkCode = signInCheckCode;
+                    this.studentRealNameInfo = {
+                        email: signInUsername,
+                        password: signInPassword,
+                    };
+
+                },
+                register: function () {
+                    if (!this.signUp) {
                         this.sigUpData();
                         console.log(this.studentRealNameInfo);
                         axios({
@@ -195,9 +212,8 @@
                         });
                     }
                 },
-                signUpSendCheckCode:function () {
-
-                    if (!this.signUp){
+                signUpSendCheckCode: function () {
+                    if (!this.signUp) {
                         this.sigUpData();
                         console.log(this.studentRealNameInfo);
                         axios({
@@ -205,12 +221,45 @@
                             url: '/student/sendCheckCode',
                             dataType: "json",
                             data: this.studentRealNameInfo,
-                        }).then(function (value) {
-                            console.log(value.value)
+
+                        }).then(function (data) {
+                            console.log(data.value)
                         });
                     }
+                },
+              signInSendCheckCode:function(){
+                    if(this.signUp) {
+                        this.sigInData();
+
+                        axios({
+                            method: 'post',
+                            url: '/student/sendCheckCode',
+                            dataType: "json",
+                            data: this.studentRealNameInfo,
+                        }).then( (data)=> {
+                           this.responseCheckCode = data.data.value;
+                            console.log(this.responseCheckCode)
+                        });
+                    }
+                },
+                login: function () {
+                    this.sigInData();
+                    console.log(this.checkCode);
+                    console.log(this.responseCheckCode);
+                    if (this.studentRealNameInfo === "") {
+                        alert("用户名不能为空");
+                        return;
+                    }
+                    if (this.studentRealNameInfo.password == "") {
+                        alert("密码为空");
+                        return;
+                    }
+                    if (!this.checkCode==this.responseCheckCode)
+                        alert("验证码错误");
+
+
+
                 }
-                
 
             }
         }
