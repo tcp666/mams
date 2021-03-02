@@ -13,9 +13,7 @@ import lombok.ToString;
  *@Date 2021/2/2 20:16
  *@Version 1.0
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+
 @Data
 public class StudentRealNameInfo {
 	private Long studentId;

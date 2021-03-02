@@ -14,9 +14,6 @@ import java.util.Date;
  * @Date 2021/2/3 17:10
  * @Version 1.0
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 @Data
 public class StudentEducationBackground {
 	private Long studentId;

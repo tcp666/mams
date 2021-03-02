@@ -1,9 +1,6 @@
 package com.mams.mamsstudent.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  *@ClassName StudentStudyAndWorkExperience
@@ -12,9 +9,7 @@ import lombok.ToString;
  *@Date 2021/2/3 17:48
  *@Version 1.0
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+
 @Data
 public class StudentStudyAndWorkExperience {
 	private Long studentId;

@@ -1,4 +1,12 @@
 server:
   port: 8083
 resources:
-  static-locations: classpath:/static/,classpath:/views
+  static-locations:
+    classpath: /static/,classpath:/views
+spring:
+  thymeleaf:
+    prefix=classpath:/static/:
+  datasource:
+    username: root
+    url: jdbc:mysql://127.0.0.1:3306/mams_student?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    password: tcp666

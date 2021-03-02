@@ -9,10 +9,7 @@ import lombok.*;
  *@Date 2021/2/3 17:38
  *@Version 1.0
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@RequiredArgsConstructor
+
 @Data
 public class StudentCensusRegisterDocument {
 	private Long studentId;

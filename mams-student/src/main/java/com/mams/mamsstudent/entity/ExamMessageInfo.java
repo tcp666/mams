@@ -14,9 +14,7 @@ import java.util.Date;
  * @Date 2021/2/3 13:45
  * @Version 1.0
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+
 @Data
 public class ExamMessageInfo {
 	private Long examNo;

@@ -4,11 +4,11 @@ import com.mams.mamscommon.api.UserService;
 import org.springframework.stereotype.Service;
 
 /**
- *@ClassName UserServiceImp
- *@Description TODO
- *@Author  TangCaiping
- *@Date 2021/2/7 17:22
- *@Version 1.0
+ * @ClassName UserServiceImp
+ * @Description TODO
+ * @Author TangCaiping
+ * @Date 2021/2/7 17:22
+ * @Version 1.0
  */
 @Service("userService")
 public class UserServiceImp implements UserService {

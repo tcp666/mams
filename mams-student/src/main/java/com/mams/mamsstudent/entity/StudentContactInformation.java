@@ -12,9 +12,7 @@ import lombok.ToString;
  *@Date 2021/2/3 17:55
  *@Version 1.0
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+
 @Data
 public class StudentContactInformation {
 	private Long studentId;

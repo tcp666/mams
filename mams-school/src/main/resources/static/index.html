@@ -2,27 +2,152 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<script src="js/jquery1111.min.js"></script>
-<body>
-hello-school
-<a href="http://127.0.0.1:8081/index.html">另一个服务</a>
-<a onclick="send()">点击一下</a>
-<script>
-    function send() {
-        $.ajax({
-            url: "http://127.0.0.1:8081/common/index",
-            type: "POST",
-            success: function (data) {
-                alert(data);
-            },
-            error: function (data) {
-                console.log(data);
-            }
+    <title>login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-        })
-    }
+        body {
+            background-color: #3c3f41;
+            opacity: 0.8;
+        }
+
+        #index {
+            margin: 45px auto;
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .info {
+            width: 40%;
+            height: auto;
+            margin: 0 auto;
+
+        }
+
+        .info > .nav {
+            width: 100%;
+            height: 40px;
+            font-size: 20px;
+            line-height: 40px;
+            /*text-decoration: red;*/
+        }
+
+        .nav > label {
+            width: 100px;
+            height: 20px;
+            z-index: 10;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav > label > a {
+            font-style: normal;
+            text-decoration: none;
+            border-collapse: collapse;
+            color: white;
+        }
+
+        .nav > label > a:hover {
+            color: blue;
+        }
+
+        .tittle {
+            width: 100%;
+            height: 45px;
+            padding-left: 5px;
+            font-size: 25px;
+            line-height: 45px;
+        }
+
+        .info > .msg {
+            width: 100%;
+            height: auto;
+        }
+
+        .msg > .tips {
+            font-style: normal;
+            width: 100px;
+            height: 15px;
+            color: #ff8346;
+            font-size: 15px;
+            line-height: 15px;
+        }
+
+        .msg > input {
+            font-style: normal;
+            padding-left: 5px;
+            width: 60%;
+            height: 35px;
+            border-collapse: collapse;
+            font-size: 20px;
+            line-height: 20px;
+            display: block;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<script src="js/vueresource/vuejs-2.5.16.js"></script>
+<script src="js/vueresource/axios-0.18.0.js"></script>
+<div class="tittle">硕士招生管理系学生端</div>
+<div id="index">
+    <div class="info">
+        <div class="nav">
+            <label><a @click="registerPage" id="signUpNav">注册</a></label>
+            <label><a @click="loginPage">登录</a></label>
+        </div>
+        <div class="msg" v-if="signUp">
+            <lable class="tips">请输入用户名或邮箱</lable>
+            <input id="signInUsername" placeholder="email username" type="text"/>
+            <lable class="tips">请输入密码</lable>
+            <input id="signInPassword" placeholder="password" type="password"/>
+            <lable class="tips">请输入验证码...</lable>
+            <input placeholder="check code" type="text">
+            <lable>&nbsp</lable>
+            <input type="button" value="点击发送验证码">
+            <lable>&nbsp</lable>
+            <input id="signInPage" type="button" value="点击登录">
+        </div>
+        <div class="msg" v-else>
+            <lable class="tips">请设置用户名</lable>
+            <input id="signUpUsername" placeholder="username" type="text"/>
+            <lable class="tips">请设置密码</lable>
+            <input id="signUpPassword" placeholder="password" type="password"/>
+            <lable>本人邮箱地址</lable>
+            <input placeholder="email" type="email">
+            <lable class="tips">请输入验证码...</lable>
+            <input placeholder="check code" type="text">
+            <lable>&nbsp</lable>
+            <input type="button" value="点击发送验证码">
+            <lable>&nbsp</lable>
+            <input id="signUpPage" type="button" value="点击注册">
+        </div>
+        <span><label><a href="">联系客服</a></label></span>
+    </div>
+</div>
+
+<script>
+    var index = new Vue({
+            el: "#index",
+            data: {
+                signUp: false
+            },
+            methods: {
+                registerPage: function () {
+                    this.signUp = false
+                },
+                loginPage: function (obj) {
+                    this.signUp = true
+                }
+            }
+        }
+    )
 </script>
 </body>
 </html>
