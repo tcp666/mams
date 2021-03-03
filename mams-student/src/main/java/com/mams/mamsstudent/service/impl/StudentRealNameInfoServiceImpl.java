@@ -30,4 +30,12 @@ public class StudentRealNameInfoServiceImpl implements StudentRealNameInfoServic
 	public Integer register(StudentRealNameInfo studentRealNameInfo) {
 		return studentRealNameInfoMapper.register(studentRealNameInfo);
 	}
+	
+	@Override
+	public List<StudentRealNameInfo> login(StudentRealNameInfo info) {
+		List<StudentRealNameInfo> login = studentRealNameInfoMapper.login(info);
+		if (login.size()!=1)
+			new Exception("没有这个人");
+		return login;
+	}
 }

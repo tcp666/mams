@@ -17,4 +17,7 @@ public interface StudentRealNameInfoService {
 	
 	//注册
 	Integer register(StudentRealNameInfo studentRealNameInfo);
+	
+	//登录
+	List<StudentRealNameInfo> login(StudentRealNameInfo info);
 }
