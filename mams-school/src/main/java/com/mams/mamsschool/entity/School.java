@@ -1,5 +1,5 @@
 package com.mams.mamsschool.entity;/**
- *@ClassName School
+ *@ClassName SchoolMapper
  *@Description TODO
  *@Author  TangCaiping
  *@Date 2021/2/7 10:20
