@@ -16,11 +16,11 @@ public class StudentExamApplication {
 	private String signUpSchool;
 	private String signUpMajor;
 	private String signUpWay;
-	private String SpecialPlan;
+	private String specialPlan;
 	//非定向就业，定向就业
 	private String signUpType;
-	private String TargetedEmployCompany;
-	private String TargetedEmployCompanyAddress;
+	private String targetedEmployCompany;
+	private String targetedEmployCompanyAddress;
 	private String signUpDepartment;
 	private String signUpSchoolingType;
 	private String researchDirection;
