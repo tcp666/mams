@@ -10,3 +10,6 @@ spring:
     username: root
     url: jdbc:mysql://127.0.0.1:3306/mams-common?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     password: tcp666
+logging:
+  config: log4j2-spring.xml
+  level: info

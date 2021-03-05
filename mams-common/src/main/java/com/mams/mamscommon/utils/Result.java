@@ -16,8 +16,6 @@ public class Result<T> implements Serializable {
 	private String status;
 	public static final Result result=new Result();
 	
-
-	
 	public boolean isSuccess() {
 		return success;
 	}

@@ -27,7 +27,7 @@ public class UserController {
 	SchoolMapper mapper;
 	
 	@RequestMapping("/saveSchool")
-	public String index() {
+	public String saveBaseInfo() {
 		
 		File file = new File("D:\\graduation\\mams\\mams-common\\src\\main\\resources\\schools.txt");
 		try {

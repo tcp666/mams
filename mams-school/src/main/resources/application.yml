@@ -3,3 +3,6 @@ server:
 resources:
   static-locations:
     classpath: /static/classpath:/views
+logging:
+  config: log4j2-spring.xml
+  level: info

@@ -1,10 +1,15 @@
-package com.mams.mamsschool.entity;/**
+package com.mams.mamsschool.entity;
+
+import lombok.Data;
+
+/**
  *@ClassName EnrollmentProject
  *@Description 招生计划
  *@Author  TangCaiping
  *@Date 2021/2/7 10:17
  *@Version 1.0
  */
+@Data
 public class EnrollmentProject {
 	private int id;
 	private String tutorName;

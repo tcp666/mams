@@ -1,5 +1,7 @@
 package com.mams.mamsschool.entity;
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
@@ -9,6 +11,7 @@ import java.util.Date;
  *@Date 2021/2/7 10:10
  *@Version 1.0
  */
+@Data
 public class ExamRequirement {
 	private int id;
 	private String schoolName;

@@ -1,5 +1,7 @@
 package com.mams.mamsschool.entity;
 
+import lombok.Data;
+
 /**
  * @ClassName Courses
  * @Description TODO
@@ -7,6 +9,7 @@ package com.mams.mamsschool.entity;
  * @Date 2021/2/7 10:34
  * @Version 1.0
  */
+@Data
 public class Courses {
 	private int coursesId;
 	private int professionNo;
