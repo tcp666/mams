@@ -3,9 +3,7 @@ package com.mams.mamsstudent.service.impl;
 import com.mams.mamsstudent.entity.StudentRealNameInfo;
 import com.mams.mamsstudent.mapper.StudentRealNameInfoMapper;
 import com.mams.mamsstudent.service.StudentRealNameInfoService;
-
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 
