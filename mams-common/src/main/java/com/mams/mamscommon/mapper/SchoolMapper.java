@@ -16,12 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SchoolMapper {
 
-//	private String id;
-//	private String schoolName;
-//	private String schoolCode;
-//	private String belongingDepartment;
-//	private String localAddress;
-//	private String level;
 @Insert("insert into school values (#{id},#{schoolName},#{schoolCode},#{belongingDepartment},#{localAddress},#{level})")
 	 void insert(School school);
 }
