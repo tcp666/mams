@@ -22,7 +22,7 @@ import java.io.*;
 @RestController
 @RequestMapping("/common")
 @CrossOrigin
-public class UserController {
+public class CommonUserController {
 	@Resource
 	SchoolMapper mapper;
 	@Resource
@@ -93,5 +93,4 @@ public class UserController {
 		return "seccess";
 	}
 }
-
 
