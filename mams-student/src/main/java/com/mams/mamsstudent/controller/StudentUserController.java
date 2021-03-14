@@ -1,6 +1,7 @@
 package com.mams.mamsstudent.controller;
 
 
+import com.mams.mamscommon.api.UserService;
 import com.mams.mamscommon.utils.Verify;
 import com.mams.mamsstudent.entity.StudentRealNameInfo;
 import com.mams.mamsstudent.service.StudentRealNameInfoService;
@@ -22,10 +23,10 @@ import javax.mail.MessagingException;
  */
 @RestController
 @RequestMapping("/student")
-public class UserController {
+public class StudentUserController {
 	@Autowired
 	StudentRealNameInfoService studentRealNameInfoService;
-	
+
 	@RequestMapping("/getAllUser")
 	public Result<String> getAllUser() {
 		return Result.success(studentRealNameInfoService.getAll());

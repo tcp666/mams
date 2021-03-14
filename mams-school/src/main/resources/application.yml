@@ -2,7 +2,12 @@ server:
   port: 8082
 resources:
   static-locations:
-    classpath: /static/classpath:/views
-logging:
-  config: log4j2-spring.xml
-  level: info
+    classpath: /static/,classpath:/views
+spring:
+  thymeleaf:
+    prefix=classpath:/static/:
+  datasource:
+    username: root
+    url: jdbc:mysql://127.0.0.1:3306/mams-school?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    password: tcp666
+

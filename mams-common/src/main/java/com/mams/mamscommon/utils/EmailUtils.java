@@ -1,6 +1,7 @@
 package com.mams.mamscommon.utils;
 
 import org.apache.commons.mail.HtmlEmail;
+import org.springframework.stereotype.Component;
 
 /**
  *@ClassName EmailUtils
@@ -9,6 +10,7 @@ import org.apache.commons.mail.HtmlEmail;
  *@Date 2021/3/1 17:13
  *@Version 1.0
  */
+@Component
 public class EmailUtils {
 	public static void sendEmail(String sendTo,String yzm) throws Exception {
 		HtmlEmail email = new HtmlEmail();
