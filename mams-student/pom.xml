@@ -120,6 +120,24 @@
             <artifactId>mams-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
+
+
+        <!--通过java程序发送http请求-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <!--java中的http解析器，相当于java的爬虫类-->
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+
     </dependencies>
 
 

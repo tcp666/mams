@@ -1,0 +1,233 @@
+body {
+    background-image: url("../img/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+
+    position: fixed;
+
+}
+
+.school {
+    margin: auto auto;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    position: fixed;
+    top: auto;
+    left: auto;
+}
+
+.school > .nav {
+    width: 100%;
+    height: 20px;
+    font-size: 20px;
+    line-height: 20px;
+
+}
+
+.school > .login {
+    width: 1000px;
+    height: 600px;
+    margin: 10% auto;
+    background-color: #8cbaf5;
+    opacity: 0.8;
+
+}
+.login > .loginData {
+    width: 80%;
+    height: 100%;
+    margin-top: 40px;
+    margin-left: 80px;
+    /*background-color: red;*/
+}
+
+.loginData > .userName {
+    margin-top: 50px;
+    width: 100%;
+    height: 40px;
+    display: block;
+    position: relative;
+    top: 50px;
+
+}
+
+.loginData > .userName > .tubiao {
+
+    width: 40px;
+    height: 40px;
+    position: relative;
+
+    left: 0px;
+    background-image: url("../img/icon/user.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    line-height: 40px;
+    z-index: 20;
+
+}
+
+.loginData > .userName > input {
+    font-style: normal;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 40px;
+    display: block;
+    font-size: 20px;
+    position: relative;
+    box-sizing: border-box;
+    left: 0;
+    top: -40px;
+    text-align: center;
+    outline: none;
+}
+
+
+.loginData > .userPassword {
+    margin-top: 50px;
+    width: 100%;
+    height: 40px;
+    display: block;
+    position: relative;
+    top: 60px;
+
+}
+
+
+.loginData > .userPassword > .tubiao {
+
+    width: 40px;
+    height: 40px;
+    position: relative;
+
+    left: 0px;
+    background-image: url("../img/icon/password.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    line-height: 40px;
+    z-index: 20;
+
+}
+
+.loginData > .userPassword > input {
+    font-style: normal;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    left: 0;
+    top: -40px;
+    outline: none;
+    text-align: center;
+
+}
+
+.loginData>.userEmail{
+    margin-top: 50px;
+    width: 100%;
+    height: 40px;
+    display: block;
+    position: relative;
+    top: 60px;
+}
+
+.loginData>.userEmail>input{
+    font-style: normal;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    left: 0;
+    top: -40px;
+    outline: none;
+    text-align: center;
+}
+
+.loginData>.userEmail>.tubiao{
+    width: 40px;
+    height: 40px;
+    position: relative;
+
+    left: 0px;
+    background-image: url("../img/icon/email.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    line-height: 40px;
+    z-index: 20;
+}
+
+.loginData>.checkCode{
+    margin-top: 50px;
+    width: 100%;
+    height: 40px;
+    display: block;
+    position: relative;
+    top: 60px;
+}
+
+.loginData>.checkCode>input{
+    font-style: normal;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+    display: block;
+    position: relative;
+    box-sizing: border-box;
+    left: 0;
+    top: -40px;
+    outline: none;
+    text-align: center;
+}
+
+.loginData>.checkCode>.tubiao{
+    width: 40px;
+    height: 40px;
+    position: relative;
+
+    left: 0px;
+    background-image: url("../img/icon/wait.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    line-height: 40px;
+    z-index: 20;
+}
+.loginData > .button {
+    margin: 50px auto;
+    width: 40%;
+    height: 40px;
+    display: block;
+    position: relative;
+    top: 60px;
+    background: green;
+    border-collapse: collapse;
+    border: none;
+    border: 0px;
+    font-size: 20px;
+    font-size: 20px;
+    outline: none;
+    text-align: center;
+}
+
+.loginData > p {
+
+    width: auto;
+    height: auto;
+    display: block;
+    float: right;
+    top: 100%;
+
+}

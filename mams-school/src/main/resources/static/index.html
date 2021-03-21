@@ -1,16 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-          name="viewport">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Document</title>
     <style>
         body {
             background-image: url("./img/bg.jpg");
             background-repeat: no-repeat;
             background-size: 100%;
+            resize: none;
+            position: fixed;
+
 
         }
 
@@ -18,8 +18,11 @@
             margin: auto auto;
             width: 100%;
             height: 100%;
-            background-color: deepskyblue;
-
+            /*background-color: deepskyblue;*/
+            opacity: 0.9;
+            position: fixed;
+            top: auto;
+            left: auto;
         }
 
         .school > .nav {
@@ -35,7 +38,7 @@
             height: 400px;
             margin: 10% auto;
             background-color: #8cbaf5;
-            opacity: 0.8;
+            opacity: 0.7;
 
         }
 
@@ -163,26 +166,27 @@
     </style>
 </head>
 <body>
-<giv class="school">
+
+<script src="js/vueresource/vuejs-2.5.16.js"></script>
+<script src="js/vueresource/axios-0.18.0.js"></script>
+<div class="school">
     <div class="nav">
-        硕士招生管理系统高校端
+        硕士招生管理系统-高校端
     </div>
     <div class="login">
         <div class="loginData">
             <div class="userName">
                 <div class="tubiao"></div>
-                <input type="text">
+                <input type="text" placeholder="请输入用户名">
             </div>
             <div class="userPassword">
                 <div class="tubiao"></div>
-                <input type="password">
+                <input type="password" placeholder="请输入密码">
             </div>
-
             <button class="button">点击登录</button>
             <p><a href="/signup.html">还没有账户?去注册</a></p>
-
         </div>
     </div>
-</giv>
+</div>
 </body>
 </html>

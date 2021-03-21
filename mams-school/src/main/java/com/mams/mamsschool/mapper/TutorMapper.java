@@ -1,8 +1,12 @@
 package com.mams.mamsschool.mapper;
 
+import com.mams.mamscommon.utils.Result;
 import com.mams.mamsschool.entity.Tutor;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  *@ClassName TutorMapper
@@ -39,5 +43,9 @@ public interface TutorMapper {
 			"#{userName}," +
 			"#{password}," +
 			"#{checked}) ")
-	void save(Tutor tutor);
+	Integer save(Tutor tutor);
+	
+	
+	@Select("select * from tutor where real_name =#{realName} and password=#{password}")
+	List<Tutor> findByTutor(Tutor tutor);
 }
