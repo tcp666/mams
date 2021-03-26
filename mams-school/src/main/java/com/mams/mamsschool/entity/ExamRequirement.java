@@ -21,7 +21,8 @@ public class ExamRequirement {
 	private String timeDemand;
 	private String examDemand;
 	private String publicCourseDemand;
-	private String extendMessage="1、考研由国家考试主管部门和招" +
+	private String extendMessage=
+			"1、考研由国家考试主管部门和招" +
 			"生单位组织的初试和复试组成。思想政治理论、外国语、大学数" +
 			"学等公共科目由全国统一命题，专业课主要由各招生单位自行命题。\n" +
 			"\n" +
