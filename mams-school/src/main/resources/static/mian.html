@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="layui/css/layui.css" rel="stylesheet">
+    <script src="layui/layui.js"></script>
+
+</head>
+<body>
+<!--水平导航-->
+
+<ul class="layui-nav">
+    <li class="layui-nav-item layui-this"><a href="">个人信息完善与认证</a></li>
+    <li class="layui-nav-item"><a href="">学校信息完善</a></li>
+    <li class="layui-nav-item"><a href="">专业信息完善</a></li>
+    <li class="layui-nav-item"><a href="">发布考试要求</a></li>
+    <li class="layui-nav-item"><a href="">发布招生计划</a></li>
+</ul>
+<form action="" class="layui-form" method="post">
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-verify="title" name="title" placeholder="请输入姓名"
+                   type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">学校</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+                   placeholder="请输入学校名称" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">院系</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+                   placeholder="请输入院系名称" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">专业</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+                   placeholder="请输入专业名称" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证号</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+                   placeholder="请输入身份证号" type="text">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">email</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+                   placeholder="email" type="email">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">头像</label>
+        <div class="layui-input-inline">
+            <label for="imgFile" class="layui-btn">点击上传图像</label>
+            <input class="layui-input" name="username" onchange="prev(this)" type="file" id="imgFile" style="display: none">
+            <img alt=""  id="prevView" src="" style="width: 123px;height: 200px;display: none" >
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <button class="layui-btn" lay-skin="primary">点击提交</button>
+        <button class="layui-btn layui-btn-danger" lay-skin="danger">重置</button>
+    </div>
+
+</form>
+
+
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+
+    });
+
+    function prev(event){
+        //获取展示图片的区域
+        var img = document.getElementById("prevView");
+        //获取文件对象
+        let file = event.files[0];
+        //获取文件阅读器
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(){
+            //给img的src设置图片url
+            img.setAttribute("src", this.result);
+            img.style.display='block';
+        }
+    }
+</script>
+</body>
+</html>

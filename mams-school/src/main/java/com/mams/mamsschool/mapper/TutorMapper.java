@@ -41,6 +41,7 @@ public interface TutorMapper {
 			"#{email}," +
 			"#{imgSrc}," +
 			"#{userName}," +
+			
 			"#{password}," +
 			"#{checked}) ")
 	Integer save(Tutor tutor);

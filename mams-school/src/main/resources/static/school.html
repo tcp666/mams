@@ -3,151 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="css/body.css" rel="stylesheet">
-    <style>
+    <link href="layui/css/layui.css" rel="stylesheet">
+    <script src="layui/layui.js"></script>
 
-        .main {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            position: fixed;
-
-            overflow: auto;
-        }
-
-        .main > .logo {
-            width: 100%;
-            height: 20px;
-            font-size: 20px;
-            line-height: 20px;
-
-        }
-
-        .main > .nav {
-            width: 100%;
-            height: 45px;
-            line-height: 45px;
-            font-size: 30px;
-            display: block;
-        }
-
-        .nav > ul {
-            width: 100%;
-            height: 100%;
-            display: block;
-            background-color: #ffffff;
-        }
-
-        .nav > ul > li {
-            list-style: none;
-            text-decoration: none;
-            font-style: normal;
-            width: 20%;
-            height: 100%;
-            display: block;
-            float: left;
-            /*background-color: #e4393c;*/
-
-
-        }
-
-
-
-        .nav > ul > li > a {
-            font-style: normal;
-            text-decoration: none;
-            color: black;
-        }
-        .nav > ul > li > a[href="school.html"] {
-            font-style: normal;
-            text-decoration: none;
-            color: #fd271d;
-        }
-
-        .nav > ul:first-child {
-
-            font-style: normal;
-            text-decoration: none;
-        }
-
-
-        .main > .tutor {
-            width: 60%;
-            margin: 0 auto;
-            overflow: auto;
-        }
-
-        .tutor > label {
-            width: 80%;
-            height: 45px;
-            margin: 0 auto;
-            font-size: 20px;
-            line-height: 45px;
-            display: block;
-            text-align: center;
-            color: red;
-        }
-
-        .tutor > label[for="headImg"] {
-            width: 100px;
-            height: 160px;
-            margin: 0 auto;
-            font-size: 20px;
-            line-height: 160px;
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            background-color: #fff110;: red;
-        }
-
-        .tutor > input {
-            width: 80%;
-            height: 45px;
-            margin: 0 auto;
-            font-size: 20px;
-            line-height: 45px;
-            outline: none;
-            display: block;
-        }
-
-        .tutor > input:last-child {
-            background-color: #e4393c;
-            margin-top: 2px;
-            outline: none;
-        }
-    </style>
 </head>
 <body>
-<div class="main" id="main">
-    <div class="logo">
-        硕士招生管理系统-高校端
-    </div>
-    <div class="nav" id="nav">
+<!--水平导航-->
 
-        <ul>
-            <li><a href="tutor.html">个人信息完善与认证</a></li>
-            <li><a href="school.html">学校信息完善</a></li>
-            <li><a href="profession.html">专业信息完善</a></li>
-            <li><a href="examrequirement.html">发布考试要求</a></li>
-            <li><a href="entrollementproject.html">发布招生计划</a></li>
-        </ul>
+<ul class="layui-nav">
+    <li class="layui-nav-item"><a href="tutor.html">个人信息完善与认证</a></li>
+    <li class="layui-nav-item layui-this"><a href="school.html">学校信息完善</a></li>
+    <li class="layui-nav-item"><a href="profession.html">专业信息完善</a></li>
+    <li class="layui-nav-item"><a href="examrequirement.html">发布考试要求</a></li>
+    <li class="layui-nav-item"><a href="entrollementproject.html">发布招生计划</a></li>
+</ul>
+
+<div class="layui-main">
+<form action="" class="layui-form" method="post" style="margin-top: 20px">
+    <div class="layui-form-item">
+        <label class="layui-form-label">学校名称</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-verify="title" name="title" placeholder="请输入姓名" type="text">
+        </div>
     </div>
-    <div class="tutor">
-        <label>请输入学校名称</label>
-        <input type="text">
-        <label>请输入毕业院校</label>
-        <input type="text">
-        <label>请输入院系</label>
-        <input type="text">
-        <label>请输入专业</label>
-        <input type="text">
-        <label>请输入身份证号码</label>
-        <input type="text">
-        <label for="headImg">上传图像</label>
-        <input id="headImg" multiple style="display: none" type="file">
-        <input type="button" value="保存并提交(注意只能提交一次)">
+    <div class="layui-form-item">
+        <label class="layui-form-label">学校</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+                   placeholder="请输入学校名称" type="text">
+        </div>
     </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">院系</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+                   placeholder="请输入院系名称" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">专业</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+                   placeholder="请输入专业名称" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证号</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+                   placeholder="请输入身份证号" type="text">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">email</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+                   placeholder="email" type="email">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">头像</label>
+        <div class="layui-input-inline">
+            <label class="layui-btn" for="imgFile">点击上传图像</label>
+            <input class="layui-input" id="imgFile" name="username" onchange="prev(this)" style="display: none"
+                   type="file">
+            <img alt="" id="prevView" src="" style="width: 123px;height: 200px;display: none">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <button type="button" class="layui-btn">点击提交</button>
+        <button type="button" class="layui-btn layui-btn-danger">点击重置</button>
+    </div>
+
+</form>
 </div>
+
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+
+    });
+
+    function prev(event) {
+        //获取展示图片的区域
+        var img = document.getElementById("prevView");
+        //获取文件对象
+        let file = event.files[0];
+        //获取文件阅读器
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            //给img的src设置图片url
+            img.setAttribute("src", this.result);
+            img.style.display = 'block';
+        }
+    }
+</script>
 </body>
 </html>
