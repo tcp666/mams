@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+
+<ul class="layui-nav">
+    <li class="layui-nav-item"><a href="baseinfo.html">基本信息</a></li>
+    <li class="layui-nav-item layui-this"><a href="document.html">档案信息</a></li>
+    <li class="layui-nav-item"><a href="">学籍管理</a></li>
+    <li class="layui-nav-item"><a href="">联系方式</a></li>
+    <li class="layui-nav-item"><a href="">学籍管理</a></li>
+    <li class="layui-nav-item"><a href="">教育经历</a></li>
+    <li class="layui-nav-item"><a href="">奖惩信息</a></li>
+    <li class="layui-nav-item"><a href="">教育和工作经历</a></li>
+    <li class="layui-nav-item"><a href="">志愿管理</a></li>
+</ul>
+
+
+<form action="" class="layui-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">民族</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-verify="title" name="title" placeholder="请输入民族"
+                   type="text">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
+                   name="username"
+                   placeholder="请输入性别" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">婚姻状态</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
+                   name="username"
+                   placeholder="请输入婚姻状态" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否为现役军人</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
+                   name="username" placeholder="请输入是否为现役军人" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">政治面貌</label>
+        <div class="layui-input-inline">
+            <input autocomplete="off" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
+                   name="username" placeholder="请输入是否为现役军人" type="text">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <button class="layui-btn" type="button">点击提交</button>
+        <button class="layui-btn layui-btn-danger" type="button">点击重置</button>
+    </div>
+</form>
+
+</body>
+</html>
+
