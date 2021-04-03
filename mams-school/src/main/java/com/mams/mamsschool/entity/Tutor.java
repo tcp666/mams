@@ -2,7 +2,12 @@ package com.mams.mamsschool.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
+
+
 
 /**
  *@ClassName Tutor
@@ -12,6 +17,7 @@ import lombok.Data;
  *@Version 1.0
  */
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tutor {
 	private int tutorId;
 	private String realName;

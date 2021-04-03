@@ -5,15 +5,16 @@ import com.mams.mamsschool.entity.Tutor;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
 /**
- *@ClassName TutorMapper
- *@Description TODO
- *@Author  TangCaiping
- *@Date 2021/3/11 19:40
- *@Version 1.0
+ * @ClassName TutorMapper
+ * @Description TODO
+ * @Author TangCaiping
+ * @Date 2021/3/11 19:40
+ * @Version 1.0
  */
 
 /**
@@ -41,12 +42,20 @@ public interface TutorMapper {
 			"#{email}," +
 			"#{imgSrc}," +
 			"#{userName}," +
-			
 			"#{password}," +
 			"#{checked}) ")
 	Integer save(Tutor tutor);
 	
+	@Update("update tutor real_name=#{realName}," +
+			"school_name=#{schoolName}," +
+			"department=#{department}," +
+			"profession=#{profession}," +
+			"ID_CODE={ID_CODE}," +
+			"img_src=#{imgSrc} where tutor_id=#{tutorId}")
+	Integer update(Tutor tutor);
 	
-	@Select("select * from tutor where real_name =#{realName} and password=#{password}")
+	@Select("select * from tutor where email =#{email} and password=#{password}")
 	List<Tutor> findByTutor(Tutor tutor);
+	
+	
 }

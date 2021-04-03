@@ -169,7 +169,7 @@
 
 <script src="js/vueresource/vuejs-2.5.16.js"></script>
 <script src="js/vueresource/axios-0.18.0.js"></script>
-<div class="school">
+<div class="school" id="school">
     <div class="nav">
         硕士招生管理系统-高校端
     </div>
@@ -177,16 +177,42 @@
         <div class="loginData">
             <div class="userName">
                 <div class="tubiao"></div>
-                <input type="text" placeholder="请输入用户名">
+                <input id="email" placeholder="请输入邮箱账户" type="email">
             </div>
             <div class="userPassword">
                 <div class="tubiao"></div>
-                <input type="password" placeholder="请输入密码">
+                <input id="password" placeholder="请输入密码" type="password">
             </div>
-            <button class="button">点击登录</button>
+            <button @click="signin" class="button">点击登录</button>
             <p><a href="/signup.html">还没有账户?去注册</a></p>
         </div>
     </div>
 </div>
+
+<script>
+    var school = new Vue({
+        el: "#school",
+        data: {},
+        methods: {
+            signin: function () {
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
+                axios({
+                    url: "/school/login",
+                    method: "post",
+                    dataType: "json",
+                    data: {email: email, password: password}
+                }).then((data) => {
+                    var tutor = data.data.value;
+                    localStorage.setItem("tutor", JSON.stringify(tutor));
+                    if (tutor.checked==0)
+                        window.location.href="tutor.html"
+
+
+                })
+            }
+        }
+    })
+</script>
 </body>
 </html>

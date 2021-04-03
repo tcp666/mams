@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="css/body.css">
-    <link rel="stylesheet" href="css/signup.css">
+    <link href="css/body.css" rel="stylesheet">
+    <link href="css/signup.css" rel="stylesheet">
 
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
     <script src="js/vueresource/axios-0.18.0.js"></script>
@@ -19,24 +19,24 @@
         <div class="loginData">
             <div class="userName">
                 <div class="tubiao"></div>
-                <input type="text" placeholder="请设置用户名" id="realName">
+                <input id="realName" placeholder="请设置用户名" type="text">
             </div>
             <div class="userPassword">
                 <div class="tubiao"></div>
-                <input type="password" placeholder="请设置密码" id="password">
+                <input id="password" placeholder="请设置密码" type="password">
             </div>
 
             <div class="userEmail">
                 <div class="tubiao"></div>
-                <input type="email" placeholder="请输入邮箱" id="email">
+                <input id="email" placeholder="请输入邮箱" type="email">
             </div>
 
             <div class="checkCode">
                 <div class="tubiao"></div>
-                <input type="text" placeholder="验证码" id="checkCode">
+                <input id="checkCode" placeholder="验证码" type="text">
             </div>
-            <button class="button" @click='sendCheckCode'>点击发送验证码</button>
-            <button class="button" @click="signUp">点击注册</button>
+            <button @click='sendCheckCode' class="button">点击发送验证码</button>
+            <button @click="signUp" class="button">点击注册</button>
             <p><a href="/index.html">已有账户?去登录</a></p>
 
         </div>
@@ -47,19 +47,44 @@
 
     var school = new Vue({
         el: "#school",
-        data: {},
+        data: {
+            checkcode: '',
+            email: ''
+        },
         methods: {
             sendCheckCode: function () {
-            var userEmail = document.getElementById("email").value;
-            alert(userEmail)
-            console.log(userEmail)
+                var userEmail = document.getElementById("email").value;
+                this.email = userEmail;
+                console.log(userEmail);
                 axios({
                     method: "post",
                     url: "/school/getCheckCode",
-                    dataType:"json",
-                    data: {email:userEmail}
+                    dataType: "json",
+                    data: {email: userEmail}
+                }).then((data) => {
+                    console.log(data.data.value);
+                    this.checkcode = data.data.value;
+                })
+            },
+            signUp: function () {
+                console.log(this.checkcode);
+                var realName = document.getElementById("realName").value;
+                var password = document.getElementById("password").value;
+                var checkCode = document.getElementById("checkCode").value;
+                if (checkCode == "" || this.checkcode != checkCode)
+                    return false;
+
+                axios({
+                    method: "post",
+                    url: "/school/signup",
+                    dataType: "json",
+                    data: {realName: realName, password: password, email: this.email}
                 }).then((data) => {
                     console.log(data)
+                    console.log(data.data.value)
+
+                    localStorage.setItem("tutor",JSON.stringify(data.data.value))
+                    window.location.href="index.html";
                 })
             }
         }

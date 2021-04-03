@@ -1,17 +1,19 @@
 package com.mams.mamsschool.controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mams.mamscommon.utils.QiniuUpload;
 import com.mams.mamscommon.utils.Result;
 import com.mams.mamscommon.utils.Verify;
 import com.mams.mamsschool.entity.Tutor;
 import com.mams.mamsschool.service.TutorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpRequest;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 
@@ -28,31 +30,52 @@ class SchoolUserController {
 	@Autowired
 	TutorService tutorService;
 	
+	@Autowired
+	QiniuUpload qiniuUpload;
 	
 	@RequestMapping("/login")
 	@ResponseBody
 	public Result<Tutor> login(@RequestBody Tutor tutor) {
+		
+		System.out.println(tutor);
 		List<Tutor> tutors = tutorService.find(tutor);
 		if (tutors.size() != 1) {
 			return Result.fail(tutor);
 			
 		}
-		return Result.success(tutors.get(0));
+		tutor=tutors.get(0);
+		System.out.println("database"+tutor);
+		tutor.setPassword("");
+		System.out.println(tutor+"password");
+		return Result.success(tutor);
 	}
 	
 	@RequestMapping("/signup")
 	@ResponseBody
-	public Result<String> signUp(Tutor tutor){
+	public Result<Tutor> signUp(@RequestBody Tutor tutor) {
+		
+		System.out.println(tutor);
 		Integer add = tutorService.add(tutor);
-		if (add!=1){
+		if (add != 1) {
 			return Result.fail(tutor);
 		}
-		return Result.success("注册成功");
+		
+		List<Tutor> tutors = tutorService.find(tutor);
+		if (tutors.size() != 1)
+			return Result.fail(tutor);
+		else {
+			tutor=tutors.get(0);
+			tutor.setPassword("");
+			System.out.println(tutor+"**************************************");
+			return Result.success(tutor);
+		}
+		
+		
 	}
 	
 	@RequestMapping("/getCheckCode")
 	@ResponseBody
-	public Result<String> sendCheckCode(@RequestBody Tutor tutor){
+	public Result<String> sendCheckCode(@RequestBody Tutor tutor) {
 		System.out.println(tutor.getEmail());
 		String checkCode = Verify.getCheckCode();
 		try {
@@ -61,6 +84,27 @@ class SchoolUserController {
 			e.printStackTrace();
 		}
 		
-		return  Result.fail(null);
+		return Result.fail(null);
+	}
+	
+	@RequestMapping(value = "/saveTutor")
+	@ResponseBody
+	public Result<Tutor> saveTutor(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		Tutor tutor = null;
+		try {
+			System.out.println(request.getParameter("tutor"));
+			String url = qiniuUpload.updateFile(file, file.getOriginalFilename());
+			ObjectMapper objectMapper = new ObjectMapper();
+			tutor = objectMapper.readValue(request.getParameter("tutor"), Tutor.class);
+			tutor.setImgSrc(url);
+			
+			System.out.println(tutor);
+			tutorService.update(tutor);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return Result.success(tutor);
 	}
 }
