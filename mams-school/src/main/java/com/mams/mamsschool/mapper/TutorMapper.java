@@ -23,7 +23,7 @@ import java.util.List;
  * 	private String schoolName;
  * 	private String department;
  * 	private String profession;
- * 	private String ID_CODE;
+ * 	private String idCode;
  * 	private String email;
  * 	private String imgSrc;
  * 	private String userName;
@@ -38,7 +38,7 @@ public interface TutorMapper {
 			"#{schoolName}," +
 			"#{department}," +
 			"#{profession}," +
-			"#{ID_CODE}," +
+			"#{idCode}," +
 			"#{email}," +
 			"#{imgSrc}," +
 			"#{userName}," +
@@ -46,11 +46,11 @@ public interface TutorMapper {
 			"#{checked}) ")
 	Integer save(Tutor tutor);
 	
-	@Update("update tutor real_name=#{realName}," +
+	@Update("update tutor set " +
 			"school_name=#{schoolName}," +
 			"department=#{department}," +
 			"profession=#{profession}," +
-			"ID_CODE={ID_CODE}," +
+			"id_code=#{idCode}," +
 			"img_src=#{imgSrc} where tutor_id=#{tutorId}")
 	Integer update(Tutor tutor);
 	

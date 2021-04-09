@@ -14,8 +14,6 @@
 <script src="js/vueresource/axios-0.18.0.js"></script>
 <ul class="layui-nav">
     <li class="layui-nav-item layui-this"><a href="tutor.html">个人信息完善与认证</a></li>
-    <li class="layui-nav-item"><a href="school.html">学校信息完善</a></li>
-    <li class="layui-nav-item"><a href="profession.html">专业信息完善</a></li>
     <li class="layui-nav-item"><a href="examrequirement.html">发布考试要求</a></li>
     <li class="layui-nav-item"><a href="entrollementproject.html">发布招生计划</a></li>
 </ul>
@@ -23,17 +21,11 @@
 
     <form @submit.prevent="saveTutor" class="layui-form" enctype="multipart/form-data" method="post" ref="form"
           style="margin-top: 20px">
-        <div class="layui-form-item">
-            <label class="layui-form-label">姓名</label>
-            <div class="layui-input-inline">
-                <input autocomplete="off" class="layui-input" lay-verify="title" name="realName" placeholder="请输入姓名"
-                       type="text">
-            </div>
-        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">学校</label>
             <div class="layui-input-inline">
-                <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required"
+                <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required"
                        name="schoolName"
                        placeholder="请输入学校名称" type="text">
             </div>
@@ -42,7 +34,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">院系</label>
             <div class="layui-input-inline">
-                <input autocomplete="off" class="layui-input" lay-reqtext="请输入院系" lay-verify="required"
+                <input autocomplete="on" class="layui-input" lay-reqtext="请输入院系" lay-verify="required"
                        name="department"
                        placeholder="请输入院系名称" type="text">
             </div>
@@ -51,7 +43,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">专业</label>
             <div class="layui-input-inline">
-                <input autocomplete="off" class="layui-input" lay-reqtext="请输入专业" lay-verify="required"
+                <input autocomplete="on" class="layui-input" lay-reqtext="请输入专业" lay-verify="required"
                        name="profession"
                        placeholder="请输入专业名称" type="text">
             </div>
@@ -60,7 +52,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">身份证号</label>
             <div class="layui-input-inline">
-                <input autocomplete="off" class="layui-input" lay-reqtext="请输入身份证号" lay-verify="required" name="ID_CODE"
+                <input autocomplete="on" class="layui-input" lay-reqtext="请输入身份证号" lay-verify="required" name="idCode"
                        placeholder="请输入身份证号" type="text">
             </div>
         </div>
@@ -117,6 +109,7 @@
 
                 const formData = new FormData(this.$refs['form']);
                 const tutor = {};
+                tutor.tutorId=JSON.parse(localStorage.getItem("tutor")).tutorId;
                 //formData.entries()返回一个 iterator对象 ，此对象可以遍历访问FormData中的键值对
                 for (let [key, val] of formData.entries()) {
                     Object.assign(tutor, {[key]: val})
@@ -132,6 +125,9 @@
                     method:"post",
                     data:data,
                     headers:{ 'Content-Type':'multipart/form-data; boundary=----WebKitFormBoundaryVCFSAonTuDbVCoAN'}
+                }).then((data)=>{
+                    // if (data.data.value.)
+                    window.location.href="profession.html";
                 })
             },
 

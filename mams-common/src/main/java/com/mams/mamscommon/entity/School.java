@@ -17,5 +17,7 @@ public class School {
 	private String belongingDepartment;
 	private String localAddress;
 	private String level;
+	private String simpleDesc;
+	private String webSite;
 	
 }

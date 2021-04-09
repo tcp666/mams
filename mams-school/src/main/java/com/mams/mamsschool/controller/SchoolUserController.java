@@ -6,15 +6,16 @@ import com.mams.mamscommon.utils.QiniuUpload;
 import com.mams.mamscommon.utils.Result;
 import com.mams.mamscommon.utils.Verify;
 import com.mams.mamsschool.entity.Tutor;
+
 import com.mams.mamsschool.service.TutorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -32,6 +33,7 @@ class SchoolUserController {
 	
 	@Autowired
 	QiniuUpload qiniuUpload;
+
 	
 	@RequestMapping("/login")
 	@ResponseBody
@@ -43,10 +45,10 @@ class SchoolUserController {
 			return Result.fail(tutor);
 			
 		}
-		tutor=tutors.get(0);
-		System.out.println("database"+tutor);
+		tutor = tutors.get(0);
+		System.out.println("database" + tutor);
 		tutor.setPassword("");
-		System.out.println(tutor+"password");
+		System.out.println(tutor + "password");
 		return Result.success(tutor);
 	}
 	
@@ -64,9 +66,9 @@ class SchoolUserController {
 		if (tutors.size() != 1)
 			return Result.fail(tutor);
 		else {
-			tutor=tutors.get(0);
+			tutor = tutors.get(0);
 			tutor.setPassword("");
-			System.out.println(tutor+"**************************************");
+			System.out.println(tutor + "**************************************");
 			return Result.success(tutor);
 		}
 		
@@ -93,13 +95,13 @@ class SchoolUserController {
 		Tutor tutor = null;
 		try {
 			System.out.println(request.getParameter("tutor"));
-			String url = qiniuUpload.updateFile(file, file.getOriginalFilename());
+			String url = qiniuUpload.updateFile(file, UUID.randomUUID() + file.getOriginalFilename().substring(file.getOriginalFilename().indexOf('.')));
 			ObjectMapper objectMapper = new ObjectMapper();
 			tutor = objectMapper.readValue(request.getParameter("tutor"), Tutor.class);
 			tutor.setImgSrc(url);
 			
 			System.out.println(tutor);
-			tutorService.update(tutor);
+			System.out.println(tutorService.update(tutor));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -107,4 +109,6 @@ class SchoolUserController {
 		
 		return Result.success(tutor);
 	}
+	
+	
 }

@@ -17,14 +17,13 @@ import lombok.Data;
  *@Version 1.0
  */
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tutor {
 	private int tutorId;
 	private String realName;
 	private String schoolName;
 	private String department;
 	private String profession;
-	private String ID_CODE;
+	private String idCode;
 	private String email;
 	private String imgSrc;
 	private String userName;

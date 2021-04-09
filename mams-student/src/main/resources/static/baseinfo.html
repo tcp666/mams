@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="layui/css/layui.css" rel="stylesheet">
+    <script src="layui/layui.js"></script>
 </head>
 <body>
 
 <ul class="layui-nav">
-    <li class="layui-nav-item"><a href="baseinfo.html">基本信息</a></li>
-    <li class="layui-nav-item layui-this"><a href="document.html">档案信息</a></li>
+    <li class="layui-nav-item layui-this"><a href="baseinfo.html">基本信息</a></li>
+    <li class="layui-nav-item"><a href="document.html">档案信息</a></li>
     <li class="layui-nav-item"><a href="">学籍管理</a></li>
     <li class="layui-nav-item"><a href="">联系方式</a></li>
     <li class="layui-nav-item"><a href="">学籍管理</a></li>
@@ -24,7 +25,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">民族</label>
         <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-verify="title" name="title" placeholder="请输入民族"
+            <input autocomplete="on" class="layui-input" lay-verify="title" name="title" placeholder="请输入民族"
                    type="text">
         </div>
     </div>
@@ -33,7 +34,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">性别</label>
         <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
+            <input autocomplete="on" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
                    name="username"
                    placeholder="请输入性别" type="text">
         </div>
@@ -41,7 +42,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">婚姻状态</label>
         <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
+            <input autocomplete="on" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
                    name="username"
                    placeholder="请输入婚姻状态" type="text">
         </div>
@@ -50,26 +51,44 @@
     <div class="layui-form-item">
         <label class="layui-form-label">是否为现役军人</label>
         <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
+            <input autocomplete="on" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
                    name="username" placeholder="请输入是否为现役军人" type="text">
         </div>
     </div>
-
     <div class="layui-form-item">
-        <label class="layui-form-label">政治面貌</label>
-        <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
-                   name="username" placeholder="请输入是否为现役军人" type="text">
+        <div class="layui-inline">
+            <label class="layui-form-label">政治面貌</label>
+            <div class="layui-input-inline">
+                <select name="politicalOutlook">
+                    <option value="中共党员">中共党员</option>
+                    <option value="中共预备党员">中共预备党员</option>
+                    <option value="中国共青团团员">中国共青团团员</option>
+                    <option value="中国国民党革命委员会会员中国民主同盟盟员">中国国民党革命委员会会员中国民主同盟盟员</option>
+                    <option value="中国民主建国会会员中国民主促进会会员中国农工民主党党员中国致公党党员九三学社社员">中国民主建国会会员中国民主促进会会员中国农工民主党党员中国致公党党员九三学社社员</option>
+                    <option value="台湾民主自治同盟盟员无党派民主人士">台湾民主自治同盟盟员无党派民主人士</option>
+                    <option value="群众">群众</option>
+                </select>
+            </div>
         </div>
+
     </div>
-
-
     <div class="layui-form-item">
         <button class="layui-btn" type="button">点击提交</button>
         <button class="layui-btn layui-btn-danger" type="button">点击重置</button>
     </div>
 </form>
 
+
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+    });
+
+</script>
 </body>
 </html>
 

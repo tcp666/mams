@@ -18,73 +18,48 @@
     <li class="layui-nav-item"><a href="entrollementproject.html">发布招生计划</a></li>
 </ul>
 
-<div class="layui-main">
-<form action="" class="layui-form" method="post" style="margin-top: 20px">
-    <div class="layui-form-item">
-        <label class="layui-form-label">学校名称</label>
-        <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-verify="title" name="title" placeholder="请输入姓名" type="text">
+<div class="layui-main" id="school">
+    <form action="" class="layui-form" method="post" style="margin-top: 20px">
+        <div class="layui-form-item">
+            <label class="layui-form-label">学校名称</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" lay-verify="title" name="schoolName" placeholder="请输入学校名称"
+                       type="text">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">学校</label>
-        <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入学校名称" type="text">
+        <div class="layui-form-item">
+            <label class="layui-form-label">学校代号</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校代号" lay-verify="required"
+                       name="schoolCode"
+                       placeholder="请输入学校代号" type="text">
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">院系</label>
-        <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入院系名称" type="text">
+        <div class="layui-form-item">
+            <label class="layui-form-label">学校简介</label>
+            <div class="layui-input-inline">
+            <textarea autocomplete="on" class="layui-textarea" lay-reqtext="请输入学校简介" lay-verify="required"
+                      name="simpleDesc"
+                      placeholder="请输入学校简介" type="text"></textarea>
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">专业</label>
-        <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入专业名称" type="text">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">学校网址</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校网址" lay-verify="required" name="webSit"
+                       placeholder="请输入学校网址" type="url">
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">身份证号</label>
-        <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入身份证号" type="text">
+        <div class="layui-form-item">
+            <button class="layui-btn" type="button">点击提交</button>
+            <button class="layui-btn layui-btn-danger" type="button">点击重置</button>
         </div>
-    </div>
 
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">email</label>
-        <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="email" type="email">
-        </div>
-    </div>
-
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">头像</label>
-        <div class="layui-input-inline">
-            <label class="layui-btn" for="imgFile">点击上传图像</label>
-            <input class="layui-input" id="imgFile" name="username" onchange="prev(this)" style="display: none"
-                   type="file">
-            <img alt="" id="prevView" src="" style="width: 123px;height: 200px;display: none">
-        </div>
-    </div>
-
-
-    <div class="layui-form-item">
-        <button type="button" class="layui-btn">点击提交</button>
-        <button type="button" class="layui-btn layui-btn-danger">点击重置</button>
-    </div>
-
-</form>
+    </form>
 </div>
 
 <script>
@@ -111,6 +86,33 @@
             img.style.display = 'block';
         }
     }
+
+
+    var tutor = new Vue({
+        el: "#school",
+        data: {},
+        methods: {
+            saveTutor: function () {
+
+                const formData = new FormData(this.$refs['form']);
+                const school = {};
+
+                //formData.entries()返回一个 iterator对象 ，此对象可以遍历访问FormData中的键值对
+                for (let [key, val] of formData.entries()) {
+                    Object.assign(school, {[key]: val})
+                }
+                console.log(school);//{name:'xxx', age:xx }
+
+                axios({
+                    url:"/school/saveSchool",
+                    method:"post",
+                    data:school,
+                    headers:{ 'Content-Type':'multipart/form-data; boundary=----WebKitFormBoundaryVCFSAonTuDbVCoAN'}
+                })
+            },
+
+        }
+    })
 </script>
 </body>
 </html>

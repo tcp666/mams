@@ -12,40 +12,33 @@
 
 <ul class="layui-nav">
     <li class="layui-nav-item"><a href="tutor.html">个人信息完善与认证</a></li>
-    <li class="layui-nav-item"><a href="school.html">学校信息完善</a></li>
     <li class="layui-nav-item layui-this"><a href="profession.html">专业信息完善</a></li>
     <li class="layui-nav-item"><a href="examrequirement.html">发布考试要求</a></li>
     <li class="layui-nav-item"><a href="entrollementproject.html">发布招生计划</a></li>
 </ul>
 <div class="layui-main">
 <form action="" class="layui-form" method="post" style="margin-top: 20px">
-    <div class="layui-form-item">
-        <label class="layui-form-label">学校</label>
-        <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-verify="title" name="title" placeholder="请输入姓名"
-                   type="text">
-        </div>
-    </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label">院系</label>
         <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入学校名称" type="text">
+            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学院名称" lay-verify="required" name="department"
+                   placeholder="请输入学院名称" type="text">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">专业</label>
+        <label class="layui-form-label">专业名称</label>
         <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入院系名称" type="text">
+            <input autocomplete="on" class="layui-input" lay-reqtext="请输入专业名称" lay-verify="required" name="professionName"
+                   placeholder="请输入专业名称" type="text">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">专业代码</label>
         <div class="layui-input-inline">
-            <input autocomplete="off" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
+            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
                    placeholder="请输入专业名称" type="text">
         </div>
     </div>

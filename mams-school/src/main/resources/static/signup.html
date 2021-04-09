@@ -81,8 +81,7 @@
                     data: {realName: realName, password: password, email: this.email}
                 }).then((data) => {
                     console.log(data)
-                    console.log(data.data.value)
-
+                    console.log(data)
                     localStorage.setItem("tutor",JSON.stringify(data.data.value))
                     window.location.href="index.html";
                 })

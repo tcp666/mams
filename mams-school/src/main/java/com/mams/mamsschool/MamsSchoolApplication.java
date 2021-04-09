@@ -2,6 +2,7 @@ package com.mams.mamsschool;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication(scanBasePackages = {
 		"com.mams",
@@ -11,8 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 		"com.mams.mamsschool.service"})
 public class MamsSchoolApplication {
 	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(MamsSchoolApplication.class, args);
 		
-	
-		SpringApplication.run(MamsSchoolApplication.class, args);
 	}
 }
