@@ -4,11 +4,9 @@ package com.mams.mamsstudent.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mams.mamscommon.utils.QiniuUpload;
 import com.mams.mamscommon.utils.Verify;
-import com.mams.mamsstudent.entity.StudentBaseInfo;
-import com.mams.mamsstudent.entity.StudentCensusRegisterDocument;
-import com.mams.mamsstudent.entity.StudentEducationBackground;
-import com.mams.mamsstudent.entity.StudentRealNameInfo;
+import com.mams.mamsstudent.entity.*;
 import com.mams.mamsstudent.mapper.StudentCensusRegisterDocumentMapper;
+import com.mams.mamsstudent.mapper.StudentContactInformationMapper;
 import com.mams.mamsstudent.mapper.StudentEducationBackgroundMapper;
 import com.mams.mamsstudent.service.StudentBaseInfoService;
 import com.mams.mamsstudent.service.StudentRealNameInfoService;
@@ -46,6 +44,8 @@ public class StudentUserController {
 	StudentCensusRegisterDocumentMapper documentMapper;
 	@Resource
 	StudentEducationBackgroundMapper educationBackgroundMapper;
+	@Resource
+	StudentContactInformationMapper studentContactInformationMapper;
 	
 	@RequestMapping("/getAllUser")
 	public Result<String> getAllUser() {
@@ -132,6 +132,17 @@ public class StudentUserController {
 		
 		return Result.success(count);
 		
+	}
+	
+	@RequestMapping("/saveContact")
+	@ResponseBody
+	public Result<Integer> saveContact(@RequestBody StudentContactInformation contactInformation) {
+		try {
+			return Result.success(studentContactInformationMapper.save(contactInformation));
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return Result.success("0");
 	}
 	
 }

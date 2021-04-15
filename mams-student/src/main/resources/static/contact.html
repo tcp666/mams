@@ -20,35 +20,35 @@
 <body>
 
 <ul class="layui-nav">
-    <li class="layui-nav-item layui-this"><a href="baseinfo.html">基本信息</a></li>
+    <li class="layui-nav-item"><a href="baseinfo.html">基本信息</a></li>
     <li class="layui-nav-item"><a href="document.html">档案信息</a></li>
     <li class="layui-nav-item"><a href="educationbackgroud.html">学籍管理</a></li>
-    <li class="layui-nav-item"><a href="contact.html">联系方式</a></li>
+    <li class="layui-nav-item layui-this"><a href="contact.html">联系方式</a></li>
     <li class="layui-nav-item"><a href="studentrewardandpunishment.html">奖惩信息</a></li>
     <li class="layui-nav-item"><a href="studyandworkexperience.html">教育和工作经历</a></li>
     <li class="layui-nav-item"><a href="">志愿管理</a></li>
 </ul>
 
 
-<form  class="layui-form" style="margin: 20px"  @submit.prevent="saveDocument"  enctype="multipart/form-data" method="post" ref="form" id="document">
+<form  class="layui-form" style="margin: 20px"  @submit.prevent="saveContact"  enctype="multipart/form-data" method="post" ref="form" id="contact">
     <div class="layui-form-item">
-        <label class="layui-form-label ">籍贯</label>
+        <label class="layui-form-label ">邮寄地址</label>
         <div class="layui-input-inline">
-            <input type="text" name="nativePlace" lay-verify="title" autocomplete="on" placeholder="请输入籍贯" class="layui-input">
+            <input type="text" name="postAddress" lay-verify="title" autocomplete="on" placeholder="请输入邮寄地址" class="layui-input">
         </div>
     </div>
 
 
     <div class="layui-form-item">
-        <label class="layui-form-label ">出生地</label>
+        <label class="layui-form-label ">邮政编码</label>
         <div class="layui-input-inline">
-            <input type="text" name="birthAddress" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入出生地" autocomplete="on" class="layui-input">
+            <input type="text" name="postCode" lay-verify="required" lay-reqtext="邮政编码必填项，岂能为空？" placeholder="请输入邮政编码" autocomplete="on" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label ">户口所在地</label>
+        <label class="layui-form-label ">电话号码</label>
         <div class="layui-input-inline">
-            <input type="text" name="residenceAddress" lay-verify="required" lay-reqtext="户口所在地必填项，岂能为空？" placeholder="请输入户口所在地" autocomplete="on" class="layui-input">
+            <input type="text" name="telNumber" lay-verify="required" lay-reqtext="电话号码必填项，岂能为空？" placeholder="请输入电话号码" autocomplete="on" class="layui-input">
         </div>
     </div>
 
@@ -59,37 +59,8 @@
         </div>
     </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label ">档案地址</label>
-        <div class="layui-input-inline">
-            <input type="text" name="documentAddress" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入档案地址" autocomplete="on" class="layui-input">
-        </div>
-    </div>
 
 
-    <div class="layui-form-item">
-        <label class="layui-form-label ">档案单位</label>
-        <div class="layui-input-inline">
-            <input type="text" name="documentCompany" lay-verify="required" lay-reqtext="档案单位是必填项，岂能为空？" placeholder="请输入档案单位" autocomplete="on" class="layui-input">
-        </div>
-    </div>
-
-
-
-    <div class="layui-form-item">
-        <label class="layui-form-label ">档案单位地址</label>
-        <div class="layui-input-inline">
-            <input type="text" name="documentCompanyAddress" lay-verify="required" lay-reqtext="档案单位地址必填项，岂能为空？" placeholder="请输入档案单位地址" autocomplete="on" class="layui-input">
-        </div>
-    </div>
-
-
-    <div class="layui-form-item">
-        <label class="layui-form-label ">档案单位地址邮政编码</label>
-        <div class="layui-input-inline">
-            <input type="text" name="documentCompanyAddressPostCode" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入档案单位地址邮政编码" autocomplete="on" class="layui-input">
-        </div>
-    </div>
     <div class="layui-form-item">
         <button type="submit" class="layui-btn">点击提交</button>
         <button type="button" class="layui-btn layui-btn-danger">点击重置</button>
@@ -107,32 +78,34 @@
     });
 
     var document = new Vue({
-        el: "#document",
+        el: "#contact",
         data: {},
         methods: {
-            saveDocument: function () {
+            saveContact: function () {
 
                 console.log("ahgdsjjjjjjjjjjj")
                 const formData = new FormData(this.$refs['form']);
-                const document = {};
-                document.studentId=JSON.parse(localStorage.getItem("student")).studentId;
+                const contact = {};
+                contact.studentId=JSON.parse(localStorage.getItem("student")).studentId;
+                contact.email=JSON.parse(localStorage.getItem("student")).email;
+
                 //formData.entries()返回一个 iterator对象 ，此对象可以遍历访问FormData中的键值对
                 for (let [key, val] of formData.entries()) {
-                    Object.assign(document, {[key]: val})
+                    Object.assign(contact, {[key]: val})
                 }
-                console.log(document);
+                console.log(contact);
                 axios({
-                    url:"/student/saveStudentCensusRegisterDocument",
+                    url:"/student/saveContact",
                     method:"post",
-                    data:document,
+                    data:contact,
                     dataType:"json"
                 }).then((data)=>{
                     console.log(data)
                     if (data.data.value==1)
-                        window.location.href="educationbackgroud.html"
+                        window.location.href= "studentrewardandpunishment.html"
                     else {
                         alert("录入失败，请重试");
-                        window.location.href="baseinfo.html";
+                        window.location.href="contact.html";
                     }
 
 
