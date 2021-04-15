@@ -32,17 +32,7 @@ public interface StudentEducationBackgroundMapper {
 	 *
 	 * @return
 	 */
-	@Insert("insert into student_education_background(" +
-			"student_id," +
-			"student_src," +
-			"graduate_school," +
-			"graduate_profession," +
-			"last_graduate_schooling_type," +
-			"last_education," +
-			"last_educationNo," +
-			"graduated_time," +
-			"student_no," +
-			"certificate_number)values(" +
+	@Insert("insert into student_education_background values(" +
 			"#{studentId}," +
 			"#{studentSrc}," +
 			"#{graduateSchool}," +

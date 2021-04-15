@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+
+<modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>mams</artifactId>
         <groupId>com.mams</groupId>
@@ -96,7 +96,7 @@
             <version>1.18.10</version>
             <scope>provided</scope>
         </dependency>
-<!--数据库部分-->
+        <!--数据库部分-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -120,24 +120,6 @@
             <artifactId>mams-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-
-
-        <!--通过java程序发送http请求-->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
-        <dependency>
-            <!--java中的http解析器，相当于java的爬虫类-->
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>${jsoup.version}</version>
-        </dependency>
-
     </dependencies>
 
 

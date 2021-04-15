@@ -27,7 +27,7 @@ spring:
 #mybatis配置
 #mybatis.dao-locations=classpath:dao/*.xml
 mybatis:
-  type-aliases-package: com.keshe.entity
+  type-aliases-package: com.mams.mamsstudent.entity
   configuration:
     #数据库表名下划线与pojo类名称大写对应
     map-underscore-to-camel-case: true

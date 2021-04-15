@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="layui/css/layui.css" rel="stylesheet">
+    <script src="layui/layui.js"></script>
+    <script src="js/vueresource/vuejs-2.5.16.js"></script>
+    <script src="js/vueresource/axios-0.18.0.js"></script>
+    <style>
+        .layui-form-label {
+            width: 200px;
+        }
+
+        .layui-input-inline > input {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="layui-nav">
+    <li class="layui-nav-item layui-this"><a href="baseinfo.html">基本信息</a></li>
+    <li class="layui-nav-item"><a href="document.html">档案信息</a></li>
+    <li class="layui-nav-item"><a href="educationbackgroud.html">学籍管理</a></li>
+    <li class="layui-nav-item"><a href="contact.html">联系方式</a></li>
+    <li class="layui-nav-item"><a href="studentrewardandpunishment.html">奖惩信息</a></li>
+    <li class="layui-nav-item"><a href="studyandworkexperience.html">教育和工作经历</a></li>
+    <li class="layui-nav-item"><a href="">志愿管理</a></li>
+</ul>
+
+
+<form @submit.prevent="saveEducationBackground" class="layui-form" enctype="multipart/form-data" id="educationBackground" method="post"
+      ref="form" style="margin: 20px">
+    <div class="layui-form-item">
+        <label class="layui-form-label">点击上传头像</label>
+        <div class="layui-input-inline">
+            <img alt="" id="prevView" src="img/head.png" style="width: 90px;height: 120px;display: block">
+            <label class="layui-btn" for="imgFile">点击上传图像</label>
+            <input class="layui-input" id="imgFile" name="studentSrc" onchange="prev(this)" style="display: none"
+                   type="file">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label ">毕业学校</label>
+        <div class="layui-input-inline">
+            <input autocomplete="on" class="layui-input" lay-reqtext="毕业学校是必填项，岂能为空？" lay-verify="required"
+                   name="graduateSchool" placeholder="请输入毕业学校" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label ">毕业专业</label>
+        <div class="layui-input-inline">
+            <input autocomplete="on" class="layui-input" lay-reqtext="毕业专业必填项，岂能为空？" lay-verify="required"
+                   name="graduateProfession" placeholder="请输入毕业专业" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">学制</label>
+        <div class="layui-input-inline">
+            <input autocomplete="on" class="layui-input" lay-reqtext="学制是必填项，岂能为空？" lay-verify="required"
+                   name="lastGraduateSchoolingType" placeholder="请输入学制" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label ">最终学历</label>
+        <div class="layui-input-inline">
+            <input autocomplete="on" class="layui-input" lay-reqtext="最终学历必填项，岂能为空？" lay-verify="required"
+                   name="lastEducation" placeholder="请输入最终学历" type="text">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label ">请输入学历证书编号</label>
+        <div class="layui-input-inline">
+            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学历证书是必填项，岂能为空？" lay-verify="required"
+                   name="lastEducationNo" placeholder="请输入请输入学历证书" type="text">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label ">毕业时间</label>
+        <div class="layui-input-inline">
+            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学历证书是必填项，岂能为空？" lay-verify="required"
+                   name="graduatedTime" placeholder="请输入请输入学历证书" type="date">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label ">学号</label>
+        <div class="layui-input-inline">
+            <input autocomplete="on" class="layui-input" lay-reqtext="档案单位地址必填项，岂能为空？" lay-verify="required"
+                   name="studentNo"
+                   placeholder="请输入学号" type="text">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label ">学位证书编号</label>
+        <div class="layui-input-inline">
+            <input autocomplete="on" class="layui-input" lay-reqtext="学位证书编号是必填项，岂能为空？" lay-verify="required"
+                   name="certificateNumber" placeholder="请输入学位证书编号" type="text">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <button class="layui-btn" type="submit">点击提交</button>
+        <button class="layui-btn layui-btn-danger" type="button">点击重置</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+
+    });
+
+    function prev(event) {
+        //获取展示图片的区域
+        var img = document.getElementById("prevView");
+        //获取文件对象
+        let file = event.files[0];
+        //获取文件阅读器
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            //给img的src设置图片url
+            img.setAttribute("src", this.result);
+            // img.style.display = 'block';
+        }
+    }
+
+    var document = new Vue({
+        el: "#educationBackground",
+        data: {},
+        methods: {
+            saveEducationBackground: function () {
+                const formData = new FormData(this.$refs['form']);
+                const background = {};
+                background.studentId = JSON.parse(localStorage.getItem("student")).studentId;
+                //formData.entries()返回一个 iterator对象 ，此对象可以遍历访问FormData中的键值对
+                for (let [key, val] of formData.entries()) {
+                    Object.assign(background, {[key]: val})
+                }
+                console.log(background);//{name:'xxx', age:xx }
+                background.studentSrc = "";
+                var data = new FormData();
+                data.append("file", document.querySelector('input[type=file]').files[0]);
+                data.append("background", JSON.stringify(background));
+                console.log(data);
+                axios({
+                    url: "/student/saveEducationBackground",
+                    method: "post",
+                    data: data,
+                    headers: {'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundaryVCFSAonTuDbVCoAN'}
+                }).then((data) => {
+                    // if (data.data.value.)
+                    window.location.href = "contact.html";
+                })
+            },
+        }
+    })
+</script>
+</body>
+</html>

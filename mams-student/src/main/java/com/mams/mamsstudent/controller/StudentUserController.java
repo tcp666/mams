@@ -1,21 +1,30 @@
 package com.mams.mamsstudent.controller;
 
 
-import com.mams.mamscommon.api.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mams.mamscommon.utils.QiniuUpload;
 import com.mams.mamscommon.utils.Verify;
 import com.mams.mamsstudent.entity.StudentBaseInfo;
+import com.mams.mamsstudent.entity.StudentCensusRegisterDocument;
+import com.mams.mamsstudent.entity.StudentEducationBackground;
 import com.mams.mamsstudent.entity.StudentRealNameInfo;
+import com.mams.mamsstudent.mapper.StudentCensusRegisterDocumentMapper;
+import com.mams.mamsstudent.mapper.StudentEducationBackgroundMapper;
 import com.mams.mamsstudent.service.StudentBaseInfoService;
 import com.mams.mamsstudent.service.StudentRealNameInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import com.mams.mamscommon.utils.Result;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
+import com.mams.mamscommon.utils.Result;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
+
 
 /**
  * @ClassName UserController
@@ -28,9 +37,15 @@ import javax.mail.MessagingException;
 @RequestMapping("/student")
 public class StudentUserController {
 	@Autowired
+	QiniuUpload qiniuUpload;
+	@Autowired
 	StudentRealNameInfoService studentRealNameInfoService;
 	@Autowired
 	StudentBaseInfoService studentBaseInfoService;
+	@Resource
+	StudentCensusRegisterDocumentMapper documentMapper;
+	@Resource
+	StudentEducationBackgroundMapper educationBackgroundMapper;
 	
 	@RequestMapping("/getAllUser")
 	public Result<String> getAllUser() {
@@ -69,6 +84,54 @@ public class StudentUserController {
 	@ResponseBody
 	public Result<StudentBaseInfo> saveStudentBaseInfo(@RequestBody StudentBaseInfo baseInfo) {
 		System.out.println(baseInfo);
-		return Result.success(studentBaseInfoService.save(baseInfo));
+		try {
+			return Result.success(studentBaseInfoService.save(baseInfo));
+		} catch (Exception e) {
+			System.out.println("错误");
+		}
+		return Result.fail(0);
+		
 	}
+	
+	@RequestMapping("/saveStudentCensusRegisterDocument")
+	@ResponseBody
+	public Result<StudentBaseInfo> saveStudentCensusRegisterDocument(@RequestBody StudentCensusRegisterDocument document) {
+		Integer count = 0;
+		System.out.println(document);
+		try {
+			count = documentMapper.save(document);
+			System.out.println(count);
+			
+			return Result.success(count);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("错误");
+			
+		}
+		
+		return Result.fail(count);
+	}
+	
+	@RequestMapping("/saveEducationBackground")
+	@ResponseBody
+	public Result<Integer> saveEducationBackground(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+		StudentEducationBackground background = null;
+		Integer count = 0;
+		try {
+			System.out.println(request.getParameter("background"));
+			String url = qiniuUpload.updateFile(file, UUID.randomUUID() + file.getOriginalFilename().substring(file.getOriginalFilename().indexOf('.')));
+			ObjectMapper objectMapper = new ObjectMapper();
+			background = objectMapper.readValue(request.getParameter("background"), StudentEducationBackground.class);
+			background.setStudentSrc(url);
+			
+			System.out.println(background);
+			count = educationBackgroundMapper.save(background);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return Result.success(count);
+		
+	}
+	
 }

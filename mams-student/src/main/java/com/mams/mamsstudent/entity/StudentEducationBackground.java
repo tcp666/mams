@@ -29,6 +29,6 @@ public class StudentEducationBackground {
 	private Date graduatedTime;
 	//学号
 	private String studentNo;
-	
+	//学位证书编号
 	private String certificateNumber;
 }

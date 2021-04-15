@@ -28,7 +28,7 @@ spring:
       max-file-size: 10MB
       max-request-size: 100MB
 mybatis:
-  type-aliases-package: com.mams.mamscommon.entity
+  type-aliases-package: com.mams.mamsschool.entity
   configuration:
     #数据库表名下划线与pojo类名称大写对应
     map-underscore-to-camel-case: true
