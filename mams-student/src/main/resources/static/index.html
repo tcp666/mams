@@ -244,6 +244,7 @@
                 },
                 login: function () {
                     this.sigInData();
+                    console.log(this.studentRealNameInfo);
                     console.log(this.checkCode);
                     console.log(this.responseCheckCode);
                     if (this.studentRealNameInfo === "") {
@@ -265,10 +266,11 @@
                         data: this.studentRealNameInfo,
 
                     }).then((data) => {
-                        localStorage.setItem('student', JSON.stringify(data.data.value))
+                        localStorage.setItem('student', JSON.stringify(data.data.value));
                         console.log(localStorage.getItem('student'));
+                        if (data.data.value != null)
+                            window.location.href = "baseinfo.html"
                     })
-                    window.location=""
 
                 }
 

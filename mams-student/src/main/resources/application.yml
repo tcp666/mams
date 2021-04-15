@@ -5,7 +5,8 @@ resources:
     classpath: /static/,classpath:/views
 spring:
   thymeleaf:
-    prefix=classpath:/static/:
+    prefix:
+      classpath: /static
   datasource:
     username: root
     url: jdbc:mysql://127.0.0.1:3306/mams_student?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT

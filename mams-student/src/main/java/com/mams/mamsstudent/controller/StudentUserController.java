@@ -3,9 +3,12 @@ package com.mams.mamsstudent.controller;
 
 import com.mams.mamscommon.api.UserService;
 import com.mams.mamscommon.utils.Verify;
+import com.mams.mamsstudent.entity.StudentBaseInfo;
 import com.mams.mamsstudent.entity.StudentRealNameInfo;
+import com.mams.mamsstudent.service.StudentBaseInfoService;
 import com.mams.mamsstudent.service.StudentRealNameInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,7 +29,9 @@ import javax.mail.MessagingException;
 public class StudentUserController {
 	@Autowired
 	StudentRealNameInfoService studentRealNameInfoService;
-
+	@Autowired
+	StudentBaseInfoService studentBaseInfoService;
+	
 	@RequestMapping("/getAllUser")
 	public Result<String> getAllUser() {
 		return Result.success(studentRealNameInfoService.getAll());
@@ -56,6 +61,14 @@ public class StudentUserController {
 	@RequestMapping("/login")
 	@ResponseBody
 	public Result<StudentRealNameInfo> login(@RequestBody StudentRealNameInfo info) {
+		System.out.println(info);
 		return Result.success(studentRealNameInfoService.login(info).get(0));
+	}
+	
+	@RequestMapping("/saveStudentBaseInfo")
+	@ResponseBody
+	public Result<StudentBaseInfo> saveStudentBaseInfo(@RequestBody StudentBaseInfo baseInfo) {
+		System.out.println(baseInfo);
+		return Result.success(studentBaseInfoService.save(baseInfo));
 	}
 }

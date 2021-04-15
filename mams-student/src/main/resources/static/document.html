@@ -8,6 +8,9 @@
         .layui-form-label{
             width: 200px;
         }
+        .layui-input-inline > input{
+            width:300px;
+        }
     </style>
 </head>
 <body>
@@ -29,7 +32,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label ">籍贯</label>
         <div class="layui-input-inline">
-            <input type="text" name="title" lay-verify="title" autocomplete="on" placeholder="请输入民族" class="layui-input">
+            <input type="text" name="nativePlace" lay-verify="title" autocomplete="on" placeholder="请输入籍贯" class="layui-input">
         </div>
     </div>
 
@@ -37,27 +40,27 @@
     <div class="layui-form-item">
         <label class="layui-form-label ">出生地</label>
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入性别" autocomplete="on" class="layui-input">
+            <input type="text" name="birthAddress" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入出生地" autocomplete="on" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label ">户口所在地</label>
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入婚姻状态" autocomplete="on" class="layui-input">
+            <input type="text" name="residenceAddress" lay-verify="required" lay-reqtext="户口所在地必填项，岂能为空？" placeholder="请输入户口所在地" autocomplete="on" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label" >详细地址</label>
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入是否为现役军人" autocomplete="on" class="layui-input">
+            <input type="text" name="address" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入详细地址" autocomplete="on" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label ">档案地址</label>
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入是否为现役军人" autocomplete="on" class="layui-input">
+            <input type="text" name="documentAddress" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入档案地址" autocomplete="on" class="layui-input">
         </div>
     </div>
 
@@ -65,7 +68,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label ">档案单位</label>
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入是否为现役军人" autocomplete="on" class="layui-input">
+            <input type="text" name="documentCompany" lay-verify="required" lay-reqtext="档案单位是必填项，岂能为空？" placeholder="请输入档案单位" autocomplete="on" class="layui-input">
         </div>
     </div>
 
@@ -74,7 +77,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label ">档案单位地址</label>
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入是否为现役军人" autocomplete="on" class="layui-input">
+            <input type="text" name="documentCompanyAddress" lay-verify="required" lay-reqtext="档案单位地址必填项，岂能为空？" placeholder="请输入档案单位地址" autocomplete="on" class="layui-input">
         </div>
     </div>
 
@@ -82,7 +85,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label ">档案单位地址邮政编码</label>
         <div class="layui-input-inline">
-            <input type="text" name="username" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入是否为现役军人" autocomplete="on" class="layui-input">
+            <input type="text" name="documentCompanyAddressPostCode" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入档案单位地址邮政编码" autocomplete="on" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">

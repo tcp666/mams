@@ -17,9 +17,9 @@ public class StudentBaseInfo {
 	private String nation;
 	private String gender;
 	//婚否
-	private int marriage;
+	private String marriage;
 	//现役军人
-	private int servicemen;
+	private String servicemen;
 	//政治面貌
 	private String politicalOutlook;
 }

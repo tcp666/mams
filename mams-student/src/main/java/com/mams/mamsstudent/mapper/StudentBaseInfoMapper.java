@@ -38,8 +38,8 @@ public interface StudentBaseInfoMapper {
 			"values(" +
 			"#{studentId}," +
 			"#{nation}," +
-			"#{nation}," +
 			"#{gender}," +
+			"#{marriage}," +
 			"#{servicemen}," +
 			"#{politicalOutlook}" +
 			")")
