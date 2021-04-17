@@ -21,57 +21,34 @@
 </ul>
 
 
-<form class="layui-form" @submit.prevent="saveBaseInfo"  enctype="multipart/form-data" method="post" ref="form" id="baseinfo">
-    <div class="layui-form-item">
-        <label class="layui-form-label">民族</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-verify="title" name="nation" placeholder="请输入民族"
-                   type="text">
-        </div>
-    </div>
-
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">性别</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入性别" lay-verify="required"
-                   name="gender"
-                   placeholder="请输入性别" type="text">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">婚姻状态</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
-                   name="marriage"
-                   placeholder="请输入婚姻状态" type="text">
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">是否为现役军人</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
-                   name="servicemen" placeholder="请输入是否为现役军人" type="text">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">政治面貌</label>
-            <div class="layui-input-inline">
-                <select name="politicalOutlook">
-                    <option value="中共党员">中共党员</option>
-                    <option value="中共预备党员">中共预备党员</option>
-                    <option value="中国共青团团员">中国共青团团员</option>
-                    <option value="中国国民党革命委员会会员中国民主同盟盟员">中国国民党革命委员会会员中国民主同盟盟员</option>
-                    <option value="中国民主建国会会员中国民主促进会会员中国农工民主党党员中国致公党党员九三学社社员">中国民主建国会会员中国民主促进会会员中国农工民主党党员中国致公党党员九三学社社员</option>
-                    <option value="台湾民主自治同盟盟员无党派民主人士">台湾民主自治同盟盟员无党派民主人士</option>
-                    <option value="群众">群众</option>
-                </select>
+<form @submit.prevent="savePunishAndReward" class="layui-form" enctype="multipart/form-data" id="punishAndReward"
+      method="post"
+      ref="form">
+    <div class="rewardList" id="rewardList">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">奖励记录</label>
+            <div class="layui-input-block">
+                <textarea class="layui-textarea" placeholder="请输入奖励内容"></textarea>
             </div>
         </div>
 
     </div>
+    <button @click="daaReward" class="layui-btn" type="button">点击添加奖励记录</button>
+
+    <div class="punishList" id="punishList">
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">处分记录</label>
+            <div class="layui-input-block">
+                <textarea class="layui-textarea" placeholder="请输入处分记录"></textarea>
+            </div>
+        </div>
+
+    </div>
+    <button @click="aadPunish" class="layui-btn" type="button">点击添加惩罚记录</button>
+    <div class="layui-form-item">
+
+    </div>
+
     <div class="layui-form-item">
         <button class="layui-btn" type="submit">点击提交</button>
         <button class="layui-btn layui-btn-danger" type="button">点击重置</button>
@@ -89,39 +66,79 @@
     });
 
     var baseInfo = new Vue({
-        el: "#baseinfo",
-        data: {},
+        el: "#punishAndReward",
+        data: {
+            rewardNode: "<div class=\"layui-form-item layui-form-text\">\n" +
+                "            <label class=\"layui-form-label\">奖励记录</label>\n" +
+                "            <div class=\"layui-input-block\">\n" +
+                "                <textarea placeholder=\"请输入奖励内容\" class=\"layui-textarea\"></textarea>\n" +
+                "            </div>\n" +
+                "        </div>",
+            punishNode: "<div class=\"layui-form-item layui-form-text\">\n" +
+                "            <label class=\"layui-form-label\">处分记录</label>\n" +
+                "            <div class=\"layui-input-block\">\n" +
+                "                <textarea placeholder=\"请输入处分记录\" class=\"layui-textarea\"></textarea>\n" +
+                "            </div>\n" +
+                "        </div>"
+        },
         methods: {
-            saveBaseInfo: function () {
+            savePunishAndReward: function () {
+                let rs = document.querySelectorAll(".rewardList .layui-textarea");
+                let ps = document.querySelectorAll(".punishList .layui-textarea");
+                let list = [];
 
-                console.log("ahgdsjjjjjjjjjjj")
-                const formData = new FormData(this.$refs['form']);
-                const baseInfo = {};
-                baseInfo.studentId=JSON.parse(localStorage.getItem("student")).studentId;
-                //formData.entries()返回一个 iterator对象 ，此对象可以遍历访问FormData中的键值对
-                for (let [key, val] of formData.entries()) {
-                    Object.assign(baseInfo, {[key]: val})
+                let studentId = JSON.parse(localStorage.getItem("student")).studentId;
+                for (let i = 0; i < rs.length; i++) {
+                    list[i] = {
+                        studentId: studentId,
+                        rewardMessage: rs[i].value
+                    };
+
                 }
-                console.log(baseInfo);
 
-
-                axios({
-                    url:"/student/saveStudentBaseInfo",
-                    method:"post",
-                    data:baseInfo,
-                    dataType:"json"
-                }).then((data)=>{
-                    console.log(data)
-                    if (data.data.value==1)
-                        window.location.href="document.html"
+                for (let i = 0; i < ps.length; i++) {
+                    if (i<rs.length){
+                        list[i] = {
+                            studentId: studentId,
+                            rewardMessage: (list[i].rewardMessage== null||list[i].rewardMessage== undefined )? null : list[i].rewardMessage,
+                            punishmentMessage: ps[i].value
+                        };
+                    }
                     else {
-                        alert("录入失败，请重试");
-                        window.location.href="baseinfo.html";
+                        list[i] = {
+                            studentId: studentId,
+                            punishmentMessage: ps[i].value
+                        };
                     }
 
+                }
 
+                axios({
+                    url: "/student/savePAndR",
+                    method: "post",
+                    dataType:"json",
+                    data: list,
+                }).then((data) => {
+               if (data.data.value=="success")
+                   console.log(data.data.value)
                 })
+
+
             },
+            daaReward: function () {
+                document.getElementById("rewardList").appendChild(this.parseToDomNode(this.rewardNode))
+
+            },
+            aadPunish: function () {
+                document.getElementById("punishList").appendChild(this.parseToDomNode(this.punishNode))
+            },
+            parseToDomNode: function (str) {
+                var div = document.createElement("div");
+                if (typeof str == "string")
+                    div.innerHTML = str;
+                return div.childNodes[0];
+            }
+
 
         }
     })

@@ -8,12 +8,14 @@ import com.mams.mamsstudent.entity.*;
 import com.mams.mamsstudent.mapper.StudentCensusRegisterDocumentMapper;
 import com.mams.mamsstudent.mapper.StudentContactInformationMapper;
 import com.mams.mamsstudent.mapper.StudentEducationBackgroundMapper;
+import com.mams.mamsstudent.mapper.StudentRewardAndPunishmentMapper;
 import com.mams.mamsstudent.service.StudentBaseInfoService;
 import com.mams.mamsstudent.service.StudentRealNameInfoService;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import com.mams.mamscommon.utils.Result;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,6 +48,8 @@ public class StudentUserController {
 	StudentEducationBackgroundMapper educationBackgroundMapper;
 	@Resource
 	StudentContactInformationMapper studentContactInformationMapper;
+	@Resource
+	StudentRewardAndPunishmentMapper studentRewardAndPunishmentMapper;
 	
 	@RequestMapping("/getAllUser")
 	public Result<String> getAllUser() {
@@ -139,10 +143,23 @@ public class StudentUserController {
 	public Result<Integer> saveContact(@RequestBody StudentContactInformation contactInformation) {
 		try {
 			return Result.success(studentContactInformationMapper.save(contactInformation));
-		}catch (Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return Result.success("0");
+	}
+	
+	@RequestMapping("/savePAndR")
+	@ResponseBody
+	@Transactional
+	public Result<Object> savePAndR(@RequestBody StudentRewardAndPunishment[] list) {
+		int i;
+		
+		for (i = 0; i < list.length; i++) {
+			studentRewardAndPunishmentMapper.add(list[i]);
+		}
+		
+		return Result.success("success");
 	}
 	
 }
