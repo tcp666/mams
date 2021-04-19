@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mams.mamscommon.utils.QiniuUpload;
 import com.mams.mamscommon.utils.Verify;
 import com.mams.mamsstudent.entity.*;
-import com.mams.mamsstudent.mapper.StudentCensusRegisterDocumentMapper;
-import com.mams.mamsstudent.mapper.StudentContactInformationMapper;
-import com.mams.mamsstudent.mapper.StudentEducationBackgroundMapper;
-import com.mams.mamsstudent.mapper.StudentRewardAndPunishmentMapper;
+import com.mams.mamsstudent.mapper.*;
 import com.mams.mamsstudent.service.StudentBaseInfoService;
 import com.mams.mamsstudent.service.StudentRealNameInfoService;
 
@@ -50,6 +47,8 @@ public class StudentUserController {
 	StudentContactInformationMapper studentContactInformationMapper;
 	@Resource
 	StudentRewardAndPunishmentMapper studentRewardAndPunishmentMapper;
+	@Resource
+	StudentStudyAndWorkExperienceMapper studentStudyAndWorkExperienceMapper;
 	
 	@RequestMapping("/getAllUser")
 	public Result<String> getAllUser() {
@@ -151,12 +150,22 @@ public class StudentUserController {
 	
 	@RequestMapping("/savePAndR")
 	@ResponseBody
-	@Transactional
 	public Result<Object> savePAndR(@RequestBody StudentRewardAndPunishment[] list) {
 		int i;
 		
 		for (i = 0; i < list.length; i++) {
 			studentRewardAndPunishmentMapper.add(list[i]);
+		}
+		
+		return Result.success("success");
+	}
+	
+	@RequestMapping("/saveWandS")
+	@ResponseBody
+	public Result<Object> saveWandS(@RequestBody StudentStudyAndWorkExperience[] list) {
+		System.out.println("fsdfs");
+		for (int i = 0; i < list.length; i++) {
+			studentStudyAndWorkExperienceMapper.add(list[i]);
 		}
 		
 		return Result.success("success");

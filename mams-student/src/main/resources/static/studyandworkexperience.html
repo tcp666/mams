@@ -15,63 +15,56 @@
     <li class="layui-nav-item"><a href="document.html">档案信息</a></li>
     <li class="layui-nav-item"><a href="educationbackgroud.html">学籍管理</a></li>
     <li class="layui-nav-item"><a href="contact.html">联系方式</a></li>
-    <li class="layui-nav-item"><a href="studentrewardandpunishment.html">奖惩信息</a></li>
-    <li class="layui-nav-item  layui-this"><a href="studyandworkexperience.html">教育和工作经历</a></li>
+    <li class="layui-nav-item  layui-this"><a href="studentrewardandpunishment.html">奖惩信息</a></li>
+    <li class="layui-nav-item"><a href="studyandworkexperience.html">教育和工作经历</a></li>
     <li class="layui-nav-item"><a href="">志愿管理</a></li>
 </ul>
 
 
-<form class="layui-form" @submit.prevent="saveBaseInfo"  enctype="multipart/form-data" method="post" ref="form" id="baseinfo">
-    <div class="layui-form-item">
-        <label class="layui-form-label">民族</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-verify="title" name="nation" placeholder="请输入民族"
-                   type="text">
-        </div>
-    </div>
-
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">性别</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入性别" lay-verify="required"
-                   name="gender"
-                   placeholder="请输入性别" type="text">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">婚姻状态</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
-                   name="marriage"
-                   placeholder="请输入婚姻状态" type="text">
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">是否为现役军人</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="用户名是必填项，岂能为空？" lay-verify="required"
-                   name="servicemen" placeholder="请输入是否为现役军人" type="text">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">政治面貌</label>
+<form @submit.prevent="savePunishAndReward" class="layui-form" enctype="multipart/form-data" id="punishAndReward"
+      method="post"
+      ref="form" style="margin: 0 auto;">
+    <div class="rewardList" id="rewardList">
+        <div class="layui-form-item">
+            <label class="layui-form-label ">实习公司</label>
             <div class="layui-input-inline">
-                <select name="politicalOutlook">
-                    <option value="中共党员">中共党员</option>
-                    <option value="中共预备党员">中共预备党员</option>
-                    <option value="中国共青团团员">中国共青团团员</option>
-                    <option value="中国国民党革命委员会会员中国民主同盟盟员">中国国民党革命委员会会员中国民主同盟盟员</option>
-                    <option value="中国民主建国会会员中国民主促进会会员中国农工民主党党员中国致公党党员九三学社社员">中国民主建国会会员中国民主促进会会员中国农工民主党党员中国致公党党员九三学社社员</option>
-                    <option value="台湾民主自治同盟盟员无党派民主人士">台湾民主自治同盟盟员无党派民主人士</option>
-                    <option value="群众">群众</option>
-                </select>
+                <input autocomplete="on" class="layui-input" lay-reqtext="档案单位是必填项，岂能为空？" name="company"
+                       placeholder="请输入实习公司名称" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">实习经历</label>
+            <div class="layui-input-inline">
+                <textarea autocomplete="on" class="layui-textarea" placeholder="请输入工作内容"></textarea>
             </div>
         </div>
 
     </div>
+    <button @click="daaReward" class="layui-btn" type="button">点击添加实习记录</button>
+
+
+    <div class="punishList" id="punishList">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label ">学校</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" lay-reqtext="学校是必填项，岂能为空？" lay-verify="required"
+                       name="documentCompany" placeholder="请输入学校名称" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">学习经历</label>
+            <div class="layui-input-inline">
+                <textarea autocomplete="on" class="layui-textarea" placeholder="学习过程"></textarea>
+            </div>
+        </div>
+
+    </div>
+    <button @click="aadPunish" class="layui-btn" type="button">点击添加学习记录</button>
+    <div class="layui-form-item">
+
+    </div>
+
     <div class="layui-form-item">
         <button class="layui-btn" type="submit">点击提交</button>
         <button class="layui-btn layui-btn-danger" type="button">点击重置</button>
@@ -88,40 +81,100 @@
 
     });
 
+    /**
+     * private Long studentId;
+     private String company;
+     private String workerExperienceMessage;
+     private String school;
+     private String studyExperienceMessage;
+     */
     var baseInfo = new Vue({
-        el: "#baseinfo",
-        data: {},
-        methods: {
-            saveBaseInfo: function () {
+        el: "#punishAndReward",
+        data: {
+            companyNode: '<div class="layui-form-item">\n' +
+                '            <label class="layui-form-label ">实习公司</label>\n' +
+                '            <div class="layui-input-inline">\n' +
+                '                <input type="text" name="documentCompany"  lay-reqtext="档案单位是必填项，岂能为空？" placeholder="请输入实习公司" autocomplete="on" class="layui-input">\n' +
+                '            </div>\n' +
+                '        </div>',
+            workerExperienceMessageNode: "<div class=\"layui-form-item\">\n" +
+                "            <label class=\"layui-form-label\">实习经历</label>\n" +
+                "            <div class=\"layui-input-inline\">\n" +
+                "                <textarea class=\"layui-textarea\" placeholder=\"请输入工作内容\"></textarea>\n" +
+                "            </div>\n" +
+                "        </div>",
+            schoolNode: '<div class="layui-form-item">\n' +
+                '            <label class="layui-form-label ">学校</label>\n' +
+                '            <div class="layui-input-inline">\n' +
+                '                <input autocomplete="on" class="layui-input" lay-reqtext="学校是必填项，岂能为空？" lay-verify="required"\n' +
+                '                       name="documentCompany" placeholder="请输入学校名称" type="text">\n' +
+                '            </div>\n' +
+                '        </div>',
+            studyExperienceMessageNode: "<div class=\"layui-form-item\">\n" +
+                "            <label class=\"layui-form-label\">学习经历</label>\n" +
+                "            <div class=\"layui-input-inline\">\n" +
+                "                <textarea class=\"layui-textarea\" placeholder=\"学习过程\"></textarea>\n" +
+                "            </div>\n" +
+                "        </div>"
 
-                console.log("ahgdsjjjjjjjjjjj")
-                const formData = new FormData(this.$refs['form']);
-                const baseInfo = {};
-                baseInfo.studentId=JSON.parse(localStorage.getItem("student")).studentId;
-                //formData.entries()返回一个 iterator对象 ，此对象可以遍历访问FormData中的键值对
-                for (let [key, val] of formData.entries()) {
-                    Object.assign(baseInfo, {[key]: val})
+        },
+        methods: {
+            savePunishAndReward: function () {
+                var comps = document.querySelectorAll(".rewardList .layui-input");
+                var compes = document.querySelectorAll(".rewardList .layui-textarea");
+                var list1=[];
+                let studentId = JSON.parse(localStorage.getItem("student")).studentId;
+                for (var i=0;i<comps.length;i++){
+                    if (comps[i].value!=null)
+                    list1[i]={
+                        studentId:studentId,
+                        company:comps[i].value,
+                        workerExperienceMessage:compes[i].value
+                    }
                 }
-                console.log(baseInfo);
+
+                var scns = document.querySelectorAll(".punishList .layui-input");
+                var scss = document.querySelectorAll(".punishList .layui-textarea");
+
+                for (var i=0;i<scns.length;i++){
+                    if (scns[i].value!=null)
+                    list1[list1.length+i]={
+                        studentId:studentId,
+                        school:scns[i].value,
+                        studyExperienceMessage:scss[i].value
+                    }
+                }
 
 
                 axios({
-                    url:"/student/saveStudentBaseInfo",
-                    method:"post",
-                    data:baseInfo,
-                    dataType:"json"
-                }).then((data)=>{
-                    console.log(data)
-                    if (data.data.value==1)
-                        window.location.href="document.html"
-                    else {
-                        alert("录入失败，请重试");
-                        window.location.href="baseinfo.html";
-                    }
-
-
+                    url: "/student/saveWandS",
+                    method: "post",
+                    dataType:"json",
+                    data: list1,
+                }).then((data) => {
+                    if (data.data.value=="success")
+                       window.location.href="examapplication.html"
                 })
+
+
             },
+            daaReward: function () {
+                document.getElementById("rewardList").appendChild(this.parseToDomNode(this.companyNode));
+                document.getElementById("rewardList").appendChild(this.parseToDomNode(this.workerExperienceMessageNode))
+            },
+            aadPunish: function () {
+
+                document.getElementById("punishList").appendChild(this.parseToDomNode(this.schoolNode));
+
+                document.getElementById("punishList").appendChild(this.parseToDomNode(this.studyExperienceMessageNode))
+            },
+            parseToDomNode: function (str) {
+                var div = document.createElement("div");
+                if (typeof str == "string")
+                    div.innerHTML = str;
+                return div.childNodes[0];
+            }
+
 
         }
     })
