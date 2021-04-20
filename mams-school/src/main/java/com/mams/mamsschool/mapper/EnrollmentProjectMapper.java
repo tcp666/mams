@@ -1,5 +1,6 @@
 package com.mams.mamsschool.mapper;
 
+import com.mams.mamsschool.entity.EnrollmentProject;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -34,6 +35,7 @@ public interface EnrollmentProjectMapper {
 	@Insert("insert into enrollment_project values(" +
 			"#{id}," +
 			"#{tutorName}," +
+			"#{tutorId},"+
 			"#{schoolName}," +
 			"#{department}," +
 			"#{professionName}," +
@@ -47,7 +49,7 @@ public interface EnrollmentProjectMapper {
 			"#{majorCourses3}," +
 			"#{publicCourses1}," +
 			"#{publicCourses2}," +
-			"#{publicCourses3}," +
-			")")
-	void save();
+			"#{publicCourses3}" +
+			");")
+	Integer save(EnrollmentProject project);
 }

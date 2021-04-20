@@ -6,90 +6,1391 @@
     <link href="layui/css/layui.css" rel="stylesheet">
     <script src="layui/layui.js"></script>
 
+    <script src="js/vueresource/vuejs-2.5.16.js"></script>
+    <script src="js/vueresource/axios-0.18.0.js"></script>
 </head>
 <body>
 <!--水平导航-->
 
 <ul class="layui-nav">
     <li class="layui-nav-item"><a href="tutor.html">个人信息完善与认证</a></li>
- 
     <li class="layui-nav-item layui-this"><a href="examrequirement.html">发布考试要求</a></li>
     <li class="layui-nav-item"><a href="entrollementproject.html">发布招生计划</a></li>
 </ul>
-<div class="layui-main">
-<form action="" class="layui-form" method="post" style="margin-top: 20px">
-    <div class="layui-form-item">
-        <label class="layui-form-label">学校名称</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-verify="title" name="title" placeholder="请输入姓名"
-                   type="text">
+<div class="layui-main" id="examRequire">
+    <form @submit.prevent="saveExamRequire" class="layui-form" enctype="multipart/form-data" method="post" ref="form"
+          style="margin-top: 20px">
+        <div class="layui-form-item">
+            <label class="layui-form-label">请选择学校</label>
+            <div class="layui-input-inline">
+                <select class="layui-input-inline" id="schools" lay-search="" lay-verify="required" name="schoolName">
+                    <option value="">直接选择或搜索选择</option>
+                    <option value="0">北京大学</option>
+                    <option value="1">中国人民大学</option>
+                    <option value="2">清华大学</option>
+                    <option value="3">北京交通大学</option>
+                    <option value="4">北京工业大学</option>
+                    <option value="5">北京航空航天大学</option>
+                    <option value="6">北京理工大学</option>
+                    <option value="7">北京科技大学</option>
+                    <option value="8">北方工业大学</option>
+                    <option value="9">北京化工大学</option>
+                    <option value="10">北京工商大学</option>
+                    <option value="11">北京服装学院</option>
+                    <option value="12">北京邮电大学</option>
+                    <option value="13">北京印刷学院</option>
+                    <option value="14">北京建筑大学</option>
+                    <option value="15">北京石油化工学院</option>
+                    <option value="16">北京电子科技学院</option>
+                    <option value="17">中国农业大学</option>
+                    <option value="18">北京农学院</option>
+                    <option value="19">北京林业大学</option>
+                    <option value="20">北京协和医学院</option>
+                    <option value="21">首都医科大学</option>
+                    <option value="22">北京中医药大学</option>
+                    <option value="23">北京师范大学</option>
+                    <option value="24">首都师范大学</option>
+                    <option value="25">首都体育学院</option>
+                    <option value="26">北京外国语大学</option>
+                    <option value="27">北京第二外国语学院</option>
+                    <option value="28">北京语言大学</option>
+                    <option value="29">中国传媒大学</option>
+                    <option value="30">中央财经大学</option>
+                    <option value="31">对外经济贸易大学</option>
+                    <option value="32">北京物资学院</option>
+                    <option value="33">首都经济贸易大学</option>
+                    <option value="34">中国消防救援学院</option>
+                    <option value="35">外交学院</option>
+                    <option value="36">中国人民公安大学</option>
+                    <option value="37">国际关系学院</option>
+                    <option value="38">北京体育大学</option>
+                    <option value="39">中央音乐学院</option>
+                    <option value="40">中国音乐学院</option>
+                    <option value="41">中央美术学院</option>
+                    <option value="42">中央戏剧学院</option>
+                    <option value="43">中国戏曲学院</option>
+                    <option value="44">北京电影学院</option>
+                    <option value="45">北京舞蹈学院</option>
+                    <option value="46">中央民族大学</option>
+                    <option value="47">中国政法大学</option>
+                    <option value="48">华北电力大学</option>
+                    <option value="49">中华女子学院</option>
+                    <option value="50">北京信息科技大学</option>
+                    <option value="51">中国矿业大学（北京）</option>
+                    <option value="52">中国石油大学（北京）</option>
+                    <option value="53">中国地质大学（北京）</option>
+                    <option value="54">北京联合大学</option>
+                    <option value="55">北京城市学院</option>
+                    <option value="56">中国青年政治学院</option>
+                    <option value="57">首钢工学院</option>
+                    <option value="58">中国劳动关系学院</option>
+                    <option value="59">北京吉利学院</option>
+                    <option value="60">首都师范大学科德学院</option>
+                    <option value="61">北京工商大学嘉华学院</option>
+                    <option value="62">北京邮电大学世纪学院</option>
+                    <option value="63">北京工业大学耿丹学院</option>
+                    <option value="64">北京警察学院</option>
+                    <option value="65">北京第二外国语学院中瑞酒店管理学院</option>
+                    <option value="66">中国科学院大学</option>
+                    <option value="67">中国社会科学院大学</option>
+                    <option value="68">中国民航大学</option>
+                    <option value="69">天津理工大学</option>
+                    <option value="70">天津农学院</option>
+                    <option value="71">天津医科大学</option>
+                    <option value="72">天津中医药大学</option>
+                    <option value="73">天津师范大学</option>
+                    <option value="74">天津职业技术师范大学</option>
+                    <option value="75">天津外国语大学</option>
+                    <option value="76">天津商业大学</option>
+                    <option value="77">天津财经大学</option>
+                    <option value="78">天津体育学院</option>
+                    <option value="79">天津音乐学院</option>
+                    <option value="80">天津美术学院</option>
+                    <option value="81">天津城建大学</option>
+                    <option value="82">天津天狮学院</option>
+                    <option value="83">天津中德应用技术大学</option>
+                    <option value="84">天津外国语大学滨海外事学院</option>
+                    <option value="85">天津体育学院运动与文化艺术学院</option>
+                    <option value="86">天津商业大学宝德学院</option>
+                    <option value="87">天津医科大学临床医学院</option>
+                    <option value="88">南开大学滨海学院</option>
+                    <option value="89">天津师范大学津沽学院</option>
+                    <option value="90">天津理工大学中环信息学院</option>
+                    <option value="91">北京科技大学天津学院</option>
+                    <option value="92">天津大学仁爱学院</option>
+                    <option value="93">天津财经大学珠江学院</option>
+                    <option value="94">华北理工大学</option>
+                    <option value="95">河北科技大学</option>
+                    <option value="96">河北建筑工程学院</option>
+                    <option value="97">河北水利电力学院</option>
+                    <option value="98">河北农业大学</option>
+                    <option value="99">河北医科大学</option>
+                    <option value="100">河北北方学院</option>
+                    <option value="101">承德医学院</option>
+                    <option value="102">河北师范大学</option>
+                    <option value="103">保定学院</option>
+                    <option value="104">河北民族师范学院</option>
+                    <option value="105">唐山师范学院</option>
+                    <option value="106">廊坊师范学院</option>
+                    <option value="107">衡水学院</option>
+                    <option value="108">石家庄学院</option>
+                    <option value="109">邯郸学院</option>
+                    <option value="110">邢台学院</option>
+                    <option value="111">沧州师范学院</option>
+                    <option value="112">石家庄铁道大学</option>
+                    <option value="113">燕山大学</option>
+                    <option value="114">河北科技师范学院</option>
+                    <option value="115">唐山学院</option>
+                    <option value="116">华北科技学院</option>
+                    <option value="117">中国人民警察大学</option>
+                    <option value="118">河北体育学院</option>
+                    <option value="119">河北金融学院</option>
+                    <option value="120">北华航天工业学院</option>
+                    <option value="121">防灾科技学院</option>
+                    <option value="122">河北经贸大学</option>
+                    <option value="123">中央司法警官学院</option>
+                    <option value="124">河北传媒学院</option>
+                    <option value="125">河北工程技术学院</option>
+                    <option value="126">河北美术学院</option>
+                    <option value="127">河北科技学院</option>
+                    <option value="128">河北外国语学院</option>
+                    <option value="129">河北大学工商学院</option>
+                    <option value="130">华北理工大学轻工学院</option>
+                    <option value="131">河北科技大学理工学院</option>
+                    <option value="132">河北师范大学汇华学院</option>
+                    <option value="133">河北经贸大学经济管理学院</option>
+                    <option value="134">河北医科大学临床学院</option>
+                    <option value="135">华北电力大学科技学院</option>
+                    <option value="136">河北工程大学科信学院</option>
+                    <option value="137">河北工业大学城市学院</option>
+                    <option value="138">燕山大学里仁学院</option>
+                    <option value="139">石家庄铁道大学四方学院</option>
+                    <option value="140">河北地质大学华信学院</option>
+                    <option value="141">河北农业大学现代科技学院</option>
+                    <option value="142">华北理工大学冀唐学院</option>
+                    <option value="143">保定理工学院</option>
+                    <option value="144">燕京理工学院</option>
+                    <option value="145">北京中医药大学东方学院</option>
+                    <option value="146">北京交通大学海滨学院</option>
+                    <option value="147">河北东方学院</option>
+                    <option value="148">河北中医学院</option>
+                    <option value="149">张家口学院</option>
+                    <option value="150">河北环境工程学院</option>
+                    <option value="151">山西大学</option>
+                    <option value="152">太原科技大学</option>
+                    <option value="153">中北大学</option>
+                    <option value="154">太原理工大学</option>
+                    <option value="155">山西农业大学</option>
+                    <option value="156">山西医科大学</option>
+                    <option value="157">长治医学院</option>
+                    <option value="158">山西师范大学</option>
+                    <option value="159">太原师范学院</option>
+                    <option value="160">山西大同大学</option>
+                    <option value="161">晋中学院</option>
+                    <option value="162">长治学院</option>
+                    <option value="163">运城学院</option>
+                    <option value="164">忻州师范学院</option>
+                    <option value="165">山西财经大学</option>
+                    <option value="166">山西中医药大学</option>
+                    <option value="167">吕梁学院</option>
+                    <option value="168">太原学院</option>
+                    <option value="169">山西警察学院</option>
+                    <option value="170">山西应用科技学院</option>
+                    <option value="171">山西大学商务学院</option>
+                    <option value="172">太原理工大学现代科技学院</option>
+                    <option value="173">山西农业大学信息学院</option>
+                    <option value="174">山西师范大学现代文理学院</option>
+                    <option value="175">中北大学信息商务学院</option>
+                    <option value="176">太原科技大学华科学院</option>
+                    <option value="177">山西医科大学晋祠学院</option>
+                    <option value="178">山西财经大学华商学院</option>
+                    <option value="179">山西工商学院</option>
+                    <option value="180">太原工业学院</option>
+                    <option value="181">山西传媒学院</option>
+                    <option value="182">山西工程技术学院</option>
+                    <option value="183">山西能源学院</option>
+                    <option value="184">内蒙古大学</option>
+                    <option value="185">内蒙古科技大学</option>
+                    <option value="186">内蒙古工业大学</option>
+                    <option value="187">内蒙古农业大学</option>
+                    <option value="188">内蒙古医科大学</option>
+                    <option value="189">内蒙古师范大学</option>
+                    <option value="190">内蒙古民族大学</option>
+                    <option value="191">赤峰学院</option>
+                    <option value="192">内蒙古财经大学</option>
+                    <option value="193">呼伦贝尔学院</option>
+                    <option value="194">集宁师范学院</option>
+                    <option value="195">河套学院</option>
+                    <option value="196">呼和浩特民族学院</option>
+                    <option value="197">内蒙古大学创业学院</option>
+                    <option value="198">内蒙古师范大学鸿德学院</option>
+                    <option value="199">内蒙古艺术学院</option>
+                    <option value="200">鄂尔多斯应用技术学院</option>
+                    <option value="201">辽宁大学</option>
+                    <option value="202">大连理工大学</option>
+                    <option value="203">沈阳工业大学</option>
+                    <option value="204">沈阳航空航天大学</option>
+                    <option value="205">沈阳理工大学</option>
+                    <option value="206">东北大学</option>
+                    <option value="207">辽宁科技大学</option>
+                    <option value="208">辽宁工程技术大学</option>
+                    <option value="209">辽宁石油化工大学</option>
+                    <option value="210">沈阳化工大学</option>
+                    <option value="211">大连交通大学</option>
+                    <option value="212">大连海事大学</option>
+                    <option value="213">大连工业大学</option>
+                    <option value="214">沈阳建筑大学</option>
+                    <option value="215">辽宁工业大学</option>
+                    <option value="216">沈阳农业大学</option>
+                    <option value="217">大连海洋大学</option>
+                    <option value="218">中国医科大学</option>
+                    <option value="219">锦州医科大学</option>
+                    <option value="220">大连医科大学</option>
+                    <option value="221">辽宁中医药大学</option>
+                    <option value="222">沈阳药科大学</option>
+                    <option value="223">沈阳医学院</option>
+                    <option value="224">辽宁师范大学</option>
+                    <option value="225">沈阳师范大学</option>
+                    <option value="226">渤海大学</option>
+                    <option value="227">鞍山师范学院</option>
+                    <option value="228">大连外国语大学</option>
+                    <option value="229">东北财经大学</option>
+                    <option value="230">中国刑事警察学院</option>
+                    <option value="231">沈阳体育学院</option>
+                    <option value="232">沈阳音乐学院</option>
+                    <option value="233">鲁迅美术学院</option>
+                    <option value="234">辽宁对外经贸学院</option>
+                    <option value="235">沈阳大学</option>
+                    <option value="236">大连大学</option>
+                    <option value="237">辽宁科技学院</option>
+                    <option value="238">辽宁警察学院</option>
+                    <option value="239">沈阳工程学院</option>
+                    <option value="240">辽东学院</option>
+                    <option value="241">大连民族大学</option>
+                    <option value="242">大连理工大学城市学院</option>
+                    <option value="243">沈阳工业大学工程学院</option>
+                    <option value="244">沈阳航空航天大学北方科技学院</option>
+                    <option value="245">沈阳工学院</option>
+                    <option value="246">大连工业大学艺术与信息工程学院</option>
+                    <option value="247">大连科技学院</option>
+                    <option value="248">沈阳城市建设学院</option>
+                    <option value="249">中国医科大学临床医药学院</option>
+                    <option value="250">大连医科大学中山学院</option>
+                    <option value="251">锦州医科大学医疗学院</option>
+                    <option value="252">辽宁师范大学海华学院</option>
+                    <option value="253">辽宁理工学院</option>
+                    <option value="254">大连财经学院</option>
+                    <option value="255">沈阳城市学院</option>
+                    <option value="256">辽宁石油化工大学顺华能源学院</option>
+                    <option value="257">大连艺术学院</option>
+                    <option value="258">辽宁中医药大学杏林学院</option>
+                    <option value="259">辽宁何氏医学院</option>
+                    <option value="260">沈阳科技学院</option>
+                    <option value="261">大连东软信息学院</option>
+                    <option value="262">辽宁财贸学院</option>
+                    <option value="263">辽宁传媒学院</option>
+                    <option value="264">营口理工学院</option>
+                    <option value="265">吉林大学</option>
+                    <option value="266">延边大学</option>
+                    <option value="267">长春理工大学</option>
+                    <option value="268">东北电力大学</option>
+                    <option value="269">长春工业大学</option>
+                    <option value="270">吉林建筑大学</option>
+                    <option value="271">吉林化工学院</option>
+                    <option value="272">吉林农业大学</option>
+                    <option value="273">长春中医药大学</option>
+                    <option value="274">东北师范大学</option>
+                    <option value="275">北华大学</option>
+                    <option value="276">通化师范学院</option>
+                    <option value="277">吉林师范大学</option>
+                    <option value="278">吉林工程技术师范学院</option>
+                    <option value="279">长春师范大学</option>
+                    <option value="280">白城师范学院</option>
+                    <option value="281">吉林财经大学</option>
+                    <option value="282">吉林体育学院</option>
+                    <option value="283">吉林艺术学院</option>
+                    <option value="284">吉林外国语大学</option>
+                    <option value="285">吉林工商学院</option>
+                    <option value="286">长春工程学院</option>
+                    <option value="287">吉林农业科技学院</option>
+                    <option value="288">吉林警察学院</option>
+                    <option value="289">长春大学</option>
+                    <option value="290">长春光华学院</option>
+                    <option value="291">长春工业大学人文信息学院</option>
+                    <option value="292">长春理工大学光电信息学院</option>
+                    <option value="293">长春财经学院</option>
+                    <option value="294">吉林建筑科技学院</option>
+                    <option value="295">长春建筑学院</option>
+                    <option value="296">长春科技学院</option>
+                    <option value="297">吉林动画学院</option>
+                    <option value="298">吉林师范大学博达学院</option>
+                    <option value="299">长春大学旅游学院</option>
+                    <option value="300">东北师范大学人文学院</option>
+                    <option value="301">吉林医药学院</option>
+                    <option value="302">黑龙江大学</option>
+                    <option value="303">哈尔滨工业大学</option>
+                    <option value="304">哈尔滨理工大学</option>
+                    <option value="305">哈尔滨工程大学</option>
+                    <option value="306">黑龙江科技大学</option>
+                    <option value="307">东北石油大学</option>
+                    <option value="308">佳木斯大学</option>
+                    <option value="309">黑龙江八一农垦大学</option>
+                    <option value="310">东北农业大学</option>
+                    <option value="311">东北林业大学</option>
+                    <option value="312">哈尔滨医科大学</option>
+                    <option value="313">黑龙江中医药大学</option>
+                    <option value="314">牡丹江医学院</option>
+                    <option value="315">哈尔滨师范大学</option>
+                    <option value="316">齐齐哈尔大学</option>
+                    <option value="317">牡丹江师范学院</option>
+                    <option value="318">哈尔滨学院</option>
+                    <option value="319">大庆师范学院</option>
+                    <option value="320">绥化学院</option>
+                    <option value="321">哈尔滨商业大学</option>
+                    <option value="322">哈尔滨体育学院</option>
+                    <option value="323">哈尔滨金融学院</option>
+                    <option value="324">齐齐哈尔医学院</option>
+                    <option value="325">黑龙江工业学院</option>
+                    <option value="326">黑龙江东方学院</option>
+                    <option value="327">哈尔滨信息工程学院</option>
+                    <option value="328">黑龙江工程学院</option>
+                    <option value="329">齐齐哈尔工程学院</option>
+                    <option value="330">黑龙江外国语学院</option>
+                    <option value="331">黑龙江财经学院</option>
+                    <option value="332">哈尔滨石油学院</option>
+                    <option value="333">黑龙江工商学院</option>
+                    <option value="334">哈尔滨远东理工学院</option>
+                    <option value="335">哈尔滨剑桥学院</option>
+                    <option value="336">黑龙江工程学院昆仑旅游学院</option>
+                    <option value="337">哈尔滨广厦学院</option>
+                    <option value="338">哈尔滨华德学院</option>
+                    <option value="339">黑河学院</option>
+                    <option value="340">哈尔滨音乐学院</option>
+                    <option value="341">复旦大学</option>
+                    <option value="342">同济大学</option>
+                    <option value="343">上海交通大学</option>
+                    <option value="344">华东理工大学</option>
+                    <option value="345">上海理工大学</option>
+                    <option value="346">上海海事大学</option>
+                    <option value="347">东华大学</option>
+                    <option value="348">上海电力大学</option>
+                    <option value="349">上海应用技术大学</option>
+                    <option value="350">上海健康医学院</option>
+                    <option value="351">上海海洋大学</option>
+                    <option value="352">上海中医药大学</option>
+                    <option value="353">华东师范大学</option>
+                    <option value="354">上海师范大学</option>
+                    <option value="355">上海外国语大学</option>
+                    <option value="356">上海财经大学</option>
+                    <option value="357">上海对外经贸大学</option>
+                    <option value="358">上海海关学院</option>
+                    <option value="359">华东政法大学</option>
+                    <option value="360">上海体育学院</option>
+                    <option value="361">上海音乐学院</option>
+                    <option value="362">上海戏剧学院</option>
+                    <option value="363">上海大学</option>
+                    <option value="364">上海公安学院</option>
+                    <option value="365">上海工程技术大学</option>
+                    <option value="366">上海立信会计金融学院</option>
+                    <option value="367">上海电机学院</option>
+                    <option value="368">上海杉达学院</option>
+                    <option value="369">上海政法学院</option>
+                    <option value="370">上海第二工业大学</option>
+                    <option value="371">上海商学院</option>
+                    <option value="372">上海立达学院</option>
+                    <option value="373">上海建桥学院</option>
+                    <option value="374">上海兴伟学院</option>
+                    <option value="375">上海视觉艺术学院</option>
+                    <option value="376">上海外国语大学贤达经济人文学院</option>
+                    <option value="377">上海师范大学天华学院</option>
+                    <option value="378">上海科技大学</option>
+                    <option value="379">上海纽约大学</option>
+                    <option value="380">南京大学</option>
+                    <option value="381">苏州大学</option>
+                    <option value="382">东南大学</option>
+                    <option value="383">南京航空航天大学</option>
+                    <option value="384">南京理工大学</option>
+                    <option value="385">江苏科技大学</option>
+                    <option value="386">中国矿业大学</option>
+                    <option value="387">南京工业大学</option>
+                    <option value="388">常州大学</option>
+                    <option value="389">南京邮电大学</option>
+                    <option value="390">河海大学</option>
+                    <option value="391">江南大学</option>
+                    <option value="392">南京林业大学</option>
+                    <option value="393">江苏大学</option>
+                    <option value="394">南京信息工程大学</option>
+                    <option value="395">南通大学</option>
+                    <option value="396">盐城工学院</option>
+                    <option value="397">南京农业大学</option>
+                    <option value="398">南京医科大学</option>
+                    <option value="399">徐州医科大学</option>
+                    <option value="400">南京中医药大学</option>
+                    <option value="401">中国药科大学</option>
+                    <option value="402">南京师范大学</option>
+                    <option value="403">江苏师范大学</option>
+                    <option value="404">淮阴师范学院</option>
+                    <option value="405">盐城师范学院</option>
+                    <option value="406">南京财经大学</option>
+                    <option value="407">江苏警官学院</option>
+                    <option value="408">南京体育学院</option>
+                    <option value="409">南京艺术学院</option>
+                    <option value="410">苏州科技大学</option>
+                    <option value="411">常熟理工学院</option>
+                    <option value="412">淮阴工学院</option>
+                    <option value="413">常州工学院</option>
+                    <option value="414">扬州大学</option>
+                    <option value="415">三江学院</option>
+                    <option value="416">南京工程学院</option>
+                    <option value="417">南京审计大学</option>
+                    <option value="418">南京晓庄学院</option>
+                    <option value="419">江苏理工学院</option>
+                    <option value="420">江苏海洋大学</option>
+                    <option value="421">徐州工程学院</option>
+                    <option value="422">南京特殊教育师范学院</option>
+                    <option value="423">南通理工学院</option>
+                    <option value="424">南京森林警察学院</option>
+                    <option value="425">东南大学成贤学院</option>
+                    <option value="426">泰州学院</option>
+                    <option value="427">无锡太湖学院</option>
+                    <option value="428">金陵科技学院</option>
+                    <option value="429">中国矿业大学徐海学院</option>
+                    <option value="430">南京大学金陵学院</option>
+                    <option value="431">南京理工大学紫金学院</option>
+                    <option value="432">南京航空航天大学金城学院</option>
+                    <option value="433">中国传媒大学南广学院</option>
+                    <option value="434">南京理工大学泰州科技学院</option>
+                    <option value="435">南京师范大学泰州学院</option>
+                    <option value="436">南京工业大学浦江学院</option>
+                    <option value="437">南京师范大学中北学院</option>
+                    <option value="438">南京医科大学康达学院</option>
+                    <option value="439">南京中医药大学翰林学院</option>
+                    <option value="440">南京信息工程大学滨江学院</option>
+                    <option value="441">苏州大学文正学院</option>
+                    <option value="442">苏州大学应用技术学院</option>
+                    <option value="443">苏州科技大学天平学院</option>
+                    <option value="444">江苏大学京江学院</option>
+                    <option value="445">扬州大学广陵学院</option>
+                    <option value="446">江苏师范大学科文学院</option>
+                    <option value="447">南京邮电大学通达学院</option>
+                    <option value="448">南京财经大学红山学院</option>
+                    <option value="449">江苏科技大学苏州理工学院</option>
+                    <option value="450">常州大学怀德学院</option>
+                    <option value="451">南通大学杏林学院</option>
+                    <option value="452">南京审计大学金审学院</option>
+                    <option value="453">宿迁学院</option>
+                    <option value="454">江苏第二师范学院</option>
+                    <option value="455">西交利物浦大学</option>
+                    <option value="456">昆山杜克大学</option>
+                    <option value="457">浙江大学</option>
+                    <option value="458">杭州电子科技大学</option>
+                    <option value="459">浙江工业大学</option>
+                    <option value="460">浙江理工大学</option>
+                    <option value="461">浙江海洋大学</option>
+                    <option value="462">浙江农林大学</option>
+                    <option value="463">温州医科大学</option>
+                    <option value="464">浙江中医药大学</option>
+                    <option value="465">浙江师范大学</option>
+                    <option value="466">杭州师范大学</option>
+                    <option value="467">湖州师范学院</option>
+                    <option value="468">绍兴文理学院</option>
+                    <option value="469">台州学院</option>
+                    <option value="470">温州大学</option>
+                    <option value="471">丽水学院</option>
+                    <option value="472">浙江工商大学</option>
+                    <option value="473">嘉兴学院</option>
+                    <option value="474">中国美术学院</option>
+                    <option value="475">中国计量大学</option>
+                    <option value="476">浙江万里学院</option>
+                    <option value="477">浙江科技学院</option>
+                    <option value="478">宁波工程学院</option>
+                    <option value="479">浙江水利水电学院</option>
+                    <option value="480">浙江财经大学</option>
+                    <option value="481">浙江警察学院</option>
+                    <option value="482">衢州学院</option>
+                    <option value="483">宁波大学</option>
+                    <option value="484">浙江传媒学院</option>
+                    <option value="485">浙江树人学院</option>
+                    <option value="486">浙江越秀外国语学院</option>
+                    <option value="487">宁波财经学院</option>
+                    <option value="488">浙江大学城市学院</option>
+                    <option value="489">浙江大学宁波理工学院</option>
+                    <option value="490">杭州医学院</option>
+                    <option value="491">浙江工业大学之江学院</option>
+                    <option value="492">浙江师范大学行知学院</option>
+                    <option value="493">宁波大学科学技术学院</option>
+                    <option value="494">杭州电子科技大学信息工程学院</option>
+                    <option value="495">浙江理工大学科技与艺术学院</option>
+                    <option value="496">浙江海洋大学东海科学技术学院</option>
+                    <option value="497">浙江农林大学暨阳学院</option>
+                    <option value="498">温州医科大学仁济学院</option>
+                    <option value="499">浙江中医药大学滨江学院</option>
+                    <option value="500">杭州师范大学钱江学院</option>
+                    <option value="501">湖州师范学院求真学院</option>
+                    <option value="502">绍兴文理学院元培学院</option>
+                    <option value="503">温州大学瓯江学院</option>
+                    <option value="504">浙江工商大学杭州商学院</option>
+                    <option value="505">嘉兴学院南湖学院</option>
+                    <option value="506">中国计量大学现代科技学院</option>
+                    <option value="507">浙江财经大学东方学院</option>
+                    <option value="508">温州商学院</option>
+                    <option value="509">同济大学浙江学院</option>
+                    <option value="510">上海财经大学浙江学院</option>
+                    <option value="511">浙江外国语学院</option>
+                    <option value="512">浙江音乐学院</option>
+                    <option value="513">西湖大学</option>
+                    <option value="514">宁波诺丁汉大学</option>
+                    <option value="515">温州肯恩大学</option>
+                    <option value="516">安徽大学</option>
+                    <option value="517">中国科学技术大学</option>
+                    <option value="518">合肥工业大学</option>
+                    <option value="519">安徽工业大学</option>
+                    <option value="520">安徽理工大学</option>
+                    <option value="521">安徽工程大学</option>
+                    <option value="522">安徽农业大学</option>
+                    <option value="523">安徽医科大学</option>
+                    <option value="524">蚌埠医学院</option>
+                    <option value="525">皖南医学院</option>
+                    <option value="526">安徽中医药大学</option>
+                    <option value="527">安徽师范大学</option>
+                    <option value="528">阜阳师范大学</option>
+                    <option value="529">安庆师范大学</option>
+                    <option value="530">淮北师范大学</option>
+                    <option value="531">黄山学院</option>
+                    <option value="532">皖西学院</option>
+                    <option value="533">滁州学院</option>
+                    <option value="534">安徽财经大学</option>
+                    <option value="535">宿州学院</option>
+                    <option value="536">巢湖学院</option>
+                    <option value="537">淮南师范学院</option>
+                    <option value="538">铜陵学院</option>
+                    <option value="539">安徽建筑大学</option>
+                    <option value="540">安徽科技学院</option>
+                    <option value="541">安徽三联学院</option>
+                    <option value="542">合肥学院</option>
+                    <option value="543">蚌埠学院</option>
+                    <option value="544">池州学院</option>
+                    <option value="545">安徽新华学院</option>
+                    <option value="546">安徽文达信息工程学院</option>
+                    <option value="547">亳州学院</option>
+                    <option value="548">安徽外国语学院</option>
+                    <option value="549">安徽财经大学商学院</option>
+                    <option value="550">安徽大学江淮学院</option>
+                    <option value="551">安徽信息工程学院</option>
+                    <option value="552">马鞍山学院</option>
+                    <option value="553">安徽建筑大学城市建设学院</option>
+                    <option value="554">安徽农业大学经济技术学院</option>
+                    <option value="555">安徽师范大学皖江学院</option>
+                    <option value="556">安徽医科大学临床医学院</option>
+                    <option value="557">阜阳师范大学信息工程学院</option>
+                    <option value="558">淮北师范大学信息学院</option>
+                    <option value="559">合肥师范学院</option>
+                    <option value="560">皖江工学院</option>
+                    <option value="561">安徽艺术学院</option>
+                    <option value="562">厦门大学</option>
+                    <option value="563">华侨大学</option>
+                    <option value="564">福州大学</option>
+                    <option value="565">福建工程学院</option>
+                    <option value="566">福建农林大学</option>
+                    <option value="567">集美大学</option>
+                    <option value="568">福建医科大学</option>
+                    <option value="569">福建中医药大学</option>
+                    <option value="570">福建师范大学</option>
+                    <option value="571">闽江学院</option>
+                    <option value="572">武夷学院</option>
+                    <option value="573">宁德师范学院</option>
+                    <option value="574">泉州师范学院</option>
+                    <option value="575">闽南师范大学</option>
+                    <option value="576">厦门理工学院</option>
+                    <option value="577">三明学院</option>
+                    <option value="578">龙岩学院</option>
+                    <option value="579">福建商学院</option>
+                    <option value="580">福建警察学院</option>
+                    <option value="581">莆田学院</option>
+                    <option value="582">仰恩大学</option>
+                    <option value="583">厦门医学院</option>
+                    <option value="584">厦门华厦学院</option>
+                    <option value="585">闽南理工学院</option>
+                    <option value="586">泉州职业技术大学</option>
+                    <option value="587">闽南科技学院</option>
+                    <option value="588">福州工商学院</option>
+                    <option value="589">厦门工学院</option>
+                    <option value="590">阳光学院</option>
+                    <option value="591">厦门大学嘉庚学院</option>
+                    <option value="592">福州大学至诚学院</option>
+                    <option value="593">集美大学诚毅学院</option>
+                    <option value="594">福建师范大学协和学院</option>
+                    <option value="595">福州外语外贸学院</option>
+                    <option value="596">福建江夏学院</option>
+                    <option value="597">泉州信息工程学院</option>
+                    <option value="598">福州理工学院</option>
+                    <option value="599">福建农林大学金山学院</option>
+                    <option value="600">福建技术师范学院</option>
+                    <option value="601">南昌大学</option>
+                    <option value="602">华东交通大学</option>
+                    <option value="603">东华理工大学</option>
+                    <option value="604">南昌航空大学</option>
+                    <option value="605">江西理工大学</option>
+                    <option value="606">景德镇陶瓷大学</option>
+                    <option value="607">江西农业大学</option>
+                    <option value="608">江西中医药大学</option>
+                    <option value="609">赣南医学院</option>
+                    <option value="610">江西师范大学</option>
+                    <option value="611">上饶师范学院</option>
+                    <option value="612">宜春学院</option>
+                    <option value="613">赣南师范大学</option>
+                    <option value="614">井冈山大学</option>
+                    <option value="615">江西财经大学</option>
+                    <option value="616">江西科技学院</option>
+                    <option value="617">景德镇学院</option>
+                    <option value="618">萍乡学院</option>
+                    <option value="619">江西科技师范大学</option>
+                    <option value="620">南昌工程学院</option>
+                    <option value="621">江西警察学院</option>
+                    <option value="622">新余学院</option>
+                    <option value="623">九江学院</option>
+                    <option value="624">江西工程学院</option>
+                    <option value="625">南昌理工学院</option>
+                    <option value="626">江西应用科技学院</option>
+                    <option value="627">江西服装学院</option>
+                    <option value="628">南昌职业大学</option>
+                    <option value="629">南昌工学院</option>
+                    <option value="630">南昌大学科学技术学院</option>
+                    <option value="631">南昌大学共青学院</option>
+                    <option value="632">华东交通大学理工学院</option>
+                    <option value="633">东华理工大学长江学院</option>
+                    <option value="634">南昌航空大学科技学院</option>
+                    <option value="635">江西理工大学应用科学学院</option>
+                    <option value="636">景德镇陶瓷大学科技艺术学院</option>
+                    <option value="637">江西农业大学南昌商学院</option>
+                    <option value="638">江西中医药大学科技学院</option>
+                    <option value="639">江西师范大学科学技术学院</option>
+                    <option value="640">赣南师范大学科技学院</option>
+                    <option value="641">江西科技师范大学理工学院</option>
+                    <option value="642">江西财经大学现代经济管理学院</option>
+                    <option value="643">豫章师范学院</option>
+                    <option value="644">江西软件职业技术大学</option>
+                    <option value="645">南昌师范学院</option>
+                    <option value="646">山东大学</option>
+                    <option value="647">中国海洋大学</option>
+                    <option value="648">山东科技大学</option>
+                    <option value="649">中国石油大学（华东）</option>
+                    <option value="650">青岛科技大学</option>
+                    <option value="651">济南大学</option>
+                    <option value="652">青岛理工大学</option>
+                    <option value="653">山东建筑大学</option>
+                    <option value="654">齐鲁工业大学</option>
+                    <option value="655">山东理工大学</option>
+                    <option value="656">山东农业大学</option>
+                    <option value="657">青岛农业大学</option>
+                    <option value="658">潍坊医学院</option>
+                    <option value="659">山东第一医科大学</option>
+                    <option value="660">滨州医学院</option>
+                    <option value="661">山东中医药大学</option>
+                    <option value="662">济宁医学院</option>
+                    <option value="663">山东师范大学</option>
+                    <option value="664">曲阜师范大学</option>
+                    <option value="665">聊城大学</option>
+                    <option value="666">德州学院</option>
+                    <option value="667">滨州学院</option>
+                    <option value="668">鲁东大学</option>
+                    <option value="669">临沂大学</option>
+                    <option value="670">泰山学院</option>
+                    <option value="671">济宁学院</option>
+                    <option value="672">菏泽学院</option>
+                    <option value="673">山东财经大学</option>
+                    <option value="674">山东体育学院</option>
+                    <option value="675">山东艺术学院</option>
+                    <option value="676">齐鲁医药学院</option>
+                    <option value="677">青岛滨海学院</option>
+                    <option value="678">枣庄学院</option>
+                    <option value="679">山东工艺美术学院</option>
+                    <option value="680">青岛大学</option>
+                    <option value="681">烟台大学</option>
+                    <option value="682">潍坊学院</option>
+                    <option value="683">山东警察学院</option>
+                    <option value="684">山东交通学院</option>
+                    <option value="685">山东工商学院</option>
+                    <option value="686">山东女子学院</option>
+                    <option value="687">烟台南山学院</option>
+                    <option value="688">潍坊科技学院</option>
+                    <option value="689">山东英才学院</option>
+                    <option value="690">青岛恒星科技学院</option>
+                    <option value="691">青岛黄海学院</option>
+                    <option value="692">山东现代学院</option>
+                    <option value="693">山东协和学院</option>
+                    <option value="694">山东工程职业技术大学</option>
+                    <option value="695">烟台大学文经学院</option>
+                    <option value="696">聊城大学东昌学院</option>
+                    <option value="697">青岛理工大学琴岛学院</option>
+                    <option value="698">潍坊理工学院</option>
+                    <option value="699">山东财经大学燕山学院</option>
+                    <option value="700">中国石油大学胜利学院</option>
+                    <option value="701">山东外国语职业技术大学</option>
+                    <option value="702">山东科技大学泰山科技学院</option>
+                    <option value="703">山东华宇工学院</option>
+                    <option value="704">山东外事职业大学</option>
+                    <option value="705">青岛工学院</option>
+                    <option value="706">青岛农业大学海都学院</option>
+                    <option value="707">齐鲁理工学院</option>
+                    <option value="708">山东财经大学东方学院</option>
+                    <option value="709">济南大学泉城学院</option>
+                    <option value="710">山东政法学院</option>
+                    <option value="711">齐鲁师范学院</option>
+                    <option value="712">山东青年政治学院</option>
+                    <option value="713">北京电影学院现代创意媒体学院</option>
+                    <option value="714">山东管理学院</option>
+                    <option value="715">山东农业工程学院</option>
+                    <option value="716">华北水利水电大学</option>
+                    <option value="717">郑州大学</option>
+                    <option value="718">河南理工大学</option>
+                    <option value="719">郑州轻工业大学</option>
+                    <option value="720">河南工业大学</option>
+                    <option value="721">河南科技大学</option>
+                    <option value="722">中原工学院</option>
+                    <option value="723">河南农业大学</option>
+                    <option value="724">河南科技学院</option>
+                    <option value="725">河南牧业经济学院</option>
+                    <option value="726">河南中医药大学</option>
+                    <option value="727">新乡医学院</option>
+                    <option value="728">河南大学</option>
+                    <option value="729">河南师范大学</option>
+                    <option value="730">信阳师范学院</option>
+                    <option value="731">周口师范学院</option>
+                    <option value="732">安阳师范学院</option>
+                    <option value="733">许昌学院</option>
+                    <option value="734">南阳师范学院</option>
+                    <option value="735">洛阳师范学院</option>
+                    <option value="736">商丘师范学院</option>
+                    <option value="737">河南财经政法大学</option>
+                    <option value="738">郑州航空工业管理学院</option>
+                    <option value="739">黄淮学院</option>
+                    <option value="740">平顶山学院</option>
+                    <option value="741">郑州工程技术学院</option>
+                    <option value="742">洛阳理工学院</option>
+                    <option value="743">新乡学院</option>
+                    <option value="744">信阳农林学院</option>
+                    <option value="745">河南工学院</option>
+                    <option value="746">安阳工学院</option>
+                    <option value="747">河南工程学院</option>
+                    <option value="748">河南财政金融学院</option>
+                    <option value="749">南阳理工学院</option>
+                    <option value="750">河南城建学院</option>
+                    <option value="751">河南警察学院</option>
+                    <option value="752">黄河科技学院</option>
+                    <option value="753">铁道警察学院</option>
+                    <option value="754">郑州科技学院</option>
+                    <option value="755">郑州工业应用技术学院</option>
+                    <option value="756">郑州师范学院</option>
+                    <option value="757">郑州财经学院</option>
+                    <option value="758">黄河交通学院</option>
+                    <option value="759">商丘工学院</option>
+                    <option value="760">河南大学民生学院</option>
+                    <option value="761">河南师范大学新联学院</option>
+                    <option value="762">信阳学院</option>
+                    <option value="763">安阳学院</option>
+                    <option value="764">新乡医学院三全学院</option>
+                    <option value="765">河南科技学院新科学院</option>
+                    <option value="766">郑州工商学院</option>
+                    <option value="767">中原工学院信息商务学院</option>
+                    <option value="768">商丘学院</option>
+                    <option value="769">郑州商学院</option>
+                    <option value="770">河南科技职业大学</option>
+                    <option value="771">郑州升达经贸管理学院</option>
+                    <option value="772">郑州西亚斯学院</option>
+                    <option value="773">武汉大学</option>
+                    <option value="774">华中科技大学</option>
+                    <option value="775">武汉科技大学</option>
+                    <option value="776">长江大学</option>
+                    <option value="777">武汉工程大学</option>
+                    <option value="778">中国地质大学（武汉）</option>
+                    <option value="779">武汉纺织大学</option>
+                    <option value="780">武汉轻工大学</option>
+                    <option value="781">武汉理工大学</option>
+                    <option value="782">湖北工业大学</option>
+                    <option value="783">华中农业大学</option>
+                    <option value="784">湖北中医药大学</option>
+                    <option value="785">华中师范大学</option>
+                    <option value="786">湖北大学</option>
+                    <option value="787">湖北师范大学</option>
+                    <option value="788">黄冈师范学院</option>
+                    <option value="789">湖北民族大学</option>
+                    <option value="790">汉江师范学院</option>
+                    <option value="791">湖北文理学院</option>
+                    <option value="792">中南财经政法大学</option>
+                    <option value="793">武汉体育学院</option>
+                    <option value="794">湖北美术学院</option>
+                    <option value="795">中南民族大学</option>
+                    <option value="796">湖北汽车工业学院</option>
+                    <option value="797">湖北工程学院</option>
+                    <option value="798">湖北理工学院</option>
+                    <option value="799">湖北科技学院</option>
+                    <option value="800">湖北医药学院</option>
+                    <option value="801">江汉大学</option>
+                    <option value="802">三峡大学</option>
+                    <option value="803">湖北警官学院</option>
+                    <option value="804">荆楚理工学院</option>
+                    <option value="805">武汉音乐学院</option>
+                    <option value="806">湖北经济学院</option>
+                    <option value="807">武汉商学院</option>
+                    <option value="808">武汉东湖学院</option>
+                    <option value="809">汉口学院</option>
+                    <option value="810">武昌首义学院</option>
+                    <option value="811">武昌理工学院</option>
+                    <option value="812">武汉生物工程学院</option>
+                    <option value="813">武汉晴川学院</option>
+                    <option value="814">湖北大学知行学院</option>
+                    <option value="815">武汉科技大学城市学院</option>
+                    <option value="816">三峡大学科技学院</option>
+                    <option value="817">江汉大学文理学院</option>
+                    <option value="818">湖北工业大学工程技术学院</option>
+                    <option value="819">武汉工程大学邮电与信息工程学院</option>
+                    <option value="820">武汉纺织大学外经贸学院</option>
+                    <option value="821">武昌工学院</option>
+                    <option value="822">武汉工商学院</option>
+                    <option value="823">长江大学工程技术学院</option>
+                    <option value="824">长江大学文理学院</option>
+                    <option value="825">湖北商贸学院</option>
+                    <option value="826">湖北汽车工业学院科技学院</option>
+                    <option value="827">湖北医药学院药护学院</option>
+                    <option value="828">湖北民族大学科技学院</option>
+                    <option value="829">湖北经济学院法商学院</option>
+                    <option value="830">武汉体育学院体育科技学院</option>
+                    <option value="831">湖北师范大学文理学院</option>
+                    <option value="832">湖北文理学院理工学院</option>
+                    <option value="833">湖北工程学院新技术学院</option>
+                    <option value="834">文华学院</option>
+                    <option value="835">武汉学院</option>
+                    <option value="836">武汉工程科技学院</option>
+                    <option value="837">武汉华夏理工学院</option>
+                    <option value="838">武汉传媒学院</option>
+                    <option value="839">武汉设计工程学院</option>
+                    <option value="840">湖北第二师范学院</option>
+                    <option value="841">湘潭大学</option>
+                    <option value="842">吉首大学</option>
+                    <option value="843">湖南大学</option>
+                    <option value="844">中南大学</option>
+                    <option value="845">湖南科技大学</option>
+                    <option value="846">长沙理工大学</option>
+                    <option value="847">湖南农业大学</option>
+                    <option value="848">中南林业科技大学</option>
+                    <option value="849">湖南中医药大学</option>
+                    <option value="850">湖南师范大学</option>
+                    <option value="851">湖南理工学院</option>
+                    <option value="852">湘南学院</option>
+                    <option value="853">衡阳师范学院</option>
+                    <option value="854">邵阳学院</option>
+                    <option value="855">怀化学院</option>
+                    <option value="856">湖南文理学院</option>
+                    <option value="857">湖南科技学院</option>
+                    <option value="858">湖南人文科技学院</option>
+                    <option value="859">湖南工商大学</option>
+                    <option value="860">南华大学</option>
+                    <option value="861">长沙医学院</option>
+                    <option value="862">长沙学院</option>
+                    <option value="863">湖南工程学院</option>
+                    <option value="864">湖南城市学院</option>
+                    <option value="865">湖南工学院</option>
+                    <option value="866">湖南财政经济学院</option>
+                    <option value="867">湖南警察学院</option>
+                    <option value="868">湖南工业大学</option>
+                    <option value="869">湖南女子学院</option>
+                    <option value="870">湖南第一师范学院</option>
+                    <option value="871">湖南医药学院</option>
+                    <option value="872">湖南涉外经济学院</option>
+                    <option value="873">湘潭大学兴湘学院</option>
+                    <option value="874">湖南工业大学科技学院</option>
+                    <option value="875">湖南科技大学潇湘学院</option>
+                    <option value="876">南华大学船山学院</option>
+                    <option value="877">湖南工商大学北津学院</option>
+                    <option value="878">湖南师范大学树达学院</option>
+                    <option value="879">湖南农业大学东方科技学院</option>
+                    <option value="880">中南林业科技大学涉外学院</option>
+                    <option value="881">湖南文理学院芙蓉学院</option>
+                    <option value="882">湖南理工学院南湖学院</option>
+                    <option value="883">衡阳师范学院南岳学院</option>
+                    <option value="884">湖南工程学院应用技术学院</option>
+                    <option value="885">湖南中医药大学湘杏学院</option>
+                    <option value="886">吉首大学张家界学院</option>
+                    <option value="887">长沙理工大学城南学院</option>
+                    <option value="888">长沙师范学院</option>
+                    <option value="889">湖南应用技术学院</option>
+                    <option value="890">湖南信息学院</option>
+                    <option value="891">湖南交通工程学院</option>
+                    <option value="892">中山大学</option>
+                    <option value="893">暨南大学</option>
+                    <option value="894">汕头大学</option>
+                    <option value="895">华南理工大学</option>
+                    <option value="896">华南农业大学</option>
+                    <option value="897">广东海洋大学</option>
+                    <option value="898">广州医科大学</option>
+                    <option value="899">广东医科大学</option>
+                    <option value="900">广州中医药大学</option>
+                    <option value="901">广东药科大学</option>
+                    <option value="902">华南师范大学</option>
+                    <option value="903">韶关学院</option>
+                    <option value="904">惠州学院</option>
+                    <option value="905">韩山师范学院</option>
+                    <option value="906">岭南师范学院</option>
+                    <option value="907">肇庆学院</option>
+                    <option value="908">嘉应学院</option>
+                    <option value="909">广州体育学院</option>
+                    <option value="910">广州美术学院</option>
+                    <option value="911">星海音乐学院</option>
+                    <option value="912">广东技术师范大学</option>
+                    <option value="913">深圳大学</option>
+                    <option value="914">广东财经大学</option>
+                    <option value="915">广东白云学院</option>
+                    <option value="916">广州大学</option>
+                    <option value="917">广州航海学院</option>
+                    <option value="918">广东警官学院</option>
+                    <option value="919">仲恺农业工程学院</option>
+                    <option value="920">五邑大学</option>
+                    <option value="921">广东金融学院</option>
+                    <option value="922">电子科技大学中山学院</option>
+                    <option value="923">广东石油化工学院</option>
+                    <option value="924">东莞理工学院</option>
+                    <option value="925">广东工业大学</option>
+                    <option value="926">广东外语外贸大学</option>
+                    <option value="927">佛山科学技术学院</option>
+                    <option value="928">广东培正学院</option>
+                    <option value="929">南方医科大学</option>
+                    <option value="930">广东东软学院</option>
+                    <option value="931">华南理工大学广州学院</option>
+                    <option value="932">广州大学华软软件学院</option>
+                    <option value="933">中山大学南方学院</option>
+                    <option value="934">广东外语外贸大学南国商学院</option>
+                    <option value="935">广东财经大学华商学院</option>
+                    <option value="936">广东海洋大学寸金学院</option>
+                    <option value="937">华南农业大学珠江学院</option>
+                    <option value="938">广东技术师范大学天河学院</option>
+                    <option value="939">北京师范大学珠海分校</option>
+                    <option value="940">广东工业大学华立学院</option>
+                    <option value="941">广州大学松田学院</option>
+                    <option value="942">广州商学院</option>
+                    <option value="943">北京理工大学珠海学院</option>
+                    <option value="944">吉林大学珠海学院</option>
+                    <option value="945">广州工商学院</option>
+                    <option value="946">广州科技职业技术大学</option>
+                    <option value="947">广东科技学院</option>
+                    <option value="948">广东理工学院</option>
+                    <option value="949">广东工商职业技术大学</option>
+                    <option value="950">东莞理工学院城市学院</option>
+                    <option value="951">中山大学新华学院</option>
+                    <option value="952">广东第二师范学院</option>
+                    <option value="953">南方科技大学</option>
+                    <option value="954">深圳技术大学</option>
+                    <option value="955">北京师范大学-香港浸会大学联合国际学院</option>
+                    <option value="956">香港中文大学（深圳）</option>
+                    <option value="957">深圳北理莫斯科大学</option>
+                    <option value="958">广东以色列理工学院</option>
+                    <option value="959">广西大学</option>
+                    <option value="960">广西科技大学</option>
+                    <option value="961">桂林电子科技大学</option>
+                    <option value="962">桂林理工大学</option>
+                    <option value="963">广西医科大学</option>
+                    <option value="964">右江民族医学院</option>
+                    <option value="965">广西中医药大学</option>
+                    <option value="966">桂林医学院</option>
+                    <option value="967">广西师范大学</option>
+                    <option value="968">南宁师范大学</option>
+                    <option value="969">广西民族师范学院</option>
+                    <option value="970">河池学院</option>
+                    <option value="971">玉林师范学院</option>
+                    <option value="972">广西艺术学院</option>
+                    <option value="973">广西民族大学</option>
+                    <option value="974">百色学院</option>
+                    <option value="975">梧州学院</option>
+                    <option value="976">广西科技师范学院</option>
+                    <option value="977">广西财经学院</option>
+                    <option value="978">南宁学院</option>
+                    <option value="979">北部湾大学</option>
+                    <option value="980">桂林航天工业学院</option>
+                    <option value="981">桂林旅游学院</option>
+                    <option value="982">贺州学院</option>
+                    <option value="983">广西警察学院</option>
+                    <option value="984">北海艺术设计学院</option>
+                    <option value="985">广西大学行健文理学院</option>
+                    <option value="986">广西科技大学鹿山学院</option>
+                    <option value="987">广西民族大学相思湖学院</option>
+                    <option value="988">广西师范大学漓江学院</option>
+                    <option value="989">南宁师范大学师园学院</option>
+                    <option value="990">广西中医药大学赛恩斯新医药学院</option>
+                    <option value="991">桂林电子科技大学信息科技学院</option>
+                    <option value="992">桂林理工大学博文管理学院</option>
+                    <option value="993">广西外国语学院</option>
+                    <option value="994">北京航空航天大学北海学院</option>
+                    <option value="995">广西城市职业大学</option>
+                    <option value="996">广西职业师范学院</option>
+                    <option value="997">海南大学</option>
+                    <option value="998">海南热带海洋学院</option>
+                    <option value="999">海南师范大学</option>
+                    <option value="1000">海南医学院</option>
+                    <option value="1001">海口经济学院</option>
+                    <option value="1002">琼台师范学院</option>
+                    <option value="1003">三亚学院</option>
+                    <option value="1004">海南科技职业大学</option>
+                    <option value="1005">重庆大学</option>
+                    <option value="1006">重庆邮电大学</option>
+                    <option value="1007">重庆交通大学</option>
+                    <option value="1008">重庆医科大学</option>
+                    <option value="1009">西南大学</option>
+                    <option value="1010">重庆师范大学</option>
+                    <option value="1011">重庆文理学院</option>
+                    <option value="1012">重庆三峡学院</option>
+                    <option value="1013">长江师范学院</option>
+                    <option value="1014">四川外国语大学</option>
+                    <option value="1015">西南政法大学</option>
+                    <option value="1016">四川美术学院</option>
+                    <option value="1017">重庆科技学院</option>
+                    <option value="1018">重庆理工大学</option>
+                    <option value="1019">重庆工商大学</option>
+                    <option value="1020">重庆机电职业技术大学</option>
+                    <option value="1021">重庆工程学院</option>
+                    <option value="1022">重庆大学城市科技学院</option>
+                    <option value="1023">重庆警察学院</option>
+                    <option value="1024">重庆人文科技学院</option>
+                    <option value="1025">四川外国语大学重庆南方翻译学院</option>
+                    <option value="1026">重庆师范大学涉外商贸学院</option>
+                    <option value="1027">重庆工商大学融智学院</option>
+                    <option value="1028">重庆工商大学派斯学院</option>
+                    <option value="1029">重庆邮电大学移通学院</option>
+                    <option value="1030">重庆第二师范学院</option>
+                    <option value="1031">四川大学</option>
+                    <option value="1032">西南交通大学</option>
+                    <option value="1033">电子科技大学</option>
+                    <option value="1034">西南石油大学</option>
+                    <option value="1035">成都理工大学</option>
+                    <option value="1036">西南科技大学</option>
+                    <option value="1037">成都信息工程大学</option>
+                    <option value="1038">四川轻化工大学</option>
+                    <option value="1039">西华大学</option>
+                    <option value="1040">中国民用航空飞行学院</option>
+                    <option value="1041">四川农业大学</option>
+                    <option value="1042">西昌学院</option>
+                    <option value="1043">西南医科大学</option>
+                    <option value="1044">成都中医药大学</option>
+                    <option value="1045">川北医学院</option>
+                    <option value="1046">四川师范大学</option>
+                    <option value="1047">西华师范大学</option>
+                    <option value="1048">绵阳师范学院</option>
+                    <option value="1049">内江师范学院</option>
+                    <option value="1050">宜宾学院</option>
+                    <option value="1051">四川文理学院</option>
+                    <option value="1052">阿坝师范学院</option>
+                    <option value="1053">乐山师范学院</option>
+                    <option value="1054">西南财经大学</option>
+                    <option value="1055">成都体育学院</option>
+                    <option value="1056">四川音乐学院</option>
+                    <option value="1057">西南民族大学</option>
+                    <option value="1058">成都大学</option>
+                    <option value="1059">成都工业学院</option>
+                    <option value="1060">攀枝花学院</option>
+                    <option value="1061">四川旅游学院</option>
+                    <option value="1062">四川民族学院</option>
+                    <option value="1063">四川警察学院</option>
+                    <option value="1064">成都东软学院</option>
+                    <option value="1065">成都艺术职业大学</option>
+                    <option value="1066">电子科技大学成都学院</option>
+                    <option value="1067">成都理工大学工程技术学院</option>
+                    <option value="1068">四川传媒学院</option>
+                    <option value="1069">成都信息工程大学银杏酒店管理学院</option>
+                    <option value="1070">成都文理学院</option>
+                    <option value="1071">四川工商学院</option>
+                    <option value="1072">四川外国语大学成都学院</option>
+                    <option value="1073">成都医学院</option>
+                    <option value="1074">四川工业科技学院</option>
+                    <option value="1075">四川大学锦城学院</option>
+                    <option value="1076">西南财经大学天府学院</option>
+                    <option value="1077">四川大学锦江学院</option>
+                    <option value="1078">四川文化艺术学院</option>
+                    <option value="1079">西南科技大学城市学院</option>
+                    <option value="1080">西南交通大学希望学院</option>
+                    <option value="1081">成都师范学院</option>
+                    <option value="1082">四川电影电视学院</option>
+                    <option value="1083">贵州大学</option>
+                    <option value="1084">贵州医科大学</option>
+                    <option value="1085">遵义医科大学</option>
+                    <option value="1086">贵州中医药大学</option>
+                    <option value="1087">贵州师范大学</option>
+                    <option value="1088">遵义师范学院</option>
+                    <option value="1089">铜仁学院</option>
+                    <option value="1090">兴义民族师范学院</option>
+                    <option value="1091">安顺学院</option>
+                    <option value="1092">贵州工程应用技术学院</option>
+                    <option value="1093">凯里学院</option>
+                    <option value="1094">黔南民族师范学院</option>
+                    <option value="1095">贵州财经大学</option>
+                    <option value="1096">贵州民族大学</option>
+                    <option value="1097">贵阳学院</option>
+                    <option value="1098">六盘水师范学院</option>
+                    <option value="1099">贵州商学院</option>
+                    <option value="1100">贵州警察学院</option>
+                    <option value="1101">贵州中医药大学时珍学院</option>
+                    <option value="1102">贵州财经大学商务学院</option>
+                    <option value="1103">贵州大学科技学院</option>
+                    <option value="1104">贵州大学明德学院</option>
+                    <option value="1105">贵州民族大学人文科技学院</option>
+                    <option value="1106">贵州师范大学求是学院</option>
+                    <option value="1107">遵义医科大学医学与科技学院</option>
+                    <option value="1108">贵州医科大学神奇民族医药学院</option>
+                    <option value="1109">贵州师范学院</option>
+                    <option value="1110">贵州理工学院</option>
+                    <option value="1111">茅台学院</option>
+                    <option value="1112">云南大学</option>
+                    <option value="1113">昆明理工大学</option>
+                    <option value="1114">云南农业大学</option>
+                    <option value="1115">西南林业大学</option>
+                    <option value="1116">昆明医科大学</option>
+                    <option value="1117">大理大学</option>
+                    <option value="1118">云南中医药大学</option>
+                    <option value="1119">云南师范大学</option>
+                    <option value="1120">昭通学院</option>
+                    <option value="1121">曲靖师范学院</option>
+                    <option value="1122">普洱学院</option>
+                    <option value="1123">保山学院</option>
+                    <option value="1124">红河学院</option>
+                    <option value="1125">云南财经大学</option>
+                    <option value="1126">云南艺术学院</option>
+                    <option value="1127">云南民族大学</option>
+                    <option value="1128">玉溪师范学院</option>
+                    <option value="1129">楚雄师范学院</option>
+                    <option value="1130">云南警官学院</option>
+                    <option value="1131">昆明学院</option>
+                    <option value="1132">文山学院</option>
+                    <option value="1133">云南经济管理学院</option>
+                    <option value="1134">云南大学滇池学院</option>
+                    <option value="1135">云南大学旅游文化学院</option>
+                    <option value="1136">昆明理工大学津桥学院</option>
+                    <option value="1137">云南师范大学商学院</option>
+                    <option value="1138">云南师范大学文理学院</option>
+                    <option value="1139">昆明医科大学海源学院</option>
+                    <option value="1140">云南艺术学院文华学院</option>
+                    <option value="1141">云南工商学院</option>
+                    <option value="1142">滇西科技师范学院</option>
+                    <option value="1143">滇西应用技术大学</option>
+                    <option value="1144">西藏农牧学院</option>
+                    <option value="1145">西藏大学</option>
+                    <option value="1146">西藏民族大学</option>
+                    <option value="1147">西藏藏医药大学</option>
+                    <option value="1148">西北大学</option>
+                    <option value="1149">西安交通大学</option>
+                    <option value="1150">西北工业大学</option>
+                    <option value="1151">西安理工大学</option>
+                    <option value="1152">西安电子科技大学</option>
+                    <option value="1153">西安工业大学</option>
+                    <option value="1154">西安建筑科技大学</option>
+                    <option value="1155">西安科技大学</option>
+                    <option value="1156">西安石油大学</option>
+                    <option value="1157">陕西科技大学</option>
+                    <option value="1158">西安工程大学</option>
+                    <option value="1159">长安大学</option>
+                    <option value="1160">西北农林科技大学</option>
+                    <option value="1161">陕西中医药大学</option>
+                    <option value="1162">陕西师范大学</option>
+                    <option value="1163">延安大学</option>
+                    <option value="1164">陕西理工大学</option>
+                    <option value="1165">宝鸡文理学院</option>
+                    <option value="1166">咸阳师范学院</option>
+                    <option value="1167">渭南师范学院</option>
+                    <option value="1168">西安外国语大学</option>
+                    <option value="1169">西北政法大学</option>
+                    <option value="1170">西安体育学院</option>
+                    <option value="1171">西安音乐学院</option>
+                    <option value="1172">西安美术学院</option>
+                    <option value="1173">西安文理学院</option>
+                    <option value="1174">榆林学院</option>
+                    <option value="1175">商洛学院</option>
+                    <option value="1176">安康学院</option>
+                    <option value="1177">西安培华学院</option>
+                    <option value="1178">西安财经大学</option>
+                    <option value="1179">西安邮电大学</option>
+                    <option value="1180">西安航空学院</option>
+                    <option value="1181">西安医学院</option>
+                    <option value="1182">西安欧亚学院</option>
+                    <option value="1183">西安外事学院</option>
+                    <option value="1184">西安翻译学院</option>
+                    <option value="1185">西京学院</option>
+                    <option value="1186">西安思源学院</option>
+                    <option value="1187">陕西国际商贸学院</option>
+                    <option value="1188">陕西服装工程学院</option>
+                    <option value="1189">西安交通工程学院</option>
+                    <option value="1190">西安交通大学城市学院</option>
+                    <option value="1191">西北大学现代学院</option>
+                    <option value="1192">西安建筑科技大学华清学院</option>
+                    <option value="1193">西安财经大学行知学院</option>
+                    <option value="1194">陕西科技大学镐京学院</option>
+                    <option value="1195">西安工业大学北方信息工程学院</option>
+                    <option value="1196">延安大学西安创新学院</option>
+                    <option value="1197">西安电子科技大学长安学院</option>
+                    <option value="1198">西安汽车职业大学</option>
+                    <option value="1199">西北工业大学明德学院</option>
+                    <option value="1200">西安信息职业大学</option>
+                    <option value="1201">长安大学兴华学院</option>
+                    <option value="1202">西安理工大学高科学院</option>
+                    <option value="1203">西安科技大学高新学院</option>
+                    <option value="1204">陕西学前师范学院</option>
+                    <option value="1205">兰州大学</option>
+                    <option value="1206">兰州理工大学</option>
+                    <option value="1207">兰州交通大学</option>
+                    <option value="1208">甘肃农业大学</option>
+                    <option value="1209">甘肃中医药大学</option>
+                    <option value="1210">西北师范大学</option>
+                    <option value="1211">兰州城市学院</option>
+                    <option value="1212">陇东学院</option>
+                    <option value="1213">天水师范学院</option>
+                    <option value="1214">河西学院</option>
+                    <option value="1215">兰州财经大学</option>
+                    <option value="1216">西北民族大学</option>
+                    <option value="1217">甘肃政法大学</option>
+                    <option value="1218">甘肃民族师范学院</option>
+                    <option value="1219">兰州文理学院</option>
+                    <option value="1220">甘肃医学院</option>
+                    <option value="1221">兰州工业学院</option>
+                    <option value="1222">西北师范大学知行学院</option>
+                    <option value="1223">兰州财经大学陇桥学院</option>
+                    <option value="1224">兰州财经大学长青学院</option>
+                    <option value="1225">兰州交通大学博文学院</option>
+                    <option value="1226">兰州理工大学技术工程学院</option>
+                    <option value="1227">青海大学</option>
+                    <option value="1228">青海师范大学</option>
+                    <option value="1229">青海民族大学</option>
+                    <option value="1230">青海大学昆仑学院</option>
+                    <option value="1231">宁夏大学</option>
+                    <option value="1232">宁夏医科大学</option>
+                    <option value="1233">宁夏师范学院</option>
+                    <option value="1234">北方民族大学</option>
+                    <option value="1235">宁夏理工学院</option>
+                    <option value="1236">宁夏大学新华学院</option>
+                    <option value="1237">银川能源学院</option>
+                    <option value="1238">中国矿业大学银川学院</option>
+                    <option value="1239">新疆大学</option>
+                    <option value="1240">塔里木大学</option>
+                    <option value="1241">新疆农业大学</option>
+                    <option value="1242">石河子大学</option>
+                    <option value="1243">新疆医科大学</option>
+                    <option value="1244">新疆师范大学</option>
+                    <option value="1245">喀什大学</option>
+                    <option value="1246">伊犁师范大学</option>
+                    <option value="1247">新疆财经大学</option>
+                    <option value="1248">新疆艺术学院</option>
+                    <option value="1249">新疆工程学院</option>
+                    <option value="1250">昌吉学院</option>
+                    <option value="1251">新疆警察学院</option>
+                    <option value="1252">新疆理工学院</option>
+                    <option value="1253">新疆农业大学科学技术学院</option>
+                    <option value="1254">新疆医科大学厚博学院</option>
+                    <option value="1255">新疆财经大学商务学院</option>
+                    <option value="1256">石河子大学科技学院</option>
+                </select>
+            </div>
+
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">院系</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入学校名称" type="text">
+        <div class="layui-form-item">
+            <label class="layui-form-label">请选择院系</label>
+            <div class="layui-input-inline">
+                <select class="layui-input-inline" id="departments" lay-search="" lay-verify="required"
+                        name="department">
+                    <option value="">直接选择或搜索选择</option>
+                </select>
+            </div>
+
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">专业</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入院系名称" type="text">
+        <div class="layui-form-item">
+            <label class="layui-form-label">请选择专业</label>
+            <div class="layui-input-inline">
+                <select class="layui-input-inline" id="professions" lay-search="" lay-verify="required"
+                        name="profession">
+                    <option value="">直接选择或搜索选择</option>
+                </select>
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">政治要求</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入专业名称" type="text">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">政治要求</label>
+            <div class="layui-input-inline">
+                <input name="politicalDemand" title="中共党员" type="checkbox">
+                <input name="politicalDemand" title="中共预备党员" type="checkbox">
+                <input name="politicalDemand" title="中国共青团团员" type="checkbox">
+                <input name="politicalDemand" title="中国国民党革命委员会会员中国民主同盟盟员" type="checkbox">
+                <input name="politicalDemand" title="中国民主建国会会员中国民主促进会会员中国农工民主党党员中国致公党党员九三学社社员" type="checkbox">
+                <input name="politicalDemand" title="台湾民主自治同盟盟员无党派民主人士" type="checkbox">
+                <input name="politicalDemand" title="群众" type="checkbox">
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">时间要求</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入身份证号" type="text">
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">时间范围</label>
+                <div class="layui-input-inline" style="width: 200px;font-style: normal;">
+                    <input autocomplete="off" class="layui-input" id="startTime" name="startTime" placeholder="开始时间"
+                           type="date">
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 200px;font-style: normal;">
+                    <input autocomplete="off" class="layui-input" id="endTime" name="endTime" placeholder="结束时间"
+                           type="date">
+                </div>
+            </div>
         </div>
-    </div>
 
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">考试要求</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="email" type="email">
+        <div class="layui-form-item">
+            <label class="layui-form-label">考试要求</label>
+            <div class="layui-input-inline">
+                <textarea autocomplete="on" class="layui-textarea" id="examDemand"
+                          lay-verify="required" name="examDemand"
+                          placeholder="考试要求" type="text">
+
+                </textarea>
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">公共课要求</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="公共课要求" type="text">
+        <div class="layui-form-item">
+            <label class="layui-form-label">公共课要求</label>
+            <div class="layui-input-inline">
+                 <textarea autocomplete="on" class="layui-textarea" id="publicCourseDemand"
+                           lay-verify="required" name="publicCourseDemand"
+                           placeholder="公共课要求">
+                </textarea>
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">附加信息</label>
-        <div class="layui-input-inline">
-            <textarea autocomplete="on" class="layui-textarea" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                      placeholder="email" type="email"></textarea>
+        <div class="layui-form-item">
+            <label class="layui-form-label">专业课要求</label>
+            <div class="layui-input-inline">
+                 <textarea autocomplete="on" class="layui-textarea" id="majorCourseDemand"
+                           lay-verify="required" name="publicCourseDemand"
+                           placeholder="专业课要求">
+                </textarea>
+            </div>
         </div>
-    </div>
 
 
-    <div class="layui-form-item">
-        <button type="button" class="layui-btn">点击提交</button>
-        <button type="button" class="layui-btn layui-btn-danger">点击重置</button>
-    </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">附加信息</label>
+            <div class="layui-input-inline">
+            <textarea autocomplete="on" class="layui-textarea" id="extendMessage" lay-reqtext="附加信息"
+                      lay-verify="required"
+                      name="extendMessage"
+                      placeholder="附加信息"
+            >
+
+            </textarea>
+            </div>
+        </div>
 
 
-</form>
+        <div class="layui-form-item">
+            <button class="layui-btn" type="submit">点击提交</button>
+            <button class="layui-btn layui-btn-danger" type="button">点击重置</button>
+        </div>
+
+
+    </form>
 </div>
 
 <script>
@@ -116,6 +1417,100 @@
             img.style.display = 'block';
         }
     }
+
+
+    axios({
+        url: "http://127.0.0.1:8081/common/getAllDeptName",
+        method: "post",
+        dataType: "json",
+        data: {}
+    }).then((data) => {
+        var departments = document.getElementById("departments");
+        let options = data.data;
+        for (let i = 0; i < options.length; i++) {
+            let option = document.createElement("option");
+            option.value = options[i];
+            option.innerText = options[i];
+            departments.appendChild(option)
+        }
+    });
+    axios({
+        url: "http://127.0.0.1:8081/common/getAllSubjectName",
+        method: "post",
+        dataType: "json",
+        data: {
+            school: [],
+        }
+    }).then((data) => {
+        console.log(data);
+        let subjectNames = document.getElementById("professions");
+
+        let options = data.data;
+        for (let i = 0; i < options.length; i++) {
+            let option = document.createElement("option");
+            option.value = options[i];
+            option.innerText = options[i];
+            subjectNames.appendChild(option)
+        }
+    });
+
+    var examRequire = new Vue({
+        el: "#examRequire",
+        data: {},
+        methods: {
+            saveExamRequire: function () {
+                var schools = document.getElementById("schools");
+                var schoolName = schools.options[schools.selectedIndex].innerText;
+
+                var departments = document.getElementById("departments");
+                var department = departments.options[departments.selectedIndex].value;
+
+                var professions = document.getElementById("professions");
+                var profession = professions.options[professions.selectedIndex].value;
+                var politicalDemand = '';
+                var politicalDemands = document.getElementsByName("politicalDemand");
+                for (var i = 0; i < politicalDemands.length; i++) {
+                    if (politicalDemands[i].checked == true) {
+                        politicalDemand += politicalDemands[i].title + ':';
+                    }
+                }
+                var startTime = document.getElementById("startTime").value;
+                var endTime = document.getElementById("endTime").value;
+                var timeDemand = startTime + ":" + endTime;
+                var examDemand = document.getElementById("examDemand").value;
+                var publicCourseDemand = document.getElementById("publicCourseDemand").value;
+                var extendMessage = document.getElementById("extendMessage").value;
+                var majorCourseDemand = document.getElementById("majorCourseDemand").value;
+                var requirement = {
+                    tutorId: JSON.parse(localStorage.getItem("tutor")).tutorId,
+                    schoolName: schoolName,
+                    department: department,
+                    profession: profession,
+                    politicalDemand: politicalDemand,
+                    timeDemand: timeDemand,
+                    examDemand: examDemand,
+                    publicCourseDemand: publicCourseDemand,
+                    majorCourseDemand: majorCourseDemand,
+                    extendMessage: extendMessage,
+
+                };
+
+                console.log(JSON.stringify(requirement));
+                axios({
+                    url: "/school/saveExamRequire",
+                    method: "post",
+                    dataType: "json",
+                    data: requirement
+
+                }).then((data) => {
+                   window.location.href="entrollementproject.html"
+
+                })
+            }
+        }
+
+
+    })
 </script>
 </body>
 </html>

@@ -25,14 +25,10 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ExamRequirementMapper {
-	@Insert("insert into exam_requirement(school_name," +
-			"department," +
-			"profession," +
-			"political_demand," +
-			"time_demand," +
-			"exam_demand," +
-			"public_course_demand)," +
+	@Insert("insert into exam_requirement " +
 			"values(" +
+			"#{id},"+
+			"#{tutorId},"+
 			"#{schoolName}," +
 			"#{department}," +
 			"#{profession}," +
@@ -40,6 +36,7 @@ public interface ExamRequirementMapper {
 			"#{timeDemand}," +
 			"#{examDemand}," +
 			"#{publicCourseDemand}," +
-			"#{extendMessage})")
-	void  save(ExamRequirement requirement);
+			"#{majorCourseDemand},"+
+			"#{extendMessage});")
+	Integer  save(ExamRequirement requirement);
 }

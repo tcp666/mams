@@ -3,6 +3,9 @@ package com.mams.mamscommon.mapper;
 import com.mams.mamscommon.entity.Subject;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  *@ClassName SubjectMapper
@@ -25,4 +28,9 @@ import org.apache.ibatis.annotations.Mapper;
 public interface SubjectMapper {
 	@Insert("insert into subject values(#{subjectId},#{category},#{majorType},#{subjectName},#{subjectCode},#{deptName},#{deptCode})")
 	void save(Subject subject);
+	
+	@Select("select dept_name from subject group by dept_name;")
+	List<String> getAllDeptName();
+	@Select("select subject_name from subject group by subject_name;")
+	List<String> getAllSubjectName();
 }

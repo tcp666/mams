@@ -5,7 +5,8 @@
     <title>entrollementproject</title>
     <link href="layui/css/layui.css" rel="stylesheet">
     <script src="layui/layui.js"></script>
-
+    <script src="js/vueresource/vuejs-2.5.16.js"></script>
+    <script src="js/vueresource/axios-0.18.0.js"></script>
 </head>
 <body>
 <!--水平导航-->
@@ -16,116 +17,123 @@
     <li class="layui-nav-item"><a href="examrequirement.html">发布考试要求</a></li>
     <li class="layui-nav-item layui-this"><a href="entrollementproject.html">发布招生计划</a></li>
 </ul>
-<div class="layui-main">
-<form action="" class="layui-form" method="post" style="margin-top: 20px">
-    <div class="layui-form-item">
-        <label class="layui-form-label">导师姓名</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-verify="title" name="title" placeholder="请输入姓名"
-                   type="text">
+<div class="layui-main" id="enrollmentProject">
+    <form @submit.prevent="saveEnrollmentProject" class="layui-form" enctype="multipart/form-data" method="post"
+          ref="form"
+          style="margin-top: 20px">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">招生人数</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" lay-reqtext="请输入招生人数" lay-verify="required" name="count"
+                       placeholder="请输入招生人数" type="text">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">学校名称</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入学校名称" type="text">
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">考试类型</label>
+            <div class="layui-input-inline">
+                <select class="layui-input-inline" id="examType" lay-search="" lay-verify="required"
+                        name="examType">
+                    <option value="全国统一考试">全国统一考试</option>
+                    <option value="全国联考">全国联考</option>
+                    <option value="单独考试">单独考试</option>
+                    <option value="推荐免试">推荐免试</option>
+
+                </select>
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">院系</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入院系名称" type="text">
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择学制</label>
+            <div class="layui-input-inline">
+                <select class="layui-input-inline" id="schoolingType" lay-search="" lay-verify="required"
+                        name="schoolingType">
+                    <option value="全日制">全日制</option>
+                    <option value="非全日制">非全日制</option>
+                </select>
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">专业名称</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入专业名称" type="text">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">学历</label>
+            <div class="layui-input-inline">
+                <select class="layui-input-inline" id="education" lay-search="" lay-verify="required"
+                        name="education">
+                    <option value="全日制">全日制及非全日制统招普通硕士</option>
+                    <option value="非全日制">单证在职硕士</option>
+                </select>
+            </div>
         </div>
-    </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">招生人数</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="请输入身份证号" type="text">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系电话</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" id="contactNumber" lay-reqtext="请输入学校"
+                       lay-verify="required" name="contactNumber"
+                       placeholder="咨询电话" type="tel">
+            </div>
         </div>
-    </div>
 
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">考试类型</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="email" type="email">
+        <div class="layui-form-item">
+            <label class="layui-form-label">专业课程1</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" id="majorCourses1" lay-reqtext="请输入专业课程1"
+                       lay-verify="required" name="majorCourses1"
+                       placeholder="请输入专业课程1" type="text">
+            </div>
         </div>
-    </div>
-
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">学制</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="email" type="email">
+        <div class="layui-form-item">
+            <label class="layui-form-label">专业课程2</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" id="majorCourses2" lay-reqtext="请输入专业课程2"
+                       lay-verify="required" name="majorCourses2"
+                       placeholder="请输入专业课程2" type="text">
+            </div>
         </div>
-    </div>
-
-
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">学历</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="email" type="email">
+        <div class="layui-form-item">
+            <label class="layui-form-label">专业课程3</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" id="majorCourses3" lay-reqtext="请输入专业课程3"
+                       name="majorCourses3"
+                       placeholder="请输入专业课程3" type="text">
+            </div>
         </div>
-    </div>
-
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">联系电话</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="email" type="email">
+        <div class="layui-form-item">
+            <label class="layui-form-label">公共课程1</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" id="publicCourses1" lay-reqtext="公共课程1"
+                       lay-verify="required" name="publicCourses1"
+                       placeholder="公共课程1" type="text">
+            </div>
         </div>
-    </div>
-
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">学历</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="email" type="email">
+        <div class="layui-form-item">
+            <label class="layui-form-label">公共课程2</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" id="publicCourses2" lay-reqtext="公共课程2"
+                       lay-verify="required" name="publicCourses2"
+                       placeholder="公共课程2" type="text">
+            </div>
         </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">专业课程</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="email" type="email">
+        <div class="layui-form-item">
+            <label class="layui-form-label">公共课程3</label>
+            <div class="layui-input-inline">
+                <input autocomplete="on" class="layui-input" id="publicCourses3" lay-reqtext="公共课程3"
+                       name="publicCourses3"
+                       placeholder="公共课程3" type="text">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">公共课程</label>
-        <div class="layui-input-inline">
-            <input autocomplete="on" class="layui-input" lay-reqtext="请输入学校" lay-verify="required" name="username"
-                   placeholder="email" type="email">
+
+        <div class="layui-form-item">
+            <button class="layui-btn" type="submit">点击提交</button>
+            <button class="layui-btn layui-btn-danger" type="button">点击重置</button>
         </div>
-    </div>
 
 
-    <div class="layui-form-item">
-        <button type="button" class="layui-btn">点击提交</button>
-        <button type="button" class="layui-btn layui-btn-danger">点击重置</button>
-    </div>
-
-
-</form>
+    </form>
 </div>
 
 <script>
@@ -138,7 +146,7 @@
 
     });
 
-    function prev(event){
+    function prev(event) {
         //获取展示图片的区域
         var img = document.getElementById("prevView");
         //获取文件对象
@@ -146,12 +154,48 @@
         //获取文件阅读器
         let reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = function(){
+        reader.onload = function () {
             //给img的src设置图片url
             img.setAttribute("src", this.result);
-            img.style.display='block';
+            img.style.display = 'block';
         }
     }
+
+
+    var enrollmentProject = new Vue({
+        el: "#enrollmentProject",
+        data: {},
+        methods: {
+            saveEnrollmentProject: function () {
+                const formData = new FormData(this.$refs['form']);
+                const enrollmentProject = {};
+                // enrollmentProject.tutorName=JSON.parse(localStorage.getItem("tutor")).tutorName;
+                //formData.entries()返回一个 iterator对象 ，此对象可以遍历访问FormData中的键值对
+                for (let [key, val] of formData.entries()) {
+                    Object.assign(enrollmentProject, {[key]: val})
+                }
+                console.log(enrollmentProject);//{name:'xxx', age:xx }
+                enrollmentProject.tutorId = JSON.parse(localStorage.getItem("tutor")).tutorId;
+                enrollmentProject.tutorName = JSON.parse(localStorage.getItem("tutor")).realName;
+                enrollmentProject.schoolName=JSON.parse(localStorage.getItem("tutor")).schoolName;
+                enrollmentProject.department=JSON.parse(localStorage.getItem("tutor")).department;
+                enrollmentProject.professionName=JSON.parse(localStorage.getItem("tutor")).profession;
+
+                console.log(enrollmentProject);//{name:'xxx', age:xx }
+                axios({
+                    url: "/school/saveEnrollmentProject",
+                    method: "post",
+                    dataType: "json",
+                    data: enrollmentProject
+                }).then((data) => {
+                    if (data.data.value == 1)
+                        window.location.href = "entrollementproject.html"
+
+                })
+            },
+
+        }
+    })
 </script>
 </body>
 </html>

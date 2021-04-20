@@ -14,6 +14,8 @@ public class EnrollmentProject {
 	private int id;
 	//导师姓名
 	private String tutorName;
+	//导师id
+	private String tutorId;
 	//学校
  	private String schoolName;
  	//院系

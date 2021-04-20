@@ -4,12 +4,15 @@ import com.mams.mamscommon.entity.Subject;
 import com.mams.mamscommon.entity.School;
 import com.mams.mamscommon.mapper.SubjectMapper;
 import com.mams.mamscommon.mapper.SchoolMapper;
+import com.mams.mamscommon.service.SubjectService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.io.*;
+import java.util.List;
 
 /**
  * @ClassName UserController
@@ -24,7 +27,7 @@ import java.io.*;
 @CrossOrigin
 public class CommonUserController {
 	@Resource
-	SchoolMapper mapper;
+	SchoolMapper schoolMapper;
 	@Resource
 	SubjectMapper subjectMapper;
 	
@@ -49,7 +52,7 @@ public class CommonUserController {
 				school.setBelongingDepartment(schoolData[3]);
 				school.setLocalAddress(schoolData[4]);
 				school.setLevel(schoolData[5]);
-				mapper.insert(school);
+				schoolMapper.insert(school);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -61,10 +64,11 @@ public class CommonUserController {
 	}
 	
 	
+	
 	@RequestMapping("/saveCourse")
 	public String saveCourse() {
-		String deptCode = "0812";
-		String deptName = "计算机科学与技术";
+		String deptCode = "0810";
+		String deptName = "信息与通信工程";
 		File file = new File("D:\\graduation\\mams\\mams-common\\src\\main\\resources\\course.txt");
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
@@ -92,5 +96,26 @@ public class CommonUserController {
 		}
 		return "seccess";
 	}
+	
+	@Autowired
+	SubjectService subjectService;
+	@RequestMapping("/getAllDeptName")
+	List<String> getAllDeptName(){
+		return subjectService.getAllDeptName();
+	}
+	
+
+	@RequestMapping("/getAllSubjectName")
+	List<String> getAllSubjectName(){
+		return subjectService.getAllSubjectName();
+	}
+	
+	
+	
+	@RequestMapping("/getAllSchoolNames")
+	List<School> getAllSchoolNames(){
+		return schoolMapper.getAllSchool();
+	}
+	
 }
 

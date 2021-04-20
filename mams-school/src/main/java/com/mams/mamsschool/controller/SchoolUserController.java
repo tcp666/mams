@@ -5,13 +5,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mams.mamscommon.utils.QiniuUpload;
 import com.mams.mamscommon.utils.Result;
 import com.mams.mamscommon.utils.Verify;
+import com.mams.mamsschool.entity.EnrollmentProject;
+import com.mams.mamsschool.entity.ExamRequirement;
 import com.mams.mamsschool.entity.Tutor;
 
+import com.mams.mamsschool.mapper.EnrollmentProjectMapper;
+import com.mams.mamsschool.mapper.ExamRequirementMapper;
 import com.mams.mamsschool.service.TutorService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -25,6 +31,7 @@ import java.util.UUID;
  * @Date 2021/2/7 17:26
  * @Version 1.0
  */
+
 @RestController
 @RequestMapping("/school")
 class SchoolUserController {
@@ -33,7 +40,10 @@ class SchoolUserController {
 	
 	@Autowired
 	QiniuUpload qiniuUpload;
-
+	@Resource
+	ExamRequirementMapper examRequirementMapper;
+	@Resource
+	EnrollmentProjectMapper enrollmentProjectMapper;
 	
 	@RequestMapping("/login")
 	@ResponseBody
@@ -110,5 +120,18 @@ class SchoolUserController {
 		return Result.success(tutor);
 	}
 	
+	@RequestMapping("/saveExamRequire")
+	@ResponseBody
+	public Result<Integer> saveExamRequire(@RequestBody ExamRequirement examRequirement) {
+		System.out.println(examRequirement);
+		return Result.success(examRequirementMapper.save(examRequirement));
+	}
 	
+	@RequestMapping("/saveEnrollmentProject")
+	@ResponseBody
+	public Result<Integer> saveEnrollmentProject(@RequestBody EnrollmentProject project) {
+		System.out.println(project);
+		return Result.success(enrollmentProjectMapper.save(project));
+		
+	}
 }

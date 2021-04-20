@@ -1,4 +1,4 @@
-package com.mams.mamscommon.service;
+package com.mams.mamscommon.service.impl;
 
 import com.mams.mamscommon.api.UserService;
 import org.springframework.stereotype.Service;

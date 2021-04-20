@@ -24,6 +24,7 @@ spring:
         max-file-size:  1GB
         max-request-size: 1GB
 
+
 #mybatis配置
 #mybatis.dao-locations=classpath:dao/*.xml
 mybatis:
