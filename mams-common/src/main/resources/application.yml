@@ -29,3 +29,5 @@ mybatis:
     map-underscore-to-camel-case: true
 mapper:
   identity: MYSQL
+logging:
+  config: classpath:log4j2.xml

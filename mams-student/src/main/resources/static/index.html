@@ -259,6 +259,13 @@
                         alert("验证码错误");
                         return;
                     }
+                    if (this.checkCode==""||this.checkCode==null) {
+                        alert("验证码错误");
+                        return;
+                    }
+                    
+                    
+                    
                     axios({
                         method: 'post',
                         url: '/student/login',

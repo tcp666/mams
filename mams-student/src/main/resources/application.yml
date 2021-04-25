@@ -35,7 +35,7 @@ mybatis:
 mapper:
   identity: MYSQL
 
-# 日志级别
+
+
 logging:
-  level:
-    root: info
+  config: classpath:log4j2.xml

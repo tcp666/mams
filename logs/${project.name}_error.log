@@ -1,4 +1,4 @@
-[${project.name}][${env:SERVER_PORT}] 2021-04-20 14:17:16,152 ERROR [main][SpringApplication.java:858] - Application run failed
+                                                                            [${project.name}][${env:SERVER_PORT}] 2021-04-20 14:17:16,152 ERROR [main][SpringApplication.java:858] - Application run failed
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'schoolUserController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.mams.mamsschool.controller.SchoolUserController] from ClassLoader [sun.misc.Launcher$AppClassLoader@18b4aac2]
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:265)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1253)

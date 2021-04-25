@@ -21,6 +21,28 @@
     <form @submit.prevent="saveEnrollmentProject" class="layui-form" enctype="multipart/form-data" method="post"
           ref="form"
           style="margin-top: 20px">
+        <div class="layui-form-item">
+            <label class="layui-form-label">请选择院系</label>
+            <div class="layui-input-inline">
+                <select class="layui-input-inline" id="departments" lay-search="" lay-verify="required"
+                        name="department">
+                    <option value="">直接选择或搜索选择</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">请选择专业</label>
+            <div class="layui-input-inline">
+                <select class="layui-input-inline" id="professions" lay-search="" lay-verify="required"
+                        name="professionName">
+                    <option value="">直接选择或搜索选择</option>
+                </select>
+            </div>
+        </div>
+
+
 
         <div class="layui-form-item">
             <label class="layui-form-label">招生人数</label>
@@ -68,6 +90,16 @@
             </div>
         </div>
 
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否定就业</label>
+            <div class="layui-input-inline">
+                <select class="layui-input-inline" id="signUpType" lay-search="" lay-verify="required"
+                        name="signUpType">
+                    <option value="定向就业">定向就业</option>
+                    <option value="定向就业">非定向就业</option>
+                </select>
+            </div>
+        </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">联系电话</label>
@@ -162,6 +194,41 @@
     }
 
 
+    axios({
+        url: "http://127.0.0.1:8081/common/getAllDeptName",
+        method: "post",
+        dataType: "json",
+        data: {}
+    }).then((data) => {
+        var departments = document.getElementById("departments");
+        let options = data.data;
+        for (let i = 0; i < options.length; i++) {
+            let option = document.createElement("option");
+            option.value = options[i];
+            option.innerText = options[i];
+            departments.appendChild(option)
+        }
+    });
+    axios({
+        url: "http://127.0.0.1:8081/common/getAllSubjectName",
+        method: "post",
+        dataType: "json",
+        data: {
+            school: [],
+        }
+    }).then((data) => {
+        console.log(data);
+        let subjectNames = document.getElementById("professions");
+
+        let options = data.data;
+        for (let i = 0; i < options.length; i++) {
+            let option = document.createElement("option");
+            option.value = options[i];
+            option.innerText = options[i];
+            subjectNames.appendChild(option)
+        }
+    });
+
     var enrollmentProject = new Vue({
         el: "#enrollmentProject",
         data: {},
@@ -178,8 +245,9 @@
                 enrollmentProject.tutorId = JSON.parse(localStorage.getItem("tutor")).tutorId;
                 enrollmentProject.tutorName = JSON.parse(localStorage.getItem("tutor")).realName;
                 enrollmentProject.schoolName=JSON.parse(localStorage.getItem("tutor")).schoolName;
-                enrollmentProject.department=JSON.parse(localStorage.getItem("tutor")).department;
-                enrollmentProject.professionName=JSON.parse(localStorage.getItem("tutor")).profession;
+                // enrollmentProject.department=JSON.parse(localStorage.getItem("tutor")).department;
+                // enrollmentProject.professionName=JSON.parse(localStorage.getItem("tutor")).profession;
+
 
                 console.log(enrollmentProject);//{name:'xxx', age:xx }
                 axios({

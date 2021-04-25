@@ -1,0 +1,1 @@
+[mams-school][${env:SERVER_PORT}] 2021-04-23 23:54:51,022 WARN [HikariPool-1 housekeeper][HikariPool.java:766] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m48s528ms579µs100ns).

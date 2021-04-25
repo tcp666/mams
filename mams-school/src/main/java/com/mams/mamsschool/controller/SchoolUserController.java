@@ -12,6 +12,8 @@ import com.mams.mamsschool.entity.Tutor;
 import com.mams.mamsschool.mapper.EnrollmentProjectMapper;
 import com.mams.mamsschool.mapper.ExamRequirementMapper;
 import com.mams.mamsschool.service.TutorService;
+import io.swagger.models.auth.In;
+import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +33,10 @@ import java.util.UUID;
  * @Date 2021/2/7 17:26
  * @Version 1.0
  */
-
+@Log4j2
 @RestController
 @RequestMapping("/school")
+@CrossOrigin
 class SchoolUserController {
 	@Autowired
 	TutorService tutorService;
@@ -133,5 +136,25 @@ class SchoolUserController {
 		System.out.println(project);
 		return Result.success(enrollmentProjectMapper.save(project));
 		
+	}
+	
+	@RequestMapping("/getAllEnrollmentProject")
+	@ResponseBody
+	public LayUITableData getAllEnrollmentProject(){
+		List<EnrollmentProject> data = enrollmentProjectMapper.findAll();
+		LayUITableData tableData=new LayUITableData();
+		tableData.setCode("0");
+		tableData.setCount(data.size());
+		tableData.setData(data);
+		return tableData;
+		
+	}
+	
+	@Data
+	class LayUITableData{
+		private String code;
+		private String msg;
+		private Integer count;
+		List<EnrollmentProject> data;
 	}
 }

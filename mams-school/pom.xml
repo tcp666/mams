@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>mams-school</artifactId>
-
+    <name>mams-school</name>
     <properties>
         <java.version>1.8</java.version>
         <xml-apis.version>1.4.01</xml-apis.version>

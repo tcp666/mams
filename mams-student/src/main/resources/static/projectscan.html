@@ -19,12 +19,78 @@
     <li class="layui-nav-item"><a href="studyandworkexperience.html">教育和工作经历</a></li>
     <li class="layui-nav-item"><a href="">志愿管理</a></li>
 </ul>
-<table class="layui-hide" id="test">
+<table class="layui-hide" id="enrollmentProjectList" lay-filter="enrollmentProjectList">
 
 </table>
 
-<script>
+<script id="toolbarDemo" type="text/html">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckedData">
+            获取选中元素
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckedLength">
+            获取选中数目
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">
+            验证是否全选
+        </button>
+    </div>
 
+</script>
+
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">查看详情</a>
+
+</script>
+
+<script type="text/javascript">
+
+    layui.use("table", function () {
+        let table = layui.table;
+        table.render({
+            elem: "#enrollmentProjectList",
+            url: "http://localhost:8082/school/getAllEnrollmentProject",
+            page: true,
+            height: 400,
+            cols: [[
+                {field: 'aa', type: "numbers"},
+                {field: 'aa', type: "checkbox"},
+                {field: 'id', title: '志愿编号', hidden: true},
+                {field: 'tutorName', title: '导师姓名'},
+                {field: 'schoolName', title: '学校'},
+                {field: 'department', title: '院系'},
+                {field: 'professionName', title: '专业'},
+                {field: 'count', title: '招生人数'},
+                // 设置表头操作栏
+                {field: '详情', toolbar: "#barDemo"}
+            ]],
+            toolbar: "#toolbarDemo"
+        });
+
+        table.on('toolbar(enrollmentProjectList)', function (obj) {
+            console.log(obj);
+
+            var checkStatus = table.checkStatus(obj.config.id);
+            console.log(checkStatus);
+            //获取事件名
+            switch (obj.event) {
+                case "getCheckedData":
+                    console.log("hello,world");
+                    break;
+                case "getCheckedLength":
+                    console.log("getCheckedLength");
+                    break;
+                case "isAll":
+                    console.log("isAll");
+                    break;
+            }
+        });
+
+        table.on('tool(enrollmentProjectList)', function (obj) {
+
+            window.location.href = "projectdetails.html?data=" + obj.data.id;
+        })
+    })
 </script>
 </body>
 </html>
