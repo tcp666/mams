@@ -53,11 +53,17 @@ public interface EnrollmentProjectMapper {
 			"#{majorCourses3}," +
 			"#{publicCourses1}," +
 			"#{publicCourses2}," +
-			"#{publicCourses3}" +
+			"#{publicCourses3}," +
+			"#{checked}" +
 			");")
 	Integer save(EnrollmentProject project);
 	
 	
-	@Select("select * from enrollment_project order by school_name;")
+	@Select("select * from enrollment_project where checked = 1 order by school_name;")
 	List<EnrollmentProject> findAll();
+	
+	@Select("select * from enrollment_project where id=#{id};")
+	List<EnrollmentProject> findEnrollmentProjectById(String id);
+	
+	
 }

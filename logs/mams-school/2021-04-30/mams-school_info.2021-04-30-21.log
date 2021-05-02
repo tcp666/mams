@@ -1,0 +1,92 @@
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:03:18,879 INFO [http-nio-8082-exec-8][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:04:03,729 INFO [http-nio-8082-exec-1][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:04:04,463 INFO [http-nio-8082-exec-4][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:04:04,661 INFO [http-nio-8082-exec-7][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:06:10,818 INFO [http-nio-8082-exec-8][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:06:11,923 INFO [http-nio-8082-exec-1][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:10:55,146 INFO [http-nio-8082-exec-6][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:10:59,758 INFO [http-nio-8082-exec-9][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:11:00,536 INFO [http-nio-8082-exec-2][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:11:00,823 INFO [http-nio-8082-exec-3][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:11:51,530 INFO [http-nio-8082-exec-4][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:11:53,088 INFO [http-nio-8082-exec-7][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:11:53,281 INFO [http-nio-8082-exec-10][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:11:53,551 INFO [http-nio-8082-exec-2][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:11:53,754 INFO [http-nio-8082-exec-3][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:12:03,943 INFO [http-nio-8082-exec-5][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:13:42,594 INFO [http-nio-8082-exec-10][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:14:23,951 INFO [http-nio-8082-exec-2][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:14:27,227 INFO [http-nio-8082-exec-1][SchoolUserController.java:158] - ***************************************{id=15}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:25:31,279 INFO [http-nio-8082-exec-10][SchoolUserController.java:158] - ***************************************{id=eel95gtr7qp7j0ct7fsh2ahfs6}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:25:31,287 WARN [http-nio-8082-exec-6][AbstractHandlerExceptionResolver.java:197] - Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported]
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:25:31,524 ERROR [http-nio-8082-exec-10][DirectJDKLog.java:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IndexOutOfBoundsException: Index: 0, Size: 0] with root cause
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at com.mams.mamsschool.controller.SchoolUserController.findEnrollmentProjectById(SchoolUserController.java:160)
+	at sun.reflect.GeneratedMethodAccessor120.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:90)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:117)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:25:54,571 INFO [http-nio-8082-exec-1][SchoolUserController.java:158] - ***************************************{id=4}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:25:59,414 INFO [http-nio-8082-exec-3][SchoolUserController.java:158] - ***************************************{id=4}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:26:00,847 INFO [http-nio-8082-exec-4][SchoolUserController.java:158] - ***************************************{id=4}
+[mams-school][${env:SERVER_PORT}] 2021-04-30 21:26:02,000 INFO [http-nio-8082-exec-9][SchoolUserController.java:158] - ***************************************{id=4}

@@ -170,5 +170,14 @@ public class StudentUserController {
 		
 		return Result.success("success");
 	}
+	@Resource
+	StudentApplicationMapper studentApplicationMapper;
 	
+	@RequestMapping("/saveApplication")
+	@ResponseBody
+	public Result<Integer> saveApplication(@RequestBody StudentApplication studentApplication){
+		
+		System.out.println(studentApplication);
+		return Result.success(studentApplicationMapper.save(studentApplication));
+	}
 }

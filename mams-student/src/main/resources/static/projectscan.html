@@ -11,15 +11,15 @@
 </head>
 <body>
 <ul class="layui-nav">
-    <li class="layui-nav-item"><a href="baseinfo.html">基本信息</a></li>
-    <li class="layui-nav-item  layui-this"><a href="document.html">档案信息</a></li>
-    <li class="layui-nav-item"><a href="educationbackgroud.html">学籍管理</a></li>
-    <li class="layui-nav-item"><a href="contact.html">联系方式</a></li>
-    <li class="layui-nav-item"><a href="studentrewardandpunishment.html">奖惩信息</a></li>
-    <li class="layui-nav-item"><a href="studyandworkexperience.html">教育和工作经历</a></li>
-    <li class="layui-nav-item"><a href="">志愿管理</a></li>
+    <!--    <li class="layui-nav-item"><a href="baseinfo.html">基本信息</a></li>-->
+    <!--    <li class="layui-nav-item"><a href="document.html">档案信息</a></li>-->
+    <!--    <li class="layui-nav-item"><a href="educationbackgroud.html">学籍管理</a></li>-->
+    <!--    <li class="layui-nav-item"><a href="contact.html">联系方式</a></li>-->
+    <!--    <li class="layui-nav-item"><a href="studentrewardandpunishment.html">奖惩信息</a></li>-->
+    <!--    <li class="layui-nav-item"><a href="studyandworkexperience.html">教育和工作经历</a></li>-->
+    <li class="layui-nav-item layui-this"><a href="projectscan.html">志愿管理</a></li>
 </ul>
-<table class="layui-hide" id="enrollmentProjectList" lay-filter="enrollmentProjectList">
+<table class="layui-hide layui-container" id="enrollmentProjectList" lay-filter="enrollmentProjectList">
 
 </table>
 
@@ -88,7 +88,40 @@
 
         table.on('tool(enrollmentProjectList)', function (obj) {
 
-            window.location.href = "projectdetails.html?data=" + obj.data.id;
+            let enrollmentProject;
+            let id = obj.data.id;
+            // findExamRequirementByEnrollmentProject
+            console.log(id);
+            var examRequirement;
+
+
+            axios({
+                url: "http://localhost:8082/school/findEnrollmentProjectById",
+                method: "post",
+                dataType: "json",
+                data: {id: id},
+            }).then(function (data) {
+                enrollmentProject = data.data;
+                if (localStorage.getItem("enrollmentProject") != null) {
+                    localStorage.removeItem("enrollmentProject");
+                }
+                localStorage.setItem("enrollmentProject", JSON.stringify(enrollmentProject));
+                axios({
+                    url: "http://localhost:8082/school/findExamRequirementByEnrollmentProject",
+                    method: "post",
+                    dataType: "json",
+                    data: JSON.parse(localStorage.getItem("enrollmentProject")),
+                }).then(function (data) {
+                    examRequirement = data.data;
+                    if (localStorage.getItem("examRequirement") != null)
+                        localStorage.removeItem("examRequirement");
+                    localStorage.setItem("examRequirement", JSON.stringify(examRequirement));
+                    window.location.href = "projectdetails.html?data=" + obj.data.id;
+                });
+
+            });
+
+
         })
     })
 </script>

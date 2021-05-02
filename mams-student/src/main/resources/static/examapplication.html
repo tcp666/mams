@@ -1,10 +1,486 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+
+    <link href="layui/css/layui.css" rel="stylesheet">
+    <script src="layui/layui.js"></script>
+    <script src="js/vueresource/vuejs-2.5.16.js"></script>
+    <script src="js/vueresource/axios-0.18.0.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .page {
+            width: 1078px;
+            height: 669px;
+            /*background-color: yellow;*/
+            margin: 10px auto;
+        }
+
+        .page > .pageLeft {
+            width: 519px;
+            height: auto;
+
+            margin-right: 10px;
+            margin-left: 10px;
+            display: block;
+            float: left;
+
+        }
+
+        .page > .pageRight {
+            width: 517px;
+            height: 669px;
+            border: 1px black solid;
+            border-collapse: collapse;
+
+            margin-right: 10px;
+            margin-left: 10px;
+            /*background-color: green;*/
+            display: block;
+            float: left;
+
+        }
+
+        .pageRight > title {
+            width: 518px;
+            height: 45px;
+            border-bottom: 1px black solid;
+            border-collapse: collapse;
+            text-align: center;
+            line-height: 45px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .pageRight > pre {
+            width: 518px;
+            height: 624px;
+            font-size: 9px;
+            line-height: 17px;
+            /*line-height:normal;*/
+            text-align: left;
+            text-decoration: none;
+        }
+
+        .pageLeft > title {
+            width: 519px;
+            height: 45px;
+            text-align: center;
+            line-height: 45px;
+            font-weight: bold;
+            display: block;
+
+
+        }
+
+        .pageLeft > .form {
+            width: 519px;
+
+            height: auto;
+            display: block;
+
+        }
+
+
+        .form > .leftTop {
+            width: 417px;
+            height: 136px;
+            display: block;
+            float: left;
+        }
+
+        .leftTop > .leftshort {
+            width: 120px;
+            height: 34px;
+            border: 1px black solid;
+            border-bottom: none;
+            border-right: none;
+            border-collapse: collapse;
+            text-align: center;
+            font-family: "Microsoft YaHei UI";
+            font-size: 14px;
+            line-height: 34px;
+            display: block;
+            float: left;
+        }
+
+        .leftTop > .midlong {
+            width: 295px;
+            height: 34px;
+            border: 1px black solid;
+            border-bottom: none;
+            border-right: none;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 3px;
+            line-height: 34px;
+            display: block;
+            float: left;
+
+        }
+
+        .head {
+            width: 100px;
+            height: 139px;
+            border: 1px black solid;
+            border-collapse: collapse;
+            display: block;
+            float: right;
+        }
+
+        .form > .long {
+            width: 517px;
+            height: 34px;
+            border: 1px black solid;
+            border-top: none;
+            border-collapse: collapse;
+            text-align: center;
+            font-family: "Microsoft YaHei UI";
+            font-size: 14px;
+            line-height: 34px;
+            display: block;
+            float: right;
+        }
+
+        .long > .longleft {
+            width: 120px;
+            height: 34px;
+            border: 1px black solid;
+            border-bottom: none;
+            border-left: none;
+            border-top: none;
+
+            border-collapse: collapse;
+            text-align: center;
+            font-family: "Microsoft YaHei UI";
+            font-size: 14px;
+            line-height: 34px;
+            display: block;
+            float: left;
+        }
+
+        .long > .longright {
+            width: 394px;
+            height: 34px;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 3px;
+            line-height: 34px;
+            display: block;
+            float: left;
+        }
+
+        .form > .mid {
+            width: 517px;
+            height: 139px;
+            border: 1px black solid;
+            border-top: none;
+            border-collapse: collapse;
+
+            display: block;
+            float: right;
+        }
+
+        .mid > .midleft {
+            width: 120px;
+            height: 34px;
+            border: 1px black solid;
+            border-left: none;
+            border-top: none;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 3px;
+            line-height: 34px;
+            display: block;
+            float: left;
+        }
+
+        .mid > .midmid {
+            width: 197px;
+            height: 34px;
+            border: 1px black solid;
+            border-left: none;
+            border-top: none;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 3px;
+            line-height: 34px;
+            display: block;
+            float: left;
+        }
+
+        .mid > .midright {
+            width: 198px;
+            height: 34px;
+            border: 1px black solid;
+            border-left: none;
+            border-top: none;
+            border-right: none;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 3px;
+            line-height: 34px;
+            display: block;
+            float: left;
+        }
+
+        .long > .addr {
+            width: 200px;
+            height: 34px;
+            border: 1px black solid;
+            border-left: none;
+            border-top: none;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 3px;
+            line-height: 34px;
+            display: block;
+            float: left;
+        }
+
+        .long > .number {
+            width: 80px;
+            height: 34px;
+            border: 1px black solid;
+            border-left: none;
+            border-top: none;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 3px;
+            line-height: 34px;
+            display: block;
+            float: left;
+        }
+
+        .long > .numberValue {
+            width: 90px;
+            height: 34px;
+            /*border: 1px black solid;*/
+            border-left: none;
+            border-top: none;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 3px;
+            line-height: 34px;
+            display: block;
+            float: left;
+        }
+    </style>
 </head>
 <body>
-志愿管理
+
+<div class="page" id="application">
+    <div class="pageLeft">
+        <title>2022年全国硕士研究生招生考试准考证</title>
+        <div class="form">
+            <div class="leftTop">
+                <div class="leftshort">
+                    考生编号
+                </div>
+                <div class="midlong">
+                    107081161141536
+                </div>
+
+                <div class="leftshort">
+                    考生姓名/性别
+                </div>
+                <div class="midlong">
+                    唐财平/男
+                </div>
+
+                <div class="leftshort">
+                    证件类型/号码
+                </div>
+                <div class="midlong">
+                    居民身份证/612525199908141024
+                </div>
+
+                <div class="leftshort" style="border-bottom: 1px black solid;">
+                    学习工作单位
+                </div>
+                <div class="midlong" style="border-bottom: 1px black solid;">
+                    西安邮电大学
+                </div>
+            </div>
+
+            <div class="head">
+                <img alt="" height="100%;"
+                     src="http://qqxs7yk9k.hn-bkt.clouddn.com/28aebc07-62cf-48de-a620-a40de1942cc2.jpg"
+                     width="100%">
+            </div>
+            <div class="long">
+                <div class="longleft">
+                    报考专业（代码）
+                </div>
+                <div class="longright">
+                    企业管理(120202)
+                </div>
+
+            </div>
+            <div class="long">
+                <div class="longleft">
+                    报考单位（代码）
+                </div>
+                <div class="longright">
+                    西安有点大学(10708)
+                </div>
+
+            </div>
+
+
+            <div class="mid">
+                <div class="midleft">考试时间</div>
+                <div class="midmid">上午08:30-11:30</div>
+                <div class="midright">下午14:00-17:00</div>
+
+                <div class="midleft">12月26日</div>
+                <div class="midmid">思想政治理论(101)</div>
+                <div class="midright">英语一(201)</div>
+
+                <div class="midleft">12月27日</div>
+                <div class="midmid">数学三(303)</div>
+                <div class="midright">管理学(832)</div>
+
+                <div class="midleft">12月28日</div>
+                <div class="midmid">无</div>
+                <div class="midright">无</div>
+            </div>
+
+            <div class="long">
+                <div class="longleft">
+                    报考点名称(代码)
+                </div>
+                <div class="addr">
+                    西安有点大学(10708)
+                </div>
+                <div class="number">
+                    考生报名号
+                </div>
+                <div class="numberValue">
+                    611497739
+                </div>
+
+            </div>
+
+
+            <div class="long" style="height: 34px;">
+                <div class="longleft" style="height: 34px;text-align: center;line-height: 34px;">
+                    考试地点
+                </div>
+                <div class="longright" style="height: 34px;text-align: center;line-height: 34px;">
+                    215考场26坐
+                </div>
+
+            </div>
+
+            <div class="long" style="height: 67px;">
+                <div class="longleft" style="height: 67px;line-height: 33px;text-align: center">
+                    省级教育招生考试机构说明
+                </div>
+                <div class="longright" style="line-height: normal">
+                    考生须及时阅读《2021年陕西省全国硕士研究生招生考试考生防疫与安全
+                    须知》和各考点发布的公告，如实填写《2021年陕西省全国硕士研究生招
+                    生考试考生健康卡及安全承诺书》，做好个人防护，严格遵守考点疫情防
+                    控安排。
+                </div>
+
+            </div>
+
+
+            <div class="long" style="height: 67px;">
+                <div class="longleft" style="height: 67px;line-height: 67px;">
+                    报考点说明
+                </div>
+                <div class="longright" style="line-height: normal">
+                    请各位考生按所报考的招生单位要求携带特殊考试用品。陕西科技大学考
+                    点考场设置：陕西科技大学（西安未央校区）教学1号楼，具体考场安排
+                    及考点疫情防控要求于考试前见陕西科技大学研究生招生网页通告
+                    （https://yjszs.sust.edu.cn/）。
+                </div>
+
+            </div>
+
+            <div class="long" style="height: 67px;">
+                <div class="longleft" style="height: 67px;">
+                    招生单位说明
+                </div>
+                <div class="longright" style="line-height: normal">
+                    1、报考陕西科技大学的考生专业课考试可携带无存储、无编程功能计算
+                    器。2、501/502/503/815/820/960考试科目需携带绘图工具参加考试，具
+                    体要求见学校研究生招生网页通告。3、所有考试答案都须写在答题纸
+                    （答题卡）对应规定的答题区域内，写在试卷和草稿纸上均无效。
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="pageRight">
+        <title>考生须知</title>
+        <pre>
+    1.考生应在规定时间内登录“研招网”自行下载并使用A4幅面白纸打印《准考证》。
+《准考证》正、反两面在使用期间均不得涂改或书写。
+    2.考生需认真查阅并遵守报考点及报考点所在地省级教育招生考试机构疫情防控和考
+试要求。
+    3.考生须凭本人《准考证》和有效居民身份证按规定时间和地点参加考试。
+     4.考试时间以北京时间为准。每科开考15分钟后不得入场。交卷出场时间不得早于当
+科考试结束前30分钟，具体出场时间由考点所在省级教育招生考试机构规定。交卷出场后
+不得再进场续考，也不得在考试机构规定的区域逗留或交谈。
+    5.考试地点由报考点指定。考生应在考前了解考试地点及考场有关注意事项。《准考
+证》上未打印出考试地点的考生，考前要注意查询报考点公布的有关信息。
+    6.考生须严格遵守考场规则。进入考场应主动接受身份验证核查、安全检查和随身物
+品检查等，并对号入座。入座后将《准考证》、有效居民身份证放在桌面左上角，以便核
+验。严禁携带手机等通讯工具进入考场。
+    7.考生应按规定在指定位置准确清楚填涂姓名、考生编号等信息，并按要求在统考科
+目答题卡指定位置粘贴条形码。凡因漏填（涂）、错填（涂）或字迹不清以及漏贴条形码
+而影响评卷结果的，责任由考生自负。考生应在答题纸（卡）规定的区域内答题，写在草
+稿纸或者规定区域以外的答案一律无效。
+    8.考生应按考点所在省级教育招生考试机构有关规定携带并使用文具。自命题科目按
+招生单位说明携带文具。
+    9.考生在考试过程中有作弊等违规违法行为的，一律按《中华人民共和国教育法》
+《中华人民共和国治安管理处罚法》《国家教育考试违规处理办法》等予以严肃处理，并
+记入《国家教育考试考生诚信档案》；构成犯罪的，将移送司法机关，依照《中华人民共
+和国刑法》等追究法律责任。
+                   ----------- 特 别 提 醒 ------------
+    依据《中华人民共和国刑法修正案（九）》，“在法律规定的国家考试中，组织作弊
+的，处三年以下有期徒刑或者拘役，并处或者单处罚金；情节严重的，处三年以上七年以
+下有期徒刑，并处罚金。
+    “为他人实施前款犯罪提供作弊器材或者其他帮助的，依照前款的规定处罚。
+    “为实施考试作弊行为， 向他人非法出售或者提供第一款规定的考试的试题、 答案
+的，依照第一款的规定处罚。
+    “代替他人或者让他人代替自己参加第一款规定的考试的，处拘役或者管制，并处或
+者单处罚金。”
+    《最高人民法院、最高人民检察院关于办理组织考试作弊等刑事案件适用法律若干问
+题的解释》已于2019年9月4日起施行。《解释》明确规定，在研究生招生考试中组织考试
+作弊等情形，均应认定为“情节严重”。
+</pre>
+    </div>
+</div>
+<button class="layui-btn layui-btn-xs" onclick="printPage(this)">点击打印准考证</button>
+<script>
+
+
+    var application=new Vue({
+        el:"#application",
+        data:{
+            enrollmentProject: JSON.parse(localStorage.getItem("enrollmentProject")),
+            examRequirement: JSON.parse(localStorage.getItem("examRequirement")),
+            student:JSON.parse(localStorage.getItem("student")),
+        }
+    })
+    function printPage(obj) {
+        obj.style.display = "none";
+        window.print();
+        window.location.href="http://www.baidu.com/"
+    }
+</script>
 </body>
 </html>

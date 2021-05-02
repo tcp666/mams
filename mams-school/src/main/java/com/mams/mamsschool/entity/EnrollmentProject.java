@@ -52,4 +52,6 @@ public class EnrollmentProject {
 	private String publicCourses3;
 	
 	
+	private int checked=0;
+	
 }

@@ -23,6 +23,7 @@ import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -140,9 +141,9 @@ class SchoolUserController {
 	
 	@RequestMapping("/getAllEnrollmentProject")
 	@ResponseBody
-	public LayUITableData getAllEnrollmentProject(){
+	public LayUITableData getAllEnrollmentProject() {
 		List<EnrollmentProject> data = enrollmentProjectMapper.findAll();
-		LayUITableData tableData=new LayUITableData();
+		LayUITableData tableData = new LayUITableData();
 		tableData.setCode("0");
 		tableData.setCount(data.size());
 		tableData.setData(data);
@@ -150,11 +151,41 @@ class SchoolUserController {
 		
 	}
 	
+	
+	@RequestMapping("/findEnrollmentProjectById")
+	@ResponseBody
+	public EnrollmentProject findEnrollmentProjectById(@RequestBody Map<String,String> map) {
+//	log.info("***************************************"+map);
+		List<EnrollmentProject> enrollmentProjectById = enrollmentProjectMapper.findEnrollmentProjectById(map.get("id"));
+//		System.out.println(enrollmentProjectById.get(0));
+		return enrollmentProjectById.get(0);
+	}
+	
+//	findExamRequirementByEnrollmentProject
+@RequestMapping("/findExamRequirementByEnrollmentProject")
+@ResponseBody
+public ExamRequirement findExamRequirementByEnrollmentProject(@RequestBody EnrollmentProject enrollmentProject) {
+	try {
+		ExamRequirement examRequirement = examRequirementMapper.findExamRequirementByEnrollmentProject(enrollmentProject).get(0);
+		examRequirement.setExamDemand(examRequirement.getExamDemand().replace('\n',' '));
+		examRequirement.setPublicCourseDemand(examRequirement.getPublicCourseDemand().replace('\n',' '));
+		examRequirement.setMajorCourseDemand(examRequirement.getMajorCourseDemand().replace('\n',' '));
+		examRequirement.setPoliticalDemand(examRequirement.getPoliticalDemand().replaceAll(":"," ").trim().replaceAll(" ","、"));
+		examRequirement.setTimeDemand(examRequirement.getTimeDemand().replace(":","----"));
+		return examRequirement;
+	}
+	catch (Exception e){
+		log.error(enrollmentProject.toString()+":"+e.getMessage());
+	}
+	return null;
+}
+	
 	@Data
-	class LayUITableData{
+	class LayUITableData {
+		List<EnrollmentProject> data;
 		private String code;
 		private String msg;
 		private Integer count;
-		List<EnrollmentProject> data;
 	}
+	
 }

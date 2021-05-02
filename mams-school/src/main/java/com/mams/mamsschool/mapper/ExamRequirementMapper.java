@@ -1,8 +1,12 @@
 package com.mams.mamsschool.mapper;
 
+import com.mams.mamsschool.entity.EnrollmentProject;
 import com.mams.mamsschool.entity.ExamRequirement;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  *@ClassName ExamRequirementMapper
@@ -39,4 +43,7 @@ public interface ExamRequirementMapper {
 			"#{majorCourseDemand},"+
 			"#{extendMessage});")
 	Integer  save(ExamRequirement requirement);
+	@Select("select * from exam_requirement where tutor_id=#{tutorId} and department=#{department} and profession=#{professionName} ")
+	List<ExamRequirement> findExamRequirementByEnrollmentProject(EnrollmentProject enrollmentProject);
+	
 }

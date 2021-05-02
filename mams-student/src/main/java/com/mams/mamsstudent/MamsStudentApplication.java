@@ -3,7 +3,8 @@ package com.mams.mamsstudent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"" +
+@SpringBootApplication(scanBasePackages = {
+		"" +
 		"com.mams",
 		"com.mams.mamscommon.utils",
 		"com.mams.mamsstudent.controller",

@@ -1,0 +1,131 @@
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:47,625 INFO [main][StartupInfoLogger.java:50] - Starting MamsSchoolApplication on DESKTOP-U5SUJ4I with PID 2044 (D:\graduation\mams\mams-school\target\classes started by tcp666 in D:\graduation\mams)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:47,633 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:48,914 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$28cfbdfe] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:49,199 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8082 (http)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:49,214 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8082"]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:49,222 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:49,223 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:49,232 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:49,334 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:49,334 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1667 ms
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:50,328 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:50,440 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:50,734 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:50,789 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8082"]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:50,810 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8082 (http) with context path ''
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:50,813 INFO [main][StartupInfoLogger.java:59] - Started MamsSchoolApplication in 3.546 seconds (JVM running for 4.905)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:51,448 INFO [RMI TCP Connection(2)-192.168.1.106][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:51,448 INFO [RMI TCP Connection(3)-192.168.1.106][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:51,448 INFO [RMI TCP Connection(3)-192.168.1.106][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:51,455 INFO [RMI TCP Connection(3)-192.168.1.106][FrameworkServlet.java:546] - Completed initialization in 7 ms
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:43:51,859 INFO [RMI TCP Connection(2)-192.168.1.106][HikariDataSource.java:123] - HikariPool-1 - Start completed.
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:48:36,729 WARN [http-nio-8082-exec-5][AbstractHandlerExceptionResolver.java:197] - Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content type 'application/x-www-form-urlencoded;charset=UTF-8' not supported]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:48:36,747 ERROR [http-nio-8082-exec-6][DirectJDKLog.java:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.IndexOutOfBoundsException: Index: 0, Size: 0] with root cause
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.rangeCheck(ArrayList.java:653)
+	at java.util.ArrayList.get(ArrayList.java:429)
+	at com.mams.mamsschool.controller.SchoolUserController.findEnrollmentProjectById(SchoolUserController.java:161)
+	at sun.reflect.GeneratedMethodAccessor119.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:189)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.web.trace.servlet.HttpTraceFilter.doFilterInternal(HttpTraceFilter.java:90)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.filterAndRecordMetrics(WebMvcMetricsFilter.java:117)
+	at org.springframework.boot.actuate.metrics.web.servlet.WebMvcMetricsFilter.doFilterInternal(WebMvcMetricsFilter.java:106)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:200)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:834)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:06,033 INFO [main][StartupInfoLogger.java:50] - Starting MamsSchoolApplication on DESKTOP-U5SUJ4I with PID 13708 (D:\graduation\mams\mams-school\target\classes started by tcp666 in D:\graduation\mams)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:06,041 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:07,101 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a4d0fc8e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:07,347 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8082 (http)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:07,359 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8082"]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:07,368 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:07,369 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:07,374 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:07,461 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:07,462 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1385 ms
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:08,304 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:08,439 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:08,661 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:08,711 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8082"]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:08,734 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8082 (http) with context path ''
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:08,737 INFO [main][StartupInfoLogger.java:59] - Started MamsSchoolApplication in 3.146 seconds (JVM running for 4.335)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:08,865 INFO [RMI TCP Connection(1)-192.168.1.106][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:09,129 INFO [RMI TCP Connection(1)-192.168.1.106][HikariDataSource.java:123] - HikariPool-1 - Start completed.
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:09,225 INFO [RMI TCP Connection(3)-192.168.1.106][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:09,226 INFO [RMI TCP Connection(3)-192.168.1.106][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:57:09,276 INFO [RMI TCP Connection(3)-192.168.1.106][FrameworkServlet.java:546] - Completed initialization in 50 ms
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:34,129 INFO [main][StartupInfoLogger.java:50] - Starting MamsSchoolApplication on DESKTOP-U5SUJ4I with PID 18960 (D:\graduation\mams\mams-school\target\classes started by tcp666 in D:\graduation\mams)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:34,138 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:35,187 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$934836c2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:35,522 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8082 (http)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:35,539 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8082"]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:35,549 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:35,550 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:35,557 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:35,802 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:35,802 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1612 ms
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:36,586 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:36,675 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:36,896 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:36,945 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8082"]
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:36,966 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8082 (http) with context path ''
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:36,969 INFO [main][StartupInfoLogger.java:59] - Started MamsSchoolApplication in 3.255 seconds (JVM running for 4.809)
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:37,397 INFO [RMI TCP Connection(1)-192.168.1.106][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:37,397 INFO [RMI TCP Connection(2)-192.168.1.106][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:37,398 INFO [RMI TCP Connection(1)-192.168.1.106][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:37,410 INFO [RMI TCP Connection(1)-192.168.1.106][FrameworkServlet.java:546] - Completed initialization in 12 ms
+[mams-school][${env:SERVER_PORT}] 2021-05-02 17:59:37,745 INFO [RMI TCP Connection(2)-192.168.1.106][HikariDataSource.java:123] - HikariPool-1 - Start completed.
