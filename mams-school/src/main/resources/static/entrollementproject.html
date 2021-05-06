@@ -7,6 +7,7 @@
     <script src="layui/layui.js"></script>
     <script src="js/vueresource/vuejs-2.5.16.js"></script>
     <script src="js/vueresource/axios-0.18.0.js"></script>
+    <link rel="stylesheet" href="css/layuiAdd.css">
 </head>
 <body>
 <!--水平导航-->
@@ -257,8 +258,7 @@
                     data: enrollmentProject
                 }).then((data) => {
                     if (data.data.value == 1)
-                        window.location.href = "entrollementproject.html"
-
+                        window.location.href = "studentMange.html"
                 })
             },
 

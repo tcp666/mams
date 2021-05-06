@@ -1,6 +1,9 @@
 package com.mams.mamsstudent.service;
 
 import com.mams.mamsstudent.entity.StudentBaseInfo;
+import com.mams.mamsstudent.entity.StudentRealNameInfo;
+
+import java.util.List;
 
 /**
  * @InterfaceName StudentBaseInfoService
@@ -12,4 +15,6 @@ import com.mams.mamsstudent.entity.StudentBaseInfo;
 
 public interface StudentBaseInfoService {
 	Integer save(StudentBaseInfo studentBaseInfo);
+	
+	List<StudentBaseInfo> findByStudentId(StudentRealNameInfo info);
 }

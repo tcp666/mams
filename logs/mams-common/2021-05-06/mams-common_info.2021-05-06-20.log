@@ -1,0 +1,84 @@
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:00,972 INFO [main][StartupInfoLogger.java:50] - Starting MamsCommonApplication on DESKTOP-U5SUJ4I with PID 17312 (D:\graduation\mams\mams-common\target\classes started by tcp666 in D:\graduation\mams)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:00,984 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:01,997 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d1c871e4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:02,227 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8081 (http)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:02,239 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:02,246 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:02,247 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:02,253 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:02,335 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:02,336 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1281 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:02,940 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:03,052 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:03,300 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:03,339 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:03,358 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8081 (http) with context path ''
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:03,361 INFO [main][StartupInfoLogger.java:59] - Started MamsCommonApplication in 2.865 seconds (JVM running for 4.135)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:03,640 INFO [RMI TCP Connection(1)-192.168.1.106][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:03,640 INFO [RMI TCP Connection(1)-192.168.1.106][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:03,648 INFO [RMI TCP Connection(1)-192.168.1.106][FrameworkServlet.java:546] - Completed initialization in 8 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:03,972 INFO [RMI TCP Connection(3)-192.168.1.106][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:00:04,288 INFO [RMI TCP Connection(3)-192.168.1.106][HikariDataSource.java:123] - HikariPool-1 - Start completed.
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:23,363 INFO [main][StartupInfoLogger.java:50] - Starting MamsCommonApplication on DESKTOP-U5SUJ4I with PID 2592 (D:\graduation\mams\mams-common\target\classes started by tcp666 in D:\graduation\mams)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:23,410 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:24,315 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e2e91a6d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:24,550 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8081 (http)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:24,561 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:24,569 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:24,570 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:24,576 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:24,657 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:24,657 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1207 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:25,270 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:25,348 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:25,545 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:25,587 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:25,615 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8081 (http) with context path ''
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:25,617 INFO [main][StartupInfoLogger.java:59] - Started MamsCommonApplication in 2.649 seconds (JVM running for 3.729)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:25,994 INFO [RMI TCP Connection(2)-192.168.1.106][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:25,994 INFO [RMI TCP Connection(1)-192.168.1.106][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:25,994 INFO [RMI TCP Connection(2)-192.168.1.106][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:26,001 INFO [RMI TCP Connection(2)-192.168.1.106][FrameworkServlet.java:546] - Completed initialization in 7 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:04:26,324 INFO [RMI TCP Connection(1)-192.168.1.106][HikariDataSource.java:123] - HikariPool-1 - Start completed.
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:08,549 INFO [main][StartupInfoLogger.java:50] - Starting MamsCommonApplication on DESKTOP-U5SUJ4I with PID 12436 (D:\graduation\mams\mams-common\target\classes started by tcp666 in D:\graduation\mams)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:08,609 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:09,580 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$66ad0d7] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:09,831 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8081 (http)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:09,844 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:09,851 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:09,852 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:09,861 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:09,946 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:09,947 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1296 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:10,563 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:10,642 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:10,860 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:10,896 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:10,915 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8081 (http) with context path ''
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:10,917 INFO [main][StartupInfoLogger.java:59] - Started MamsCommonApplication in 2.798 seconds (JVM running for 3.978)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:11,598 INFO [RMI TCP Connection(2)-192.168.1.106][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:11,599 INFO [RMI TCP Connection(2)-192.168.1.106][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:11,599 INFO [RMI TCP Connection(1)-192.168.1.106][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:11,613 INFO [RMI TCP Connection(2)-192.168.1.106][FrameworkServlet.java:546] - Completed initialization in 14 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:18:11,939 INFO [RMI TCP Connection(1)-192.168.1.106][HikariDataSource.java:123] - HikariPool-1 - Start completed.
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:30,708 INFO [main][StartupInfoLogger.java:50] - Starting MamsCommonApplication on DESKTOP-U5SUJ4I with PID 15564 (D:\graduation\mams\mams-common\target\classes started by tcp666 in D:\graduation\mams)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:30,771 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:31,683 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$60530746] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:31,919 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8081 (http)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:31,930 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:31,937 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:31,937 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:31,942 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:32,049 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:32,049 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1237 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:32,648 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:32,722 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:32,912 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:32,948 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:32,966 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8081 (http) with context path ''
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:32,969 INFO [main][StartupInfoLogger.java:59] - Started MamsCommonApplication in 2.655 seconds (JVM running for 3.854)
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:33,195 INFO [RMI TCP Connection(1)-192.168.1.106][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:33,195 INFO [RMI TCP Connection(2)-192.168.1.106][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:33,195 INFO [RMI TCP Connection(1)-192.168.1.106][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:33,207 INFO [RMI TCP Connection(1)-192.168.1.106][FrameworkServlet.java:546] - Completed initialization in 11 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-06 20:22:33,513 INFO [RMI TCP Connection(2)-192.168.1.106][HikariDataSource.java:123] - HikariPool-1 - Start completed.

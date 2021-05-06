@@ -16,7 +16,13 @@ import java.util.List;
  */
 @Mapper
 public interface StudentApplicationMapper {
-	@Insert("insert into student_application values(#{id},#{studentId},#{projectId},#{requirementId},#{tutorId});")
+	@Insert("insert into student_application values(#{id}," +
+			"#{studentId}," +
+			"#{projectId}," +
+			"#{requirementId}," +
+			"#{tutorId}," +
+			"#{studentSchoolName}," +
+			"#{projectProfessionName});")
 	Integer save(StudentApplication application);
 	
 	
@@ -26,4 +32,10 @@ public interface StudentApplicationMapper {
 	
 	@Select("select * from student_application where studentId=#{tutorId};")
 	List<StudentApplication> findStudentApplicationByTutorId(Integer tutorId);
+	
+	@Select("select * from student_application;")
+	List<StudentApplication> findAll();
+	
+	@Select("select count(*) from student_application where student_school_name=#{studentSchoolName} and project_profession_name=#{projectProfessionName}")
+	Integer countAllBySchoolAndProfession(StudentApplication application);
 }

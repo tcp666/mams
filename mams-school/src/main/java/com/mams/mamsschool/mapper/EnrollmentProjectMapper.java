@@ -4,6 +4,7 @@ import com.mams.mamsschool.entity.EnrollmentProject;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -64,6 +65,14 @@ public interface EnrollmentProjectMapper {
 	
 	@Select("select * from enrollment_project where id=#{id};")
 	List<EnrollmentProject> findEnrollmentProjectById(String id);
+	
+	@Select("select * from enrollment_project order by school_name;")
+	List<EnrollmentProject> findAllProjects();
+	
+	
+	
+	@Update("update enrollment_project set checked=#{checked} where id=#{id}")
+	Integer updateById(EnrollmentProject project);
 	
 	
 }

@@ -18,17 +18,17 @@ import java.util.List;
  */
 
 /**
- *private int tutorId;
- * 	private String realName;
- * 	private String schoolName;
- * 	private String department;
- * 	private String profession;
- * 	private String idCode;
- * 	private String email;
- * 	private String imgSrc;
- * 	private String userName;
- * 	private String password;
- * 	private int checked;
+ * private int tutorId;
+ * private String realName;
+ * private String schoolName;
+ * private String department;
+ * private String profession;
+ * private String idCode;
+ * private String email;
+ * private String imgSrc;
+ * private String userName;
+ * private String password;
+ * private int checked;
  */
 @Mapper
 public interface TutorMapper {
@@ -57,5 +57,15 @@ public interface TutorMapper {
 	@Select("select * from tutor where email =#{email} and password=#{password}")
 	List<Tutor> findByTutor(Tutor tutor);
 	
+	
+	@Select("select * from tutor where tutor_id=#{tutorId}")
+	List<Tutor> findByTutorById(Integer tutorId);
+	
+	
+	@Select("select * from tutor")
+	List<Tutor> findAllTutors();
+	
+	@Update("update tutor set checked=#{checked} where tutor_id=#{tutorId}")
+	Integer updateChecked(Tutor tutor);
 	
 }

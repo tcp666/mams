@@ -109,3 +109,34 @@ Caused by: java.sql.SQLException: Column count doesn't match value count at row 
 	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
 	... 69 more
 错误
+
+
+
+<div class="layui-text layui-container" id="details" style="page-break-before: always;">
+    <h2>学校信息</h2>
+    <pre>
+    <font style="font-size: 18px;color: blue;">学校</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.schoolName}}</font>
+    <font style="font-size: 18px;color: blue;">院系</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.department}}</font>
+    <font style="font-size: 18px;color: blue;">专业</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.professionName}}</font></pre>
+    <h2>负责人信息</h2>
+    <pre>
+    <font style="font-size: 18px;color: blue;">负责人</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.tutorName}}</font>
+        <font style="font-size: 18px;color: blue;">咨询电话</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.contactNumber}}</font>
+</pre>
+    <h2>招生计划</h2>
+    <pre>
+    <font style="font-size: 18px;color: blue;">招生人数</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.count}}</font>
+    <font style="font-size: 18px;color: blue;">考试类型</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.examType}}</font>
+    <font style="font-size: 18px;color: blue;">学制</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.schoolingType}}</font>
+    <font style="font-size: 18px;color: blue;">是否定向就业</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.signUpType}}</font></pre>
+    <h2>考生要求</h2>
+    <pre>
+    <font style="font-size: 18px;color: blue;">政治要求</font>:<font style="font-size: 18px;color: #fd271d;"></font>
+    <font style="font-size: 18px;color: blue;">时间要求</font>:<font style="font-size: 18px;color: #fd271d;">{{examRequirement.timeDemand}}</font>
+    <font style="font-size: 18px;color: blue;">考试要求</font>:<font style="font-size: 18px;color: #fd271d;">{{examRequirement.examDemand}}</font>
+    <font style="font-size: 18px;color: blue;">公共课要求</font>:<font style="font-size: 18px;color: #fd271d;">{{examRequirement.publicCourseDemand}}</font>
+    <font style="font-size: 18px;color: blue;">专业可要求</font>:<font style="font-size: 18px;color: #fd271d;">{{examRequirement.majorCourseDemand}}</font>
+    <font style="font-size: 18px;color: blue;">附加信息</font> :<font style="font-size: 18px;color: #fd271d;">{{examRequirement.extendMessage}}</font>
+</pre>
+    <button class="layui-btn layui-btn-xs" @click="saveApplication">点击报名</button>
+</div>

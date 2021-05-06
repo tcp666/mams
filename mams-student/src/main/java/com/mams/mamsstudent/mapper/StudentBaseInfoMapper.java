@@ -1,8 +1,12 @@
 package com.mams.mamsstudent.mapper;
 
 import com.mams.mamsstudent.entity.StudentBaseInfo;
+import com.mams.mamsstudent.entity.StudentRealNameInfo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @ClassName StudentBaseInfoMapper
@@ -44,5 +48,8 @@ public interface StudentBaseInfoMapper {
 			"#{politicalOutlook}" +
 			")")
 	Integer save(StudentBaseInfo info);
+	
+	@Select("select * from student_base_info where student_id=#{studentId}")
+	List<StudentBaseInfo> findByStudentId(StudentRealNameInfo info);
 	
 }

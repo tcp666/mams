@@ -1,0 +1,10 @@
+.layui-form-item > .layui-form-label {
+    margin: 0;
+    width: 10%;
+}
+
+.layui-form-item > .layui-input-inline {
+    margin: 0;
+    padding: 0;
+    width: 80%;
+}

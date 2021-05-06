@@ -3,6 +3,9 @@ package com.mams.mamsstudent.mapper;
 import com.mams.mamsstudent.entity.StudentCensusRegisterDocument;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @InterfaceName StudentCensusRegisterDocumentMapper
@@ -26,4 +29,7 @@ public interface StudentCensusRegisterDocumentMapper {
 			"#{documentCompanyAddress}," +
 			"#{documentCompanyAddressPostCode})")
 	Integer save(StudentCensusRegisterDocument document);
+	
+	@Select("select * from student_census_register_document where student_id=#{studentId}")
+	List<StudentCensusRegisterDocument> findDocumentByStudentId(Integer studentId);
 }

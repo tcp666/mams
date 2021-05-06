@@ -35,4 +35,20 @@ public class TutorServiceImp implements TutorService {
 		return tutorMapper.update(tutor);
 		
 	}
+	
+	@Override
+	public List<Tutor> findByTutorById(Integer tutorId) {
+		return tutorMapper.findByTutorById(tutorId);
+	}
+	
+	@Override
+	public List<Tutor> findAllTutors() {
+		return tutorMapper.findAllTutors();
+	}
+	
+	
+	@Override
+	public Integer updateChecked(Tutor tutor) {
+		return tutorMapper.updateChecked(tutor);
+	}
 }

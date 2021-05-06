@@ -2,17 +2,26 @@ package com.mams.mamscommon.controller;
 
 import com.mams.mamscommon.entity.Subject;
 import com.mams.mamscommon.entity.School;
+import com.mams.mamscommon.entity.User;
 import com.mams.mamscommon.mapper.SubjectMapper;
 import com.mams.mamscommon.mapper.SchoolMapper;
+import com.mams.mamscommon.mapper.UserMapper;
 import com.mams.mamscommon.service.SubjectService;
+import com.mams.mamscommon.utils.EmailUtils;
+import com.mams.mamscommon.utils.Result;
+import com.mams.mamscommon.utils.Verify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.jws.soap.SOAPBinding;
+import javax.mail.MessagingException;
 import java.io.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName UserController
@@ -30,6 +39,10 @@ public class CommonUserController {
 	SchoolMapper schoolMapper;
 	@Resource
 	SubjectMapper subjectMapper;
+	@Autowired
+	SubjectService subjectService;
+	@Resource
+	UserMapper userMapper;
 	
 	@RequestMapping("/saveSchool")
 	public String saveBaseInfo() {
@@ -63,8 +76,6 @@ public class CommonUserController {
 		return "success";
 	}
 	
-	
-	
 	@RequestMapping("/saveCourse")
 	public String saveCourse() {
 		String deptCode = "0810";
@@ -97,25 +108,57 @@ public class CommonUserController {
 		return "seccess";
 	}
 	
-	@Autowired
-	SubjectService subjectService;
 	@RequestMapping("/getAllDeptName")
-	List<String> getAllDeptName(){
+	List<String> getAllDeptName() {
 		return subjectService.getAllDeptName();
 	}
 	
-
 	@RequestMapping("/getAllSubjectName")
-	List<String> getAllSubjectName(){
+	List<String> getAllSubjectName() {
 		return subjectService.getAllSubjectName();
 	}
 	
-	
-	
 	@RequestMapping("/getAllSchoolNames")
-	List<School> getAllSchoolNames(){
+	List<School> getAllSchoolNames() {
 		return schoolMapper.getAllSchool();
 	}
 	
+	@RequestMapping("/sendCheckCode")
+	Result<String> sendCheckCode(@RequestBody Map<String, String> infoMap) {
+		System.out.println(infoMap);
+		String checkCode = Verify.getCheckCode();
+		try {
+			return Result.success(Verify.sendMsg(infoMap.get("email"), checkCode));
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		return Result.fail("fail");
+	}
+	
+	@RequestMapping("/register")
+	Result<User> register(@RequestBody User user) {
+		Integer flag = userMapper.save(user);
+		if (flag == 1) {
+			List<User> byUserId = userMapper.findByUserId(user.getUserId());
+			
+			if (byUserId.size() == 1)
+				return Result.success(byUserId.get(0));
+		}
+		
+		return Result.fail(null);
+	}
+	
+	@RequestMapping("/login")
+	Result<User> login(@RequestBody User user) {
+		System.out.println(user);
+		List<User> login = userMapper.login(user);
+		System.out.println(login);
+		if (login.size()==1){
+			return Result.success(login.get(0));
+		}
+		
+		return Result.fail(user);
+	}
 }
 

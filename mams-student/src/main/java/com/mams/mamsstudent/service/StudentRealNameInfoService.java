@@ -20,4 +20,8 @@ public interface StudentRealNameInfoService {
 	
 	//登录
 	List<StudentRealNameInfo> login(StudentRealNameInfo info);
+	
+	List<StudentRealNameInfo>  getStudentRealNameInfoByStudentId(Integer studentId);
+	
+	Integer updateChecked(StudentRealNameInfo info);
 }

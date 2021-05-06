@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link href="layui/css/layui.css" rel="stylesheet">
+    <script src="layui/layui.js"></script>
+    <script src="js/vueresource/vuejs-2.5.16.js"></script>
+    <script src="js/vueresource/axios-0.18.0.js"></script>
+    <style>
+        .layui-form-item > .layui-form-label {
+            margin: 0;
+            width: 10%;
+        }
+
+        .layui-form-item > .layui-input-inline {
+            margin: 0;
+            padding: 0;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;position: center;">
+    <legend style="position: center;margin: 0 auto;"> 硕士招生管理系统-学生端</legend>
+</fieldset>
+<div class="layui-container" id="studentRealNameInfo">
+    <form @submit.prevent="saveStudentRealNameInfo" action="" class="layui-form" enctype="multipart/form-data"
+          method="post" ref="form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">姓名</label>
+            <div class="layui-input-inline">
+                <input  class="layui-input" autocomplete="off"  lay-verify="required" name="userName"
+                       placeholder="与证证件保持一致" type="text">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input autocomplete="off" class="layui-input" lay-verify="title" lay-verify="required" name="password"
+                       placeholder="请输入密码" type="password">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">证件类型</label>
+            <div class="layui-input-inline">
+                <select autocomplete="off" class="layui-input-inline" name="idType">
+                    <option value="居民身份证">居民身份证</option>
+                    <option value="军官证">军官证</option>
+                    <option value="护照">护照</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">证件号</label>
+            <div class="layui-input-inline">
+                <input autocomplete="off" class="layui-input" lay-verify="title" lay-verify="required" name="idNumber"
+                       placeholder="请输入证件号" type="text">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">个人邮箱发</label>
+            <div class="layui-input-inline">
+                <input autocomplete="off" class="layui-input" lay-verify="title" lay-verify="required" name="email"
+                       placeholder="请输入邮箱" type="email">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">验证码</label>
+            <div class="layui-input-inline" style="width: 10%;">
+                <input autocomplete="off" class="layui-input" id="checkCode" lay-verify="required" lay-verify="title"
+                       name="checkCode"
+                       placeholder="请输入验证码" type="text">
+            </div>
+            <button @click="getCheckCode" class="layui-btn layui-btn-normal" type="button">点击发送验证码</button>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话</label>
+            <div class="layui-input-inline">
+                <input autocomplete="off" class="layui-input" lay-verify="title" lay-verify="required" name="telNumber"
+                       placeholder="请输入电话" type="text">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-inline">
+                <button class="layui-btn" style="margin: 0 auto;display: block;"
+                        type="submit">点击注册
+                </button>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-inline">
+                <a href="index.html">已经有账号？去登录</a>
+            </div>
+
+        </div>
+
+
+    </form>
+
+    <script>
+        //Demo
+        layui.use('form', function () {
+            var form = layui.form;
+
+        });
+
+
+        var studentRealNameInfo = new Vue({
+            el: "#studentRealNameInfo",
+            data: {
+                studentRealNameInfo: null,
+                responseCheckCode: null,
+            }
+            ,
+            methods: {
+                saveStudentRealNameInfo: function () {
+                    const formData = new FormData(this.$refs['form']);
+                    const studentRealNameInfo = {};
+                    for (let [key, val] of formData.entries()) {
+                        Object.assign(studentRealNameInfo, {[key]: val})
+                    }
+                    var checked = document.getElementById("checkCode").value;
+                    delete studentRealNameInfo.checkCode;
+                    if (checked == "" || checked == null || studentRealNameInfo.userName == "" || studentRealNameInfo.password == '' || studentRealNameInfo.idType == "" || studentRealNameInfo.idNumber == "" || studentRealNameInfo.email == "" || studentRealNameInfo.telNumber == "") {
+                        alert("有必填项没有填写请检查");
+                        return;
+                    }
+
+
+                    if (checked != this.responseCheckCode) {
+                        alert("验证码错误！");
+
+                    }
+
+                    axios({
+                        method: 'post',
+                        url: '/student/register',
+                        dataType: "json",
+                        data: studentRealNameInfo,
+
+                    }).then((data) => {
+                        localStorage.setItem('student', JSON.stringify(data.data.value));
+                        console.log(localStorage.getItem('student'));
+                        if (data.data.value != null)
+                            window.location.href = "index.html"
+                    })
+
+                },
+                getCheckCode: function () {
+                    var email = document.getElementsByName("email")[0].value;
+                    axios({
+                        method: 'post',
+                        url: '/student/sendCheckCode',
+                        dataType: "json",
+                        data: {email: email},
+                    }).then((data) => {
+                        this.responseCheckCode = data.data.value;
+                        console.log(this.responseCheckCode)
+                    });
+
+                }
+            }
+        })
+    </script>
+
+</div>
+</body>

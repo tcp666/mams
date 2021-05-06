@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 		"com.mams.mamsschool.service"})
 public class MamsSchoolApplication {
 	public static void main(String[] args) {
-SpringApplication.run(MamsSchoolApplication.class, args);
+		SpringApplication.run(MamsSchoolApplication.class, args);
 		
 	}
 }

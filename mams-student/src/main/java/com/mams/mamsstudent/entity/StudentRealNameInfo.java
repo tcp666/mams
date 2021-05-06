@@ -24,5 +24,6 @@ public class StudentRealNameInfo {
 	private String idNumber;
 	private String telNumber;
 	private String email;
+	private int checked;
 	
 }

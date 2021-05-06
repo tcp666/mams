@@ -3,6 +3,9 @@ package com.mams.mamsstudent.mapper;
 import com.mams.mamsstudent.entity.StudentEducationBackground;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @ClassName StudentEducationBackgroundMapper
@@ -45,5 +48,10 @@ public interface StudentEducationBackgroundMapper {
 			"#{certificateNumber}" +
 			")")
 	Integer save(StudentEducationBackground background);
+	
+	@Select("select * from student_education_background where student_id=#{studentId}")
+	List<StudentEducationBackground> findByStudentId(Long studentId);
+	
+	
 	
 }

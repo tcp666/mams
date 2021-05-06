@@ -7,6 +7,20 @@
     <script src="layui/layui.js"></script>
     <script src="js/vueresource/vuejs-2.5.16.js"></script>
     <script src="js/vueresource/axios-0.18.0.js"></script>
+
+    <style>
+        .layui-form-item > .layui-form-label {
+            margin: 0;
+            width: 10%;
+        }
+
+        .layui-form-item > .layui-input-inline {
+            margin: 0;
+            padding: 0;
+            width: 70%;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -56,7 +70,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <div class="layui-inline">
+
             <label class="layui-form-label">政治面貌</label>
             <div class="layui-input-inline">
                 <select name="politicalOutlook">
@@ -69,7 +83,7 @@
                     <option value="群众">群众</option>
                 </select>
             </div>
-        </div>
+
 
     </div>
     <div class="layui-form-item">
@@ -94,7 +108,7 @@
         methods: {
             saveBaseInfo: function () {
 
-                console.log("ahgdsjjjjjjjjjjj")
+
                 const formData = new FormData(this.$refs['form']);
                 const baseInfo = {};
                 baseInfo.studentId=JSON.parse(localStorage.getItem("student")).studentId;
@@ -102,7 +116,6 @@
                 for (let [key, val] of formData.entries()) {
                     Object.assign(baseInfo, {[key]: val})
                 }
-                console.log(baseInfo);
 
 
                 axios({

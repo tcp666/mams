@@ -7,6 +7,19 @@
     <script src="layui/layui.js"></script>
     <script src="js/vueresource/vuejs-2.5.16.js"></script>
     <script src="js/vueresource/axios-0.18.0.js"></script>
+    <style>
+        .layui-form-item > .layui-form-label {
+            margin: 0;
+            width: 10%;
+        }
+
+        .layui-form-item > .layui-input-inline {
+            margin: 0;
+            padding: 0;
+            width: 70%;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -153,7 +166,7 @@
                     data: list1,
                 }).then((data) => {
                     if (data.data.value=="success")
-                       window.location.href="examapplication.html"
+                       window.location.href="projectscan.html"
                 })
 
 

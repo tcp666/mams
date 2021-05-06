@@ -36,4 +36,14 @@ public class StudentRealNameInfoServiceImpl implements StudentRealNameInfoServic
 			new Exception("没有这个人");
 		return login;
 	}
+	
+	@Override
+	public List<StudentRealNameInfo> getStudentRealNameInfoByStudentId(Integer studentId) {
+		return studentRealNameInfoMapper.getStudentRealNameInfoByStudentId(studentId);
+	}
+	
+	@Override
+	public Integer updateChecked(StudentRealNameInfo info) {
+		return studentRealNameInfoMapper.updateChecked(info);
+	}
 }

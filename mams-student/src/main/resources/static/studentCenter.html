@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="layui/css/layui.css" rel="stylesheet">
+    <script src="layui/layui.js"></script>
+    <script src="js/vueresource/vuejs-2.5.16.js"></script>
+    <script src="js/vueresource/axios-0.18.0.js"></script>
+</head>
+<body>
+
+<ul class="layui-nav">
+    <li class="layui-nav-item"><a href="baseinfo.html">基本信息</a></li>
+    <li class="layui-nav-item"><a href="document.html">档案信息</a></li>
+    <li class="layui-nav-item"><a href="educationbackgroud.html">学籍管理</a></li>
+    <li class="layui-nav-item"><a href="contact.html">联系方式</a></li>
+    <li class="layui-nav-item"><a href="studentrewardandpunishment.html">奖惩信息</a></li>
+    <li class="layui-nav-item"><a href="studyandworkexperience.html">教育和工作经历</a></li>
+    <li class="layui-nav-item"><a href="projectscan.html">志愿管理</a></li>
+    <li class="layui-nav-item   layui-this" style="display: block;float: right;"><a href="studentCenter.html">个人中心</a>
+    </li>
+</ul>
+
+
+<div class="layui-collapse" id="studentInformation">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">个人信息</h2>
+        <div class="layui-colla-content layui-show">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    姓名:{{studentRealNameInfo.userName}}
+                    <pre>      </pre>
+                    性别:{{studentBaseInfo.gender}}
+                    <pre>      </pre>
+                    婚姻状态:{{studentBaseInfo.marriage}}
+                </div>
+
+                <div class="layui-card-body">
+                    政治面貌:{{studentBaseInfo.politicalOutlook}}
+                </div>
+                <div class="layui-card-body">
+                    证件号:{{studentRealNameInfo.idNumber}}
+                </div>
+                <div class="layui-card-body">
+                    个人邮箱:{{studentRealNameInfo.email}}
+                </div>
+                <div class="layui-card-body">
+                    咨询电话:{{studentRealNameInfo.telNumber}}
+                </div>
+                <div class="layui-card-body">
+                    籍贯:{{studentCensusRegisterDocument.nativePlace}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">档案信息</h2>
+        <div class="layui-colla-content layui-show">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    学校:{{background.graduateSchool}}
+                </div>
+                <div class="layui-card-body">
+                    专业:{{background.graduateProfession}}
+                </div>
+                <div class="layui-card-body">
+                    毕业时间:{{background.graduatedTime}}
+                </div>
+                <div class="layui-card-body">
+                    学号:{{background.studentNo}}
+                </div>
+
+                <div class="layui-card-body">
+                    学历证书编号:{{background.studentNo}}
+                </div>
+
+                <div class="layui-card-body">
+                    学位证书编号:{{background.certificateNumber}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">联系方式</h2>
+        <div class="layui-colla-content layui-show">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    个人邮箱:{{studentRealNameInfo.email}}
+                </div>
+                <div class="layui-card-body">
+                    联系电话:{{studentRealNameInfo.telNumber}}
+                </div>
+                <div class="layui-card-body">
+                    邮寄地址:{{studentContactInformation.postAddress}}
+                </div>
+                <div class="layui-card-body">
+                    邮寄编码:{{studentContactInformation.postCode}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<button class="layui-btn layui-btn-xs" onclick="toapplication()">点击查看准考证</button>
+<script>
+    //注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
+    layui.use('element', function () {
+        var element = layui.element;
+
+        //…
+    });
+
+function toapplication(){
+    window.location.href="examapplication.html";
+}
+    axios({
+        url: "student/getAllStudentInfo",
+        method: "post",
+        data: {studentId: JSON.parse(localStorage.getItem("student")).studentId},
+        contentType: "application/json",
+        Accept: "application/json, */*; q=0.01",
+        dataType: "json",
+    }).then((data) => {
+        let map = data.data.value;
+        var center = new Vue({
+            el: "#studentInformation",
+            data: {
+                studentRealNameInfo: null,
+                studentCensusRegisterDocument: null,
+                studentContactInformation: null,
+                background: null,
+                studentBaseInfo: null
+            }
+        });
+        console.log(JSON.stringify(map));
+        center.studentRealNameInfo = map.studentRealNameInfo;
+        center.studentCensusRegisterDocument = map.studentCensusRegisterDocument;
+        center.background = map.background;
+        center.studentContactInformation = map.studentContactInformation;
+        center.studentBaseInfo = map.studentBaseInfo;
+    })
+
+
+</script>
+
+</body>
+</html>

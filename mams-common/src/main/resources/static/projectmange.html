@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="layui/css/layui.css" rel="stylesheet">
+    <script src="layui/layui.js"></script>
+
+</head>
+<body>
+<!--水平导航-->
+<script src="js/vueresource/vuejs-2.5.16.js"></script>
+<script src="js/vueresource/axios-0.18.0.js"></script>
+<ul class="layui-nav">
+    <li class="layui-nav-item layui-this"><a href="projectmange.html">招生计划审核</a></li>
+    <li class="layui-nav-item"><a href="studentmange.html">考生审核</a></li>
+    <li class="layui-nav-item"><a href="tutormange.html">负责人审核</a></li>
+</ul>
+
+<table class="layui-hide layui-container" id="enrollmentProjectList" lay-filter="enrollmentProjectList">
+
+</table>
+
+<script id="toolbarDemo" type="text/html">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckedData">
+            获取选中元素
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckedLength">
+            获取选中数目
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">
+            验证是否全选
+        </button>
+    </div>
+
+</script>
+
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="changeMod">修改状态</a>
+</script>
+
+<script type="text/javascript">
+
+    layui.use("table", function () {
+        let table = layui.table;
+        table.render({
+            elem: "#enrollmentProjectList",
+            url: "http://localhost:8082/school/getAllEnrollmentProjects",
+            page: true,
+            height: 400,
+            cols: [[
+                {field: 'aa', type: "numbers"},
+                {field: 'aa', type: "checkbox"},
+                {field: 'id', title: '志愿编号', hidden: true},
+                {field: 'tutorName', title: '导师姓名'},
+                {field: 'schoolName', title: '学校'},
+                {field: 'department', title: '院系'},
+                {field: 'professionName', title: '专业'},
+                {field: 'count', title: '招生人数'},
+                {field: 'checked', title: '志愿状态'},
+                // 设置表头操作栏
+                {field: '详情', toolbar: "#barDemo"},
+            ]],
+            // toolbar: "#toolbarDemo"
+        });
+
+        table.on('toolbar(enrollmentProjectList)', function (obj) {
+            console.log(obj);
+
+            var checkStatus = table.checkStatus(obj.config.id);
+            console.log(checkStatus);
+            //获取事件名
+            switch (obj.event) {
+                case "getCheckedData":
+                    console.log("hello,world");
+                    break;
+                case "getCheckedLength":
+                    console.log("getCheckedLength");
+                    break;
+                case "isAll":
+                    console.log("isAll");
+                    break;
+            }
+        });
+
+        table.on('tool(enrollmentProjectList)', function (obj) {
+
+           var project=obj.data;
+            // findExamRequirementByEnrollmentProject
+            console.log(obj);
+            var examRequirement;
+
+            switch (obj.event) {
+                case "changeMod":
+                    axios({
+                        url: "http://localhost:8082/school/changeMod",
+                        method:"post",
+                        data:project
+                    }).then((data)=>{
+                        if(data.data.value==1){
+                            window.location.href=window.location.href;
+                        }
+                    });
+                    break;
+                case "edit":
+                    break;
+            }
+
+
+        })
+    })
+</script>
+
+
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+    });
+
+</script>
+</body>
+</html>

@@ -12,8 +12,11 @@ import lombok.Data;
 @Data
 public class StudentApplication {
 	private Integer id;
-	private Integer studentId;
+	private Long studentId;
 	private Integer projectId;
 	private Integer requirementId;
 	private Integer tutorId;
+	private String studentSchoolName;
+	private String projectProfessionName;
+	
 }

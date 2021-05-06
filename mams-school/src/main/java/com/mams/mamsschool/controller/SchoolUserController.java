@@ -2,6 +2,7 @@ package com.mams.mamsschool.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mams.mamscommon.utils.EmailUtils;
 import com.mams.mamscommon.utils.QiniuUpload;
 import com.mams.mamscommon.utils.Result;
 import com.mams.mamscommon.utils.Verify;
@@ -113,9 +114,10 @@ class SchoolUserController {
 			ObjectMapper objectMapper = new ObjectMapper();
 			tutor = objectMapper.readValue(request.getParameter("tutor"), Tutor.class);
 			tutor.setImgSrc(url);
-			
 			System.out.println(tutor);
 			System.out.println(tutorService.update(tutor));
+			
+			tutor = tutorService.findByTutorById(tutor.getTutorId()).get(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -151,41 +153,104 @@ class SchoolUserController {
 		
 	}
 	
+	@RequestMapping("/getAllEnrollmentProjects")
+	@ResponseBody
+	public LayUITableData getAllEnrollmentProjects() {
+		List<EnrollmentProject> data = enrollmentProjectMapper.findAllProjects();
+		LayUITableData tableData = new LayUITableData();
+		tableData.setCode("0");
+		tableData.setCount(data.size());
+		tableData.setData(data);
+		return tableData;
+		
+	}
+	
 	
 	@RequestMapping("/findEnrollmentProjectById")
 	@ResponseBody
-	public EnrollmentProject findEnrollmentProjectById(@RequestBody Map<String,String> map) {
+	public EnrollmentProject findEnrollmentProjectById(@RequestBody Map<String, String> map) {
 //	log.info("***************************************"+map);
 		List<EnrollmentProject> enrollmentProjectById = enrollmentProjectMapper.findEnrollmentProjectById(map.get("id"));
 //		System.out.println(enrollmentProjectById.get(0));
 		return enrollmentProjectById.get(0);
 	}
 	
-//	findExamRequirementByEnrollmentProject
-@RequestMapping("/findExamRequirementByEnrollmentProject")
-@ResponseBody
-public ExamRequirement findExamRequirementByEnrollmentProject(@RequestBody EnrollmentProject enrollmentProject) {
-	try {
-		ExamRequirement examRequirement = examRequirementMapper.findExamRequirementByEnrollmentProject(enrollmentProject).get(0);
-		examRequirement.setExamDemand(examRequirement.getExamDemand().replace('\n',' '));
-		examRequirement.setPublicCourseDemand(examRequirement.getPublicCourseDemand().replace('\n',' '));
-		examRequirement.setMajorCourseDemand(examRequirement.getMajorCourseDemand().replace('\n',' '));
-		examRequirement.setPoliticalDemand(examRequirement.getPoliticalDemand().replaceAll(":"," ").trim().replaceAll(" ","、"));
-		examRequirement.setTimeDemand(examRequirement.getTimeDemand().replace(":","----"));
-		return examRequirement;
+	//	findExamRequirementByEnrollmentProject
+	@RequestMapping("/findExamRequirementByEnrollmentProject")
+	@ResponseBody
+	public ExamRequirement findExamRequirementByEnrollmentProject(@RequestBody EnrollmentProject enrollmentProject) {
+		try {
+			ExamRequirement examRequirement = examRequirementMapper.findExamRequirementByEnrollmentProject(enrollmentProject).get(0);
+			examRequirement.setExamDemand(examRequirement.getExamDemand().replace('\n', ' '));
+			examRequirement.setPublicCourseDemand(examRequirement.getPublicCourseDemand().replace('\n', ' '));
+			examRequirement.setMajorCourseDemand(examRequirement.getMajorCourseDemand().replace('\n', ' '));
+			examRequirement.setPoliticalDemand(examRequirement.getPoliticalDemand().replaceAll(":", " ").trim().replaceAll(" ", "、"));
+			examRequirement.setTimeDemand(examRequirement.getTimeDemand().replace(":", "----"));
+			return examRequirement;
+		} catch (Exception e) {
+			log.error(enrollmentProject.toString() + ":" + e.getMessage());
+		}
+		return null;
 	}
-	catch (Exception e){
-		log.error(enrollmentProject.toString()+":"+e.getMessage());
+	
+	@RequestMapping("/changeMod")
+	@ResponseBody
+	public Result<Integer> changeMod(@RequestBody EnrollmentProject project) {
+		System.out.println(project);
+		Integer checked = (project.getChecked() - 1) * (-1);
+		project.setChecked(checked);
+		Integer integer = enrollmentProjectMapper.updateById(project);
+		
+		
+		Tutor tutor = tutorService.findByTutorById(Integer.valueOf(project.getTutorId())).get(0);
+		String email = tutor.getEmail();
+		try {
+			Verify.sendMsg(email, "通知:" +
+					"您好，您所发布的招生计划已经通过");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return Result.success(integer);
 	}
-	return null;
-}
+	
+	@RequestMapping("/getAllTutors")
+	@ResponseBody
+	public LayUITableData getAllTutors() {
+		List<Tutor> data = tutorService.findAllTutors();
+		LayUITableData tableData = new LayUITableData();
+		tableData.setCode("0");
+		tableData.setCount(data.size());
+		tableData.setData(data);
+		return tableData;
+		
+	}
+	
+	@RequestMapping("/changeTutorMod")
+	@ResponseBody
+	public Result<Integer> changeTutorMod(@RequestBody Tutor tutor) {
+		
+		int checked = (tutor.getChecked() - 1) * (-1);
+		tutor.setChecked(checked);
+		Integer integer = tutorService.updateChecked(tutor);
+		
+		
+		try {
+			Verify.sendMsg(tutor.getEmail(), "" +
+					"您好，您的身份信息已经通过mams平台的认证");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		return Result.success(integer);
+	}
 	
 	@Data
-	class LayUITableData {
-		List<EnrollmentProject> data;
+	class LayUITableData<T> {
+		List<T> data;
 		private String code;
 		private String msg;
 		private Integer count;
 	}
+	
 	
 }

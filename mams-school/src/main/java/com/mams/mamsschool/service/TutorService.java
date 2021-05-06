@@ -19,4 +19,10 @@ public interface TutorService {
 	
 	Integer update(Tutor tutor);
 	
+	
+	List<Tutor> findByTutorById(Integer tutorId);
+	
+	List<Tutor> findAllTutors();
+	
+	Integer updateChecked(Tutor tutor);
 }

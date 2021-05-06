@@ -9,7 +9,20 @@
     <script src="js/vueresource/vuejs-2.5.16.js"></script>
     <script src="js/vueresource/axios-0.18.0.js"></script>
 </head>
-<body>
+<style>
+    .layui-form-item > .layui-form-label {
+        margin: 0;
+        width: 10%;
+    }
+
+    .layui-form-item > .layui-input-inline {
+        margin: 0;
+        padding: 0;
+        width: 70%;
+    }
+
+</style>
+<body >
 <script>
 
 
@@ -24,34 +37,87 @@
     <li class="layui-nav-item"><a href="projectscan.html">志愿管理</a></li>
     <li class="layui-nav-item  layui-this"><a href="projectscan.html">志愿详情</a></li>
 </ul>
-<title>adjshfgjkasdjkf</title>
-<div class="layui-text layui-container" id="details" style="page-break-before: always;">
-    <h2>学校信息</h2>
-    <pre>
-    <font style="font-size: 18px;color: blue;">学校</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.schoolName}}</font>
-    <font style="font-size: 18px;color: blue;">院系</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.department}}</font>
-    <font style="font-size: 18px;color: blue;">专业</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.professionName}}</font></pre>
-    <h2>负责人信息</h2>
-    <pre>
-    <font style="font-size: 18px;color: blue;">负责人</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.tutorName}}</font>        <font style="font-size: 18px;color: blue;">咨询电话</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.contactNumber}}</font>
-</pre>
-    <h2>招生计划</h2>
-    <pre>
-    <font style="font-size: 18px;color: blue;">招生人数</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.count}}</font>
-    <font style="font-size: 18px;color: blue;">考试类型</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.examType}}</font>
-    <font style="font-size: 18px;color: blue;">学制</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.schoolingType}}</font>
-    <font style="font-size: 18px;color: blue;">是否定向就业</font>:<font style="font-size: 18px;color: #fd271d;">{{enrollmentProject.signUpType}}</font></pre>
-    <h2>考生要求</h2>
-    <pre>
-    <font style="font-size: 18px;color: blue;">政治要求</font>:<font style="font-size: 18px;color: #fd271d;">{{examRequirement.politicalDemand}}</font>
-    <font style="font-size: 18px;color: blue;">时间要求</font>:<font style="font-size: 18px;color: #fd271d;">{{examRequirement.timeDemand}}</font>
-    <font style="font-size: 18px;color: blue;">考试要求</font>:<font style="font-size: 18px;color: #fd271d;">{{examRequirement.examDemand}}</font>
-    <font style="font-size: 18px;color: blue;">公共课要求</font>:<font style="font-size: 18px;color: #fd271d;">{{examRequirement.publicCourseDemand}}</font>
-    <font style="font-size: 18px;color: blue;">专业可要求</font>:<font style="font-size: 18px;color: #fd271d;">{{examRequirement.majorCourseDemand}}</font>
-    <font style="font-size: 18px;color: blue;">附加信息</font> :<font style="font-size: 18px;color: #fd271d;">{{examRequirement.extendMessage}}</font>
-</pre>
-    <button class="layui-btn layui-btn-xs" @click="saveApplication">点击报名</button>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+    <legend>志愿详情</legend>
+</fieldset>
+<div class="layui-bg-gray" style="padding: 10px;" id="details">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card layui-field-title">
+                <div class="layui-card-header ">学校详情</div>
+                <div class="layui-card-body">
+                    招生学校:{{enrollmentProject.schoolName}}
+                </div>
+                <div class="layui-card-body">
+                    招生院系:{{enrollmentProject.department}}
+                </div>
+                <div class="layui-card-body">
+                    招生专业:{{enrollmentProject.professionName}}
+                </div>
+            </div>
+
+            <div class="layui-card">
+                <div class="layui-card-header ">负责人详情</div>
+                <div class="layui-card-body">
+                    负责人:{{enrollmentProject.tutorName}}
+                </div>
+                <div class="layui-card-body">
+                    咨询电话:{{enrollmentProject.contactNumber}}
+                </div>
+
+            </div>
+
+
+            <div class="layui-card">
+                <div class="layui-card-header ">招生计划详情</div>
+                <div class="layui-card-body">
+                    招生人数:{{enrollmentProject.count}}
+                </div>
+                <div class="layui-card-body">
+                    考试类型:{{enrollmentProject.examType}}
+                </div>
+                <div class="layui-card-body">
+                    学制:{{enrollmentProject.schoolingType}}
+                </div>
+
+                <div class="layui-card-body">
+                    是否定向就业:{{enrollmentProject.signUpType}}
+                </div>
+            </div>
+
+
+            <div class="layui-card">
+                <div class="layui-card-header ">考生要求</div>
+                <div class="layui-card-body">
+                    政治要求:{{examRequirement.politicalDemand}}
+                </div>
+                <div class="layui-card-body">
+                    时间要求:{{examRequirement.timeDemand}}
+                </div>
+                <div class="layui-card-body">
+                    考试要求:{{examRequirement.examDemand}}
+                </div>
+                <div class="layui-card-body">
+                    公共课要求:{{examRequirement.publicCourseDemand}}
+                </div>
+                <div class="layui-card-body">
+                    专业可要求:{{examRequirement.majorCourseDemand}}
+                </div>
+                <div class="layui-card-body">
+                    附加信息:{{examRequirement.extendMessage}}
+                </div>
+            </div>
+
+            <button class="layui-btn layui-btn-lg" style="display:block;margin: 0 auto;position: center;" @click="saveApplication">点击填报</button>
+
+        </div>
+
+    </div>
+
 </div>
+
+
 
 <script>
 
@@ -63,28 +129,47 @@
         },
         methods: {
             saveApplication:function () {
-                var studentApplication={
-                    studentId:JSON.parse(localStorage.getItem("student")).studentId,
-                    projectId:JSON.parse(localStorage.getItem("enrollmentProject")).id,
-                    requirementId:JSON.parse(localStorage.getItem("examRequirement")).id,
-                    tutorId:JSON.parse(localStorage.getItem("examRequirement")).tutorId
-                }
+
+
                 axios({
-                    url: "/student/saveApplication",
-                    method: "post",
+                    method: 'post',
+                    url: '/student/getAllStudentInfos',
                     dataType: "json",
-                    data: studentApplication,
-                }).then(function (data) {
-                   if (data.data.value==1)
-                    window.location.href = "examapplication.html";
+                    data: JSON.parse(localStorage.getItem("student")),
+
+                }).then((data) => {
+                    var map = data.data.value;
+                    var studentApplication={
+                        studentId:JSON.parse(localStorage.getItem("student")).studentId,
+                        projectId:JSON.parse(localStorage.getItem("enrollmentProject")).id,
+                        requirementId:JSON.parse(localStorage.getItem("examRequirement")).id,
+                        tutorId:JSON.parse(localStorage.getItem("examRequirement")).tutorId,
+                        studentSchoolName:map.background.graduateSchool,
+                        projectProfessionName:this.enrollmentProject.professionName
+                    }
+                    axios({
+                        url: "/student/saveApplication",
+                        method: "post",
+                        dataType: "json",
+                        data: studentApplication,
+                    }).then(function (data) {
+                        if (data.data.value==1){
+                            localStorage.setItem('map',JSON.stringify(map));
+                            if (map!=null)
+                                window.location.href = "examapplication.html";
+                        }
+                        else {
+                            window.location.href = "projectscan.html";
+                        }
+                    }).catch((reason) => {
+                        window.location.href ="studentCenter.html"
+                    });
+
                 });
+
             }
         }
     })
-
-
-
-
 </script>
 </body>
 </html>

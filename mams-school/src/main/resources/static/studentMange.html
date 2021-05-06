@@ -3,8 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link href="layui/css/layui.css" rel="stylesheet">
+    <script src="layui/layui.js"></script>
+    <script src="js/vueresource/vuejs-2.5.16.js"></script>
+    <script src="js/vueresource/axios-0.18.0.js"></script>
 </head>
 <body>
+<ul class="layui-nav">
+    <!--    <li class="layui-nav-item"><a href="baseinfo.html">基本信息</a></li>-->
+    <!--    <li class="layui-nav-item"><a href="document.html">档案信息</a></li>-->
+    <!--    <li class="layui-nav-item"><a href="educationbackgroud.html">学籍管理</a></li>-->
+    <!--    <li class="layui-nav-item"><a href="contact.html">联系方式</a></li>-->
+    <!--    <li class="layui-nav-item"><a href="studentrewardandpunishment.html">奖惩信息</a></li>-->
+    <!--    <li class="layui-nav-item"><a href="studyandworkexperience.html">教育和工作经历</a></li>-->
+    <li class="layui-nav-item layui-this"><a href="projectscan.html">考生管理</a></li>
+</ul>
+<table class="layui-hide layui-container" id="enrollmentProjectList" lay-filter="enrollmentProjectList">
 
+</table>
+
+<script id="toolbarDemo" type="text/html">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckedData">
+            获取选中元素
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckedLength">
+            批量发送落榜通知
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">
+            批量发送面试通知
+        </button>
+    </div>
+
+</script>
+
+<script id="barDemo" type="text/html">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">点击发送面试通知</a>
+</script>
+
+<script type="text/javascript">
+    var tutor = JSON.parse(localStorage.getItem("tutor"));
+    var tutorId = tutor.tutorId;
+    var x = {};
+    layui.use("table", function () {
+        let table = layui.table;
+        table.render({
+            elem: "#enrollmentProjectList",
+            url: "http://localhost:8083/student/getExamResult",
+            method: "post",
+            contentType: "application/json",
+            Accept: "application/json, */*; q=0.01",
+            dataType: "json",
+            where: {tutorId: tutorId},
+            page: true,
+            height: 400,
+            parseData: function (res) { //res 即为原始返回的数据
+                console.log(res);
+                return res;
+            },
+            cols: [[
+                {field: 'numbers', type: "numbers"},
+
+                {field: 'check', type: "checkbox"},
+                {field: 'schoolName', title: '学校'},
+                {field: 'professionName', title: '专业'},
+                {field: 'id', title: '考试编号'},
+                {field: 'studentId', title: 'studentId'},
+                {field: 'projectId', title: 'projectId'},
+                {field: 'examLevel', title: 'examLevel'},
+                {field: 'sumScore', title: 'sumScore',sort:true},
+                {field: 'publicCourse1', title: "公共课1"},
+                {field: 'publicCourse2', title: "公共课2"},
+                {field: 'publicCourse3', title: "公共课3"},
+                {field: 'majorCourse1', title: "专业课1"},
+                {field: 'majorCourse2', title: "专业课2"},
+                {field: 'majorCourse3', title: "专业课3"},
+                // 设置表头操作栏
+                {field: '详情', toolbar: "#barDemo"}
+            ]],
+            toolbar: "#toolbarDemo"
+        });
+
+        table.on('toolbar(enrollmentProjectList)', function (obj) {
+
+            var checkStatus = table.checkStatus(obj.config.id);
+
+            //获取事件名
+            switch (obj.event) {
+                case "getCheckedData":
+                    console.log(obj);
+                    break;
+                case "getCheckedLength":
+                    console.log(typeof checkStatus.data);
+                    console.log();
+                    axios({
+                            url: "http://localhost:8083/student/sendEmailMessage",
+                            method:"post",
+                            contentType: "application/json",
+                            Accept: "application/json, */*; q=0.01",
+                            dataType: "json",
+                            data: checkStatus.data
+                        }).then((data) => {
+
+                        });
+
+
+
+                    break;
+                case "isAll":
+                    console.log("isAll");
+                    break;
+            }
+        });
+
+        table.on('tool(enrollmentProjectList)', function (obj) {
+
+            let enrollmentProject;
+            let id = obj.data.id;
+            // findExamRequirementByEnrollmentProject
+            console.log(id);
+
+            console.log(obj)
+
+
+        })
+    })
+</script>
 </body>
 </html>

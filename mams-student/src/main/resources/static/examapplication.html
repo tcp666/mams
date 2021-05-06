@@ -286,34 +286,34 @@
                     考生编号
                 </div>
                 <div class="midlong">
-                    107081161141536
+                    {{map.studentBaseInfo.studentId}}
                 </div>
 
                 <div class="leftshort">
                     考生姓名/性别
                 </div>
                 <div class="midlong">
-                    唐财平/男
+                    {{map.studentRealNameInfo.userName}}/{{map.studentBaseInfo.gender}}
                 </div>
 
                 <div class="leftshort">
                     证件类型/号码
                 </div>
                 <div class="midlong">
-                    居民身份证/612525199908141024
+                    {{map.studentRealNameInfo.idType}}/{{map.studentRealNameInfo.idNumber}}
                 </div>
 
                 <div class="leftshort" style="border-bottom: 1px black solid;">
                     学习工作单位
                 </div>
                 <div class="midlong" style="border-bottom: 1px black solid;">
-                    西安邮电大学
+                    {{map.background.graduateSchool}}
                 </div>
             </div>
 
             <div class="head">
-                <img alt="" height="100%;"
-                     src="http://qqxs7yk9k.hn-bkt.clouddn.com/28aebc07-62cf-48de-a620-a40de1942cc2.jpg"
+                <img alt="" height="100%;" id="head"
+                     src=""
                      width="100%">
             </div>
             <div class="long">
@@ -321,7 +321,7 @@
                     报考专业（代码）
                 </div>
                 <div class="longright">
-                    企业管理(120202)
+                    {{enrollmentProject.professionName}}/
                 </div>
 
             </div>
@@ -330,7 +330,7 @@
                     报考单位（代码）
                 </div>
                 <div class="longright">
-                    西安有点大学(10708)
+                    {{enrollmentProject.schoolName}}(10708)
                 </div>
 
             </div>
@@ -342,16 +342,16 @@
                 <div class="midright">下午14:00-17:00</div>
 
                 <div class="midleft">12月26日</div>
-                <div class="midmid">思想政治理论(101)</div>
-                <div class="midright">英语一(201)</div>
+                <div class="midmid">{{enrollmentProject.publicCourses1}}</div>
+                <div class="midright">{{enrollmentProject.publicCourses2}}(201)</div>
 
                 <div class="midleft">12月27日</div>
-                <div class="midmid">数学三(303)</div>
-                <div class="midright">管理学(832)</div>
+                <div class="midmid">{{enrollmentProject.publicCourses3}}(303)</div>
+                <div class="midright">{{enrollmentProject.majorCourses1}}(303)(832)</div>
 
                 <div class="midleft">12月28日</div>
-                <div class="midmid">无</div>
-                <div class="midright">无</div>
+                <div class="midmid">{{enrollmentProject.majorCourses2}}(303)</div>
+                <div class="midright">{{enrollmentProject.majorCourses3}}(303)</div>
             </div>
 
             <div class="long">
@@ -359,13 +359,13 @@
                     报考点名称(代码)
                 </div>
                 <div class="addr">
-                    西安有点大学(10708)
+                    {{map.background.graduateSchool}}(10708)
                 </div>
                 <div class="number">
                     考生报名号
                 </div>
-                <div class="numberValue">
-                    611497739
+                <div class="numberValue" id="numberValue">
+
                 </div>
 
             </div>
@@ -375,8 +375,8 @@
                 <div class="longleft" style="height: 34px;text-align: center;line-height: 34px;">
                     考试地点
                 </div>
-                <div class="longright" style="height: 34px;text-align: center;line-height: 34px;">
-                    215考场26坐
+                <div class="longright" id="examAddress" style="height: 34px;text-align: center;line-height: 34px;">
+
                 </div>
 
             </div>
@@ -413,7 +413,7 @@
                     招生单位说明
                 </div>
                 <div class="longright" style="line-height: normal">
-                    1、报考陕西科技大学的考生专业课考试可携带无存储、无编程功能计算
+                    1、可携带无存储、无编程功能计算
                     器。2、501/502/503/815/820/960考试科目需携带绘图工具参加考试，具
                     体要求见学校研究生招生网页通告。3、所有考试答案都须写在答题纸
                     （答题卡）对应规定的答题区域内，写在试卷和草稿纸上均无效。
@@ -464,22 +464,40 @@
 </pre>
     </div>
 </div>
-<button class="layui-btn layui-btn-xs" onclick="printPage(this)">点击打印准考证</button>
+<button onclick="printPage(this)" class="layui-btn layui-btn-xs">点击打印准考证</button>
 <script>
 
-
-    var application=new Vue({
-        el:"#application",
-        data:{
+    var application = new Vue({
+        el: "#application",
+        data: {
             enrollmentProject: JSON.parse(localStorage.getItem("enrollmentProject")),
             examRequirement: JSON.parse(localStorage.getItem("examRequirement")),
-            student:JSON.parse(localStorage.getItem("student")),
+            map: JSON.parse(localStorage.getItem("map")),
         }
-    })
+
+    });
+
+    document.getElementById("head").src = JSON.parse(localStorage.getItem("map")).background.studentSrc;
+    axios({
+        method: 'post',
+        url: '/student/getExamInfoByStudentId',
+        dataType: "json",
+        data: {studentId: JSON.parse(localStorage.getItem("student")).studentId},
+    }).then((data) => {
+        var examInfo = data.data.value;
+        console.log(examInfo);
+        document.getElementById("examAddress").innerText = examInfo.address + examInfo.roomNo + "号考场" + examInfo.seateNumber + "号";
+        document.getElementById("numberValue").innerText = examInfo.examNo;
+
+    });
+
     function printPage(obj) {
-        obj.style.display = "none";
+        obj.style.display="none";
+
+        console.log("hhhhh");
         window.print();
-        window.location.href="http://www.baidu.com/"
+        window.location.href = "studentCenter.html"
+
     }
 </script>
 </body>

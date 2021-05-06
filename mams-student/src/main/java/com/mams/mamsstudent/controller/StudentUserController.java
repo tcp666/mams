@@ -10,8 +10,10 @@ import com.mams.mamsstudent.service.StudentBaseInfoService;
 import com.mams.mamsstudent.service.StudentRealNameInfoService;
 
 
+import lombok.Data;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import com.mams.mamscommon.utils.Result;
@@ -20,7 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-import java.util.UUID;
+
+import java.util.*;
+import java.util.List;
 
 
 /**
@@ -30,8 +34,10 @@ import java.util.UUID;
  * @Date 2021/3/2 12:51
  * @Version 1.0
  */
+@Log4j2
 @RestController
 @RequestMapping("/student")
+@CrossOrigin
 public class StudentUserController {
 	@Autowired
 	QiniuUpload qiniuUpload;
@@ -49,6 +55,15 @@ public class StudentUserController {
 	StudentRewardAndPunishmentMapper studentRewardAndPunishmentMapper;
 	@Resource
 	StudentStudyAndWorkExperienceMapper studentStudyAndWorkExperienceMapper;
+	@Resource
+	StudentApplicationMapper studentApplicationMapper;
+	@Resource
+	ExamMessageInfoMapper examMessageInfoMapper;
+	@Resource
+	StudentEducationBackgroundMapper studentEducationBackgroundMapper;
+	//	http://localhost:8083/school/getExamResult/7?page=1&limit=10
+	@Resource
+	ExamResultMapper examResultMapper;
 	
 	@RequestMapping("/getAllUser")
 	public Result<String> getAllUser() {
@@ -80,6 +95,7 @@ public class StudentUserController {
 	@ResponseBody
 	public Result<StudentRealNameInfo> login(@RequestBody StudentRealNameInfo info) {
 		System.out.println(info);
+		System.out.println(studentRealNameInfoService.login(info));
 		return Result.success(studentRealNameInfoService.login(info).get(0));
 	}
 	
@@ -163,21 +179,164 @@ public class StudentUserController {
 	@RequestMapping("/saveWandS")
 	@ResponseBody
 	public Result<Object> saveWandS(@RequestBody StudentStudyAndWorkExperience[] list) {
-		System.out.println("fsdfs");
+//		System.out.println("fsdfs");
 		for (int i = 0; i < list.length; i++) {
 			studentStudyAndWorkExperienceMapper.add(list[i]);
 		}
 		
 		return Result.success("success");
 	}
-	@Resource
-	StudentApplicationMapper studentApplicationMapper;
 	
 	@RequestMapping("/saveApplication")
 	@ResponseBody
-	public Result<Integer> saveApplication(@RequestBody StudentApplication studentApplication){
-		
+	@Transactional
+	public Result<Integer> saveApplication(@RequestBody StudentApplication studentApplication) {
 		System.out.println(studentApplication);
+		Integer sum = studentApplicationMapper.countAllBySchoolAndProfession(studentApplication);
+		ExamMessageInfo examMessageInfo = new ExamMessageInfo();
+		examMessageInfo.setRoomNo((sum + 1) / 50 + 1);
+		examMessageInfo.setSeateNumber((sum) % 50 + 1);
+		examMessageInfo.setStudentId(studentApplication.getStudentId());
+		examMessageInfo.setAddress(studentApplication.getProjectProfessionName());
+		examMessageInfoMapper.add(examMessageInfo);
 		return Result.success(studentApplicationMapper.save(studentApplication));
+	}
+	
+	@RequestMapping("/getAllStudentInfos")
+	@ResponseBody
+	public Result<Map<String, Object>> getAllStudentInfos(@RequestBody StudentRealNameInfo info) {
+		System.out.println(info);
+		StudentBaseInfo studentBaseInfo = studentBaseInfoService.findByStudentId(info).get(0);
+		Map<String, Object> allStudentInfos = new HashMap<>();
+		allStudentInfos.put("studentBaseInfo", studentBaseInfo);
+		
+		StudentEducationBackground background = studentEducationBackgroundMapper.findByStudentId(info.getStudentId()).get(0);
+		allStudentInfos.put("studentRealNameInfo", info);
+		allStudentInfos.put("background", background);
+		return Result.success(allStudentInfos);
+	}
+	
+	@RequestMapping("/getExamInfoByStudentId")
+	@ResponseBody
+	public Result<ExamMessageInfo> getExamInfoByStudentId(@RequestBody Map<String, Integer> map) {
+		Integer integer = map.get("studentId");
+		System.out.println(integer);
+		ExamMessageInfo examMessageInfo = examMessageInfoMapper.findExamByStudentId(integer).get(0);
+		System.out.println(examMessageInfo);
+		return Result.success(examMessageInfo);
+		
+	}
+	
+	@RequestMapping("/getExamResult")
+	@ResponseBody
+	public LayUITableData getExamResult(@RequestBody Map<String, Integer> map) {
+		List<ExamResult> data = examResultMapper.findAllExamResultByTutorId(map.get("tutorId"));
+		LayUITableData tableData = new LayUITableData();
+		tableData.setCode("0");
+		tableData.setCount(data.size());
+		tableData.setData(data);
+//		System.out.println(tableData);
+		return tableData;
+	}
+	
+	@RequestMapping("/sendEmailMessage")
+	@ResponseBody
+	public Result<String> getExamResult(@RequestBody List<ExamResult> examResults) {
+		
+		
+		System.out.println(examResults);
+		
+		for (ExamResult examResult : examResults) {
+			Integer studentId = examResult.getStudentId();
+			try {
+				StudentContactInformation studentContactInformation = studentContactInformationMapper.findContactByStudentId(studentId).get(0);
+				
+				Verify.sendMsg(studentContactInformation.getEmail(), "恭喜你通过研究生招生考试笔试,请准时参加复试");
+			} catch (MessagingException e) {
+				System.out.println(e.getLocalizedMessage() + examResult.toString());
+				return Result.success("fail");
+			} catch (Exception e) {
+				log.info(e.getMessage() + ":" + examResult.toString());
+				return Result.success("fail");
+			}
+			
+		}
+		
+		
+		return Result.success("success");
+	}
+	
+	@RequestMapping("/getAllStudentInfo")
+	@ResponseBody
+	public Result<Map<String, Object>> getAllStudentInfo(@RequestBody Map<String, Integer> stringIntegerMap) {
+		
+		Integer studentId = stringIntegerMap.get("studentId");
+		System.out.println(stringIntegerMap + ":" + studentId);
+		try {
+			Map<String, Object> map = new HashMap<>();
+			
+			StudentRealNameInfo studentRealNameInfo = studentRealNameInfoService.getStudentRealNameInfoByStudentId(studentId).get(0);
+			map.put("studentRealNameInfo", studentRealNameInfo);
+			
+			StudentCensusRegisterDocument studentCensusRegisterDocument = documentMapper.findDocumentByStudentId(studentId).get(0);
+			
+			map.put("studentCensusRegisterDocument", studentCensusRegisterDocument);
+			
+			StudentContactInformation studentContactInformation = studentContactInformationMapper.findContactByStudentId(studentId).get(0);
+			map.put("studentContactInformation", studentContactInformation);
+			StudentEducationBackground background = educationBackgroundMapper.findByStudentId(studentId * 1l).get(0);
+			map.put("background", background);
+			
+			
+			StudentBaseInfo studentBaseInfo = studentBaseInfoService.findByStudentId(studentRealNameInfo).get(0);
+			map.put("studentBaseInfo", studentBaseInfo);
+			
+			
+			return Result.success(map);
+		} catch (Exception e) {
+			HashMap<String, Object> objectObjectHashMap = new HashMap<>();
+			objectObjectHashMap.put("error", e);
+			return Result.success(objectObjectHashMap);
+		}
+		
+	}
+//
+	
+	@RequestMapping("/getAllStudentRealNameInfos")
+	@ResponseBody
+	public LayUITableData getAllStudentRealNameInfos() {
+		List<StudentRealNameInfo> all = studentRealNameInfoService.getAll();
+		LayUITableData<StudentRealNameInfo> layUITableData=new LayUITableData<>();
+		layUITableData.setData(all);
+		layUITableData.setCode("0");
+		layUITableData.setCount(all.size());
+	
+		
+		return layUITableData;
+	}
+
+	@RequestMapping("/changeMod")
+	@ResponseBody
+	public Result<Integer> changeMod(@RequestBody StudentRealNameInfo info) {
+		int i = (info.getChecked() - 1) * (-1);
+		info.setChecked(i);
+		Integer integer = studentRealNameInfoService.updateChecked(info);
+		
+		try {
+			Verify.sendMsg(info.getEmail(),"您在mams系统的身份已经通过认证");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return Result.success(integer);
+	}
+	
+	@Data
+	class LayUITableData<T> {
+		List<T> data;
+		private String code;
+		private String msg;
+		private Integer count;
 	}
 }

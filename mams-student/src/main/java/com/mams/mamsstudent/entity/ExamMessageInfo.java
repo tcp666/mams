@@ -21,7 +21,7 @@ public class ExamMessageInfo {
 	private Long studentId;
 	private String address;
 	private int roomNo;
-	private int seatNumber;
+	private int seateNumber;
 	private String courseName;
 	private String courseCode;
 	private String examType;
