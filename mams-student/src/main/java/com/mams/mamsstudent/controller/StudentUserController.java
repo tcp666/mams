@@ -10,7 +10,7 @@ import com.mams.mamsstudent.service.StudentBaseInfoService;
 import com.mams.mamsstudent.service.StudentRealNameInfoService;
 
 
-import lombok.Data;
+
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -235,7 +235,6 @@ public class StudentUserController {
 		tableData.setCode("0");
 		tableData.setCount(data.size());
 		tableData.setData(data);
-//		System.out.println(tableData);
 		return tableData;
 	}
 	
@@ -300,18 +299,15 @@ public class StudentUserController {
 		}
 		
 	}
-//
 	
 	@RequestMapping("/getAllStudentRealNameInfos")
 	@ResponseBody
-	public LayUITableData getAllStudentRealNameInfos() {
+	public LayUITableData<StudentRealNameInfo> getAllStudentRealNameInfos() {
 		List<StudentRealNameInfo> all = studentRealNameInfoService.getAll();
 		LayUITableData<StudentRealNameInfo> layUITableData=new LayUITableData<>();
 		layUITableData.setData(all);
 		layUITableData.setCode("0");
 		layUITableData.setCount(all.size());
-	
-		
 		return layUITableData;
 	}
 
@@ -321,22 +317,11 @@ public class StudentUserController {
 		int i = (info.getChecked() - 1) * (-1);
 		info.setChecked(i);
 		Integer integer = studentRealNameInfoService.updateChecked(info);
-		
 		try {
 			Verify.sendMsg(info.getEmail(),"您在mams系统的身份已经通过认证");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		
-		
 		return Result.success(integer);
-	}
-	
-	@Data
-	class LayUITableData<T> {
-		List<T> data;
-		private String code;
-		private String msg;
-		private Integer count;
 	}
 }

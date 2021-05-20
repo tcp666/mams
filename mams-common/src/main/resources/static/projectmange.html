@@ -37,7 +37,8 @@
 </script>
 
 <script id="barDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="changeMod">修改状态</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="changeMod">审核通过</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="changeModFail">审核不通过</a>
 </script>
 
 <script type="text/javascript">
@@ -58,7 +59,11 @@
                 {field: 'department', title: '院系'},
                 {field: 'professionName', title: '专业'},
                 {field: 'count', title: '招生人数'},
-                {field: 'checked', title: '志愿状态'},
+                {field: 'checked', title: '志愿状态',templet: function (data) {
+                        if (data.checked == 1)
+                            return "已经认证通过"
+                        return "待审核/认证";
+                    }},
                 // 设置表头操作栏
                 {field: '详情', toolbar: "#barDemo"},
             ]],

@@ -8,6 +8,7 @@ import com.mams.mamscommon.utils.Result;
 import com.mams.mamscommon.utils.Verify;
 import com.mams.mamsschool.entity.EnrollmentProject;
 import com.mams.mamsschool.entity.ExamRequirement;
+import com.mams.mamsschool.entity.LayUITableData;
 import com.mams.mamsschool.entity.Tutor;
 
 import com.mams.mamsschool.mapper.EnrollmentProjectMapper;
@@ -215,9 +216,9 @@ class SchoolUserController {
 	
 	@RequestMapping("/getAllTutors")
 	@ResponseBody
-	public LayUITableData getAllTutors() {
+	public LayUITableData<Tutor> getAllTutors() {
 		List<Tutor> data = tutorService.findAllTutors();
-		LayUITableData tableData = new LayUITableData();
+		LayUITableData<Tutor> tableData = new LayUITableData();
 		tableData.setCode("0");
 		tableData.setCount(data.size());
 		tableData.setData(data);
@@ -242,14 +243,6 @@ class SchoolUserController {
 		}
 		
 		return Result.success(integer);
-	}
-	
-	@Data
-	class LayUITableData<T> {
-		List<T> data;
-		private String code;
-		private String msg;
-		private Integer count;
 	}
 	
 	

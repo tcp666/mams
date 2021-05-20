@@ -151,7 +151,7 @@ public class CommonUserController {
 	
 	@RequestMapping("/login")
 	Result<User> login(@RequestBody User user) {
-		System.out.println(user);
+ 		System.out.println(user);
 		List<User> login = userMapper.login(user);
 		System.out.println(login);
 		if (login.size()==1){

@@ -121,6 +121,11 @@
                 data.append("file", document.querySelector('input[type=file]').files[0]);
                 data.append("tutor",JSON.stringify(tutor))
                 console.log(data)
+
+
+
+
+
                 axios({
                     url:"/school/saveTutor",
                     method:"post",

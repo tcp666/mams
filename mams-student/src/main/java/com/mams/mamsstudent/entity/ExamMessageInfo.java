@@ -1,9 +1,8 @@
 package com.mams.mamsstudent.entity;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+
 
 import java.util.Date;
 
@@ -28,5 +27,4 @@ public class ExamMessageInfo {
 	private String paperType;
 	private Date startTime;
 	private Date endTime;
-	
 }
