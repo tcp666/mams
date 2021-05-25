@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="layui/css/layui.css" rel="stylesheet">
+    <script src="layui/layui.js"></script>
+    <script src="js/vueresource/vuejs-2.5.16.js"></script>
+    <script src="js/vueresource/axios-0.18.0.js"></script>
+
+    <style>
+        .layui-form-item > .layui-form-label {
+            margin: 0;
+            width: 10%;
+        }
+
+        .layui-form-item > .layui-input-inline {
+            margin: 0;
+            padding: 0;
+            width: 80%;
+        }
+
+    </style>
+
+
+</head>
+<body>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin:0 auto;">
+    <legend style="margin: 0 auto">招生计划性情</legend>
+</fieldset>
+<div class="layui-collapse"  id="details">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">学校详情</h2>
+        <div class="layui-colla-content layui-show">
+            <div class="layui-card layui-field-title">
+                <div class="layui-card-body">
+                    招生学校:{{enrollmentProject.schoolName}}
+                </div>
+                <div class="layui-card-body">
+                    招生院系:{{enrollmentProject.department}}
+                </div>
+                <div class="layui-card-body">
+                    招生专业:{{enrollmentProject.professionName}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">负责人详情</h2>
+        <div class="layui-colla-content layui-show">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    负责人:{{enrollmentProject.tutorName}}
+                </div>
+                <div class="layui-card-body">
+                    咨询电话:{{enrollmentProject.contactNumber}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">招生计划详情</h2>
+        <div class="layui-colla-content layui-show">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    招生人数:{{enrollmentProject.count}}
+                </div>
+                <div class="layui-card-body">
+                    考试类型:{{enrollmentProject.examType}}
+                </div>
+                <div class="layui-card-body">
+                    学制:{{enrollmentProject.schoolingType}}
+                </div>
+
+                <div class="layui-card-body">
+                    是否定向就业:{{enrollmentProject.signUpType}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">考生要求</h2>
+        <div class="layui-colla-content layui-show">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    政治要求:{{examRequirement.politicalDemand}}
+                </div>
+                <div class="layui-card-body">
+                    时间要求:{{examRequirement.timeDemand}}
+                </div>
+                <div class="layui-card-body">
+                    考试要求:{{examRequirement.examDemand}}
+                </div>
+                <div class="layui-card-body">
+                    公共课要求:{{examRequirement.publicCourseDemand}}
+                </div>
+                <div class="layui-card-body">
+                    专业可要求:{{examRequirement.majorCourseDemand}}
+                </div>
+                <div class="layui-card-body">
+                    附加信息:{{examRequirement.extendMessage}}
+                </div>
+            </div>
+
+
+        </div>
+        <button class="layui-btn layui-btn-lg" style="display:block;margin: 0 auto;position: center;" @click="returnLastPage">返回上一页</button>
+    </div>
+
+
+</div>
+
+<script>
+layui.use('element',function () {
+    var element=layui.element;
+    element.render();
+})
+    axios({
+        url:"http://localhost:8082/school/findExamRequirementByEnrollmentProject",
+        data:JSON.parse(localStorage.getItem("projectdetails")),
+        method:"post",
+        type:"json"
+    }).then((data)=>{
+
+        var project=new Vue({
+            el:"#details",
+            data:{
+                enrollmentProject:JSON.parse(localStorage.getItem("projectdetails")),
+                examRequirement:data.data
+            },
+            methods:{
+                returnLastPage:function () {
+                    window.location.href="projectmange.html"
+                }
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

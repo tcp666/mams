@@ -1,12 +1,12 @@
-[mams-student][${env:SERVER_PORT}] 2021-05-25 16:26:09,768 ERROR [http-nio-8083-exec-7][DirectJDKLog.java:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: 
-### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'requirement_id' cannot be null
+[mams-student][${env:SERVER_PORT}] 2021-05-19 14:38:33,575 ERROR [http-nio-8083-exec-6][DirectJDKLog.java:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '14' for key 'student_id'
 ### The error may exist in com/mams/mamsstudent/mapper/StudentApplicationMapper.java (best guess)
 ### The error may involve com.mams.mamsstudent.mapper.StudentApplicationMapper.save-Inline
 ### The error occurred while setting parameters
 ### SQL: insert into student_application values(?,?,?,?,?,?,?);
-### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'requirement_id' cannot be null
-; Column 'requirement_id' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'requirement_id' cannot be null] with root cause
-java.sql.SQLIntegrityConstraintViolationException: Column 'requirement_id' cannot be null
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '14' for key 'student_id'
+; Duplicate entry '14' for key 'student_id'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '14' for key 'student_id'] with root cause
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '14' for key 'student_id'
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
 	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
@@ -40,7 +40,7 @@ java.sql.SQLIntegrityConstraintViolationException: Column 'requirement_id' canno
 	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:688)
-	at com.mams.mamsstudent.controller.StudentUserController$$EnhancerBySpringCGLIB$$6e14ae9a.saveApplication(<generated>)
+	at com.mams.mamsstudent.controller.StudentUserController$$EnhancerBySpringCGLIB$$90a83544.saveApplication(<generated>)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

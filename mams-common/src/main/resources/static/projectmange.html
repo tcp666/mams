@@ -37,8 +37,9 @@
 </script>
 
 <script id="barDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="changeMod">审核通过</a>
-    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="changeModFail">审核不通过</a>
+    <a class="layui-btn layui-btn-xs layui-bt" lay-event="changeMod">审核通过</a>
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="changeModFail">查看详情</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="changeModFalse">审核不通过</a>
 </script>
 
 <script type="text/javascript">
@@ -53,7 +54,7 @@
             cols: [[
                 {field: 'aa', type: "numbers"},
                 {field: 'aa', type: "checkbox"},
-                {field: 'id', title: '志愿编号', hidden: true},
+                {field: 'id', title: '计划id', hide: true},
                 {field: 'tutorName', title: '导师姓名'},
                 {field: 'schoolName', title: '学校'},
                 {field: 'department', title: '院系'},
@@ -108,8 +109,21 @@
                         }
                     });
                     break;
-                case "edit":
+                case "changeModFail":
+                   localStorage.setItem("projectdetails",JSON.stringify(obj.data));
+                   window.location.href="projectdetails.html";
                     break;
+                case   "changeModFalse":  axios({
+                    url: "http://localhost:8082/school/changeModFalse",
+                    method:"post",
+                    data:project
+                }).then((data)=>{
+                    if(data.data.value==1){
+                        window.location.href=window.location.href;
+                    }
+                });
+                    break;
+
             }
 
 

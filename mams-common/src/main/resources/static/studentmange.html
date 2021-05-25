@@ -37,7 +37,7 @@
 </script>
 
 <script id="barDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="changeMod">修改状态</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="changeMod">审核通过</a>
     <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="changeModFail">审核不通过</a>
 </script>
 
@@ -53,7 +53,7 @@
             cols: [[
                 {field: 'aa', type: "numbers"},
                 {field: 'aa', type: "checkbox"},
-                {field: 'studentId', title: '学生ID', hidden: true},
+                {field: 'studentId', title: '学生ID', hide: true},
                 {field: 'userName', title: '学生姓名'},
                 {field: 'idType', title: '证件类型'},
                 {field: 'idNumber', title: '证件号'},
@@ -110,7 +110,16 @@
                         }
                     });
                     break;
-                case "edit":
+                case "changeModFail":
+                    axios({
+                        url: "http://localhost:8083/student/changeModFail",
+                        method: "post",
+                        data: realNameInfo
+                    }).then((data) => {
+                        if (data.data.value == 1) {
+                            window.location.href = window.location.href;
+                        }
+                    });
                     break;
             }
 

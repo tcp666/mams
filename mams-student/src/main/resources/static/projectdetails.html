@@ -41,11 +41,12 @@
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
     <legend>志愿详情</legend>
 </fieldset>
-<div class="layui-bg-gray" style="padding: 10px;" id="details">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
+
+<div class="layui-collapse"  id="details">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">学校详情</h2>
+        <div class="layui-colla-content layui-show">
             <div class="layui-card layui-field-title">
-                <div class="layui-card-header ">学校详情</div>
                 <div class="layui-card-body">
                     招生学校:{{enrollmentProject.schoolName}}
                 </div>
@@ -56,9 +57,13 @@
                     招生专业:{{enrollmentProject.professionName}}
                 </div>
             </div>
+            </div>
 
+        </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">负责人详情</h2>
+        <div class="layui-colla-content layui-show">
             <div class="layui-card">
-                <div class="layui-card-header ">负责人详情</div>
                 <div class="layui-card-body">
                     负责人:{{enrollmentProject.tutorName}}
                 </div>
@@ -67,10 +72,12 @@
                 </div>
 
             </div>
-
-
+        </div>
+    </div>
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">招生计划详情</h2>
+        <div class="layui-colla-content layui-show">
             <div class="layui-card">
-                <div class="layui-card-header ">招生计划详情</div>
                 <div class="layui-card-body">
                     招生人数:{{enrollmentProject.count}}
                 </div>
@@ -86,9 +93,13 @@
                 </div>
             </div>
 
+        </div>
+    </div>
 
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">考生要求</h2>
+        <div class="layui-colla-content layui-show">
             <div class="layui-card">
-                <div class="layui-card-header ">考生要求</div>
                 <div class="layui-card-body">
                     政治要求:{{examRequirement.politicalDemand}}
                 </div>
@@ -109,17 +120,28 @@
                 </div>
             </div>
 
-            <button class="layui-btn layui-btn-lg" style="display:block;margin: 0 auto;position: center;" @click="saveApplication">点击填报</button>
 
         </div>
-
+        <button class="layui-btn layui-btn-lg" style="display:block;margin: 0 auto;position: center;" @click="saveApplication">点击填报</button>
     </div>
 
+
+    </div>
 </div>
 
 
 
+
 <script>
+    layui.use('element', function () {
+        var element = layui.element;
+        var layer = layui.layer;
+        //…
+        element.render();
+        element.on('collapse(test)', function (data) {
+            layer.msg('展开状态：' + data.show);
+        })
+    });
 
     var details = new Vue({
         el: "#details",

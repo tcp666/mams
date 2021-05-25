@@ -61,7 +61,36 @@ public class Verify {
         transport.close();
         return sb.toString();
     }
-
+    
+    
+    public static String sendNotice(String email, String notice) throws MessagingException {
+        // 得到回话对象
+        Session session = Session.getInstance(properties);
+        // 获取邮件对象
+        Message message = new MimeMessage(session);
+        // 设置发件人邮箱地址
+        message.setFrom(new InternetAddress("202736360@qq.com"));
+        // 设置收件人邮箱地址
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+        // 设置邮件标题
+        message.setSubject("MAMS");
+        
+        // 生成4位数字验证码
+        StringBuilder sb = new StringBuilder(notice);
+        
+        
+        // 设置邮件内容
+        message.setText("通知：" + sb.toString());
+        // 得到邮差对象
+        Transport transport = session.getTransport();
+        // 连接自己的邮箱账户
+        transport.connect("202736360@qq.com", "jnisadzbzehsbifc");// 密码为QQ邮箱开通的stmp服务后得到的客户端授权码
+        // 发送邮件
+        transport.sendMessage(message, message.getAllRecipients());
+        transport.close();
+        return sb.toString();
+    }
+    
     public  static String getCheckCode(){
         String source = "1234567890";
         StringBuffer check = new StringBuffer();

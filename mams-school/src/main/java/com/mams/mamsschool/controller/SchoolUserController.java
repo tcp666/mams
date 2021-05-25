@@ -193,12 +193,12 @@ class SchoolUserController {
 		}
 		return null;
 	}
-	
+
 	@RequestMapping("/changeMod")
 	@ResponseBody
 	public Result<Integer> changeMod(@RequestBody EnrollmentProject project) {
 		System.out.println(project);
-		Integer checked = (project.getChecked() - 1) * (-1);
+		Integer checked = 1;
 		project.setChecked(checked);
 		Integer integer = enrollmentProjectMapper.updateById(project);
 		
@@ -206,8 +206,29 @@ class SchoolUserController {
 		Tutor tutor = tutorService.findByTutorById(Integer.valueOf(project.getTutorId())).get(0);
 		String email = tutor.getEmail();
 		try {
-			Verify.sendMsg(email, "通知:" +
+			Verify.sendNotice(email,
 					"您好，您所发布的招生计划已经通过");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return Result.success(integer);
+	}
+	
+	@RequestMapping("/changeModFalse")
+	@ResponseBody
+	public Result<Integer> changeModFalse(@RequestBody EnrollmentProject project) {
+		System.out.println(project);
+		Integer checked = 0;
+		project.setChecked(checked);
+		Integer integer = enrollmentProjectMapper.updateById(project);
+		
+		
+		
+		Tutor tutor = tutorService.findByTutorById(Integer.valueOf(project.getTutorId())).get(0);
+		String email = tutor.getEmail();
+		try {
+			Verify.sendNotice(email, "通知:" +
+					"您好，您所发布的招生计划没有通过");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
@@ -230,13 +251,13 @@ class SchoolUserController {
 	@ResponseBody
 	public Result<Integer> changeTutorMod(@RequestBody Tutor tutor) {
 		
-		int checked = (tutor.getChecked() - 1) * (-1);
+		int checked = 1;
 		tutor.setChecked(checked);
 		Integer integer = tutorService.updateChecked(tutor);
 		
 		
 		try {
-			Verify.sendMsg(tutor.getEmail(), "" +
+			Verify.sendNotice(tutor.getEmail(), "" +
 					"您好，您的身份信息已经通过mams平台的认证");
 		} catch (MessagingException e) {
 			e.printStackTrace();
@@ -245,5 +266,25 @@ class SchoolUserController {
 		return Result.success(integer);
 	}
 	
+	
+	
+	@RequestMapping("/changeTutorModFail")
+	@ResponseBody
+	public Result<Integer> changeTutorModFail(@RequestBody Tutor tutor) {
+		
+		int checked = 0;
+		tutor.setChecked(checked);
+		Integer integer = tutorService.updateChecked(tutor);
+		
+		
+		try {
+			Verify.sendNotice(tutor.getEmail(), "" +
+					"您好，您的身份信息没有通过mams平台的认证");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		return Result.success(integer);
+	}
 	
 }

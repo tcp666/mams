@@ -5,9 +5,6 @@
     <title>Title</title>
     <meta charset="UTF-8">
     <title>Title</title>
-
-    <link href="layui/css/layui.css" rel="stylesheet">
-    <script src="layui/layui.js"></script>
     <script src="js/vueresource/vuejs-2.5.16.js"></script>
     <script src="js/vueresource/axios-0.18.0.js"></script>
 </head>
@@ -110,17 +107,24 @@
 </div>
 
 <button class="layui-btn layui-btn-xs" onclick="toapplication()">点击查看准考证</button>
+<link href="layui/css/layui.css" media="all" rel="stylesheet">
+<script charset="utf-8" src="layui/layui.js"></script>
 <script>
     //注意：折叠面板 依赖 element 模块，否则无法进行功能性操作
     layui.use('element', function () {
         var element = layui.element;
-
+        var layer = layui.layer;
         //…
+        element.render();
+        element.on('collapse(test)', function (data) {
+            layer.msg('展开状态：' + data.show);
+        })
     });
 
-function toapplication(){
-    window.location.href="examapplication.html";
-}
+    function toapplication() {
+        window.location.href = "examapplication.html";
+    }
+
     axios({
         url: "student/getAllStudentInfo",
         method: "post",
@@ -140,7 +144,7 @@ function toapplication(){
                 studentBaseInfo: null
             }
         });
-        console.log(JSON.stringify(map));
+
         center.studentRealNameInfo = map.studentRealNameInfo;
         center.studentCensusRegisterDocument = map.studentCensusRegisterDocument;
         center.background = map.background;

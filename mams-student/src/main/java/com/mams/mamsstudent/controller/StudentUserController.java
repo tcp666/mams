@@ -250,7 +250,7 @@ public class StudentUserController {
 			try {
 				StudentContactInformation studentContactInformation = studentContactInformationMapper.findContactByStudentId(studentId).get(0);
 				
-				Verify.sendMsg(studentContactInformation.getEmail(), "恭喜你通过研究生招生考试笔试,请准时参加复试");
+				Verify.sendNotice(studentContactInformation.getEmail(), "恭喜你通过研究生招生考试笔试,请准时参加复试");
 			} catch (MessagingException e) {
 				System.out.println(e.getLocalizedMessage() + examResult.toString());
 				return Result.success("fail");
@@ -290,7 +290,6 @@ public class StudentUserController {
 			StudentBaseInfo studentBaseInfo = studentBaseInfoService.findByStudentId(studentRealNameInfo).get(0);
 			map.put("studentBaseInfo", studentBaseInfo);
 			
-			
 			return Result.success(map);
 		} catch (Exception e) {
 			HashMap<String, Object> objectObjectHashMap = new HashMap<>();
@@ -310,15 +309,28 @@ public class StudentUserController {
 		layUITableData.setCount(all.size());
 		return layUITableData;
 	}
-
+	
 	@RequestMapping("/changeMod")
 	@ResponseBody
 	public Result<Integer> changeMod(@RequestBody StudentRealNameInfo info) {
-		int i = (info.getChecked() - 1) * (-1);
+		int i = 1;
 		info.setChecked(i);
 		Integer integer = studentRealNameInfoService.updateChecked(info);
 		try {
-			Verify.sendMsg(info.getEmail(),"您在mams系统的身份已经通过认证");
+			Verify.sendNotice(info.getEmail(),"您在mams系统的身份已经通过认证");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return Result.success(integer);
+	}
+	@RequestMapping("/changeModFail")
+	@ResponseBody
+	public Result<Integer> changeModFail(@RequestBody StudentRealNameInfo info) {
+		int i = 0;
+		info.setChecked(i);
+		Integer integer = studentRealNameInfoService.updateChecked(info);
+		try {
+			Verify.sendNotice(info.getEmail(),"您在mams系统的身份没有通过认证");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}

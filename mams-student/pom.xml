@@ -128,16 +128,19 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
+                <excludes>
+                    <!--<exclude>reference</exclude>-->
+                    <exclude>static/**/*</exclude>
+                    <!--<exclude>MyBatisGeneratorConfig.xml</exclude>-->
+                </excludes>
                 <filtering>true</filtering>
-                <includes>
-                    <include>**/*</include>
-                </includes>
             </resource>
             <resource>
-                <directory>src/main/java</directory>
+                <directory>src/main/resources</directory>
                 <includes>
-                    <include>**/*.xml</include>
+                    <include>static/**/*</include>
                 </includes>
+                <filtering>false</filtering>
             </resource>
         </resources>
         <plugins>
