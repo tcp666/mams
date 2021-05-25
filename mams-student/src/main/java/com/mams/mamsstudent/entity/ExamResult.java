@@ -28,5 +28,7 @@ public class ExamResult {
 	private String schoolName;
 	private String professionName;
 	
+	private int receiveStatus;
+	
 	
 }

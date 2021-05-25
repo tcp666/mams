@@ -61,7 +61,7 @@ public class StudentUserController {
 	ExamMessageInfoMapper examMessageInfoMapper;
 	@Resource
 	StudentEducationBackgroundMapper studentEducationBackgroundMapper;
-	//	http://localhost:8083/school/getExamResult/7?page=1&limit=10
+	
 	@Resource
 	ExamResultMapper examResultMapper;
 	
@@ -336,4 +336,73 @@ public class StudentUserController {
 		}
 		return Result.success(integer);
 	}
+	@RequestMapping("/sendExamSuccess")
+	@ResponseBody
+	public Result<Integer> sendExamSuccess(@RequestBody ExamResult request) {
+		Integer studentId=request.getStudentId();
+		
+		StudentRealNameInfo studentRealNameInfo = studentRealNameInfoService.getStudentRealNameInfoByStudentId(studentId).get(0);
+		request.setReceiveStatus(1);
+		int value = examResultMapper.updataReceivpSatus(request).intValue();
+		String email=studentRealNameInfo.getEmail();
+		try {
+			Verify.sendNotice(email,"恭喜你通过笔试,请按时参加面试");
+			return Result.success(1);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	
+	@RequestMapping("/accept")
+	@ResponseBody
+	public Result<Integer> accept(@RequestBody ExamResult request) {
+		Integer studentId=request.getStudentId();
+		
+		StudentRealNameInfo studentRealNameInfo = studentRealNameInfoService.getStudentRealNameInfoByStudentId(studentId).get(0);
+		request.setReceiveStatus(1);
+		int value = examResultMapper.updataReceivpSatus(request).intValue();
+		String email=studentRealNameInfo.getEmail();
+		try {
+			Verify.sendNotice(email,"很荣幸的通知你，你已经被我们专业录取，请及准时报到");
+			return Result.success(1);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping("/sendRefuse")
+	@ResponseBody
+	public Result<Integer> sendRefuse(@RequestBody ExamResult request) {
+		Integer studentId=request.getStudentId();
+		
+		StudentRealNameInfo studentRealNameInfo = studentRealNameInfoService.getStudentRealNameInfoByStudentId(studentId).get(0);
+		request.setReceiveStatus(-1);
+		int value = examResultMapper.updataReceivpSatus(request).intValue();
+		String email=studentRealNameInfo.getEmail();
+		try {
+			Verify.sendNotice(email,"感谢您报考我们专业，但由于考试结果未达到我们要求的标准，请您早做考虑");
+			return Result.success(1);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	@RequestMapping("/getSecondExamResult")
+	@ResponseBody
+	public LayUITableData getSecondExamResult(@RequestBody Map<String, Integer> map) {
+		List<ExamResult> data = examResultMapper.findAllExamResultByTutorIdTwo(map.get("tutorId"));
+		LayUITableData tableData = new LayUITableData();
+		tableData.setCode("0");
+		tableData.setCount(data.size());
+		tableData.setData(data);
+		return tableData;
+	}
+	
 }

@@ -34,8 +34,9 @@
     <li class="layui-nav-item"><a href="contact.html">联系方式</a></li>
     <li class="layui-nav-item"><a href="studentrewardandpunishment.html">奖惩信息</a></li>
     <li class="layui-nav-item"><a href="studyandworkexperience.html">教育和工作经历</a></li>
-    <li class="layui-nav-item"><a href="projectscan.html">志愿管理</a></li>
+    <li class="layui-nav-item"><a href="projectscan.html">招生计划浏览</a></li>
     <li class="layui-nav-item  layui-this"><a href="projectscan.html">志愿详情</a></li>
+    <li class="layui-nav-item" style="display: block;float: right;"><a href="studentCenter.html">个人中心</a>
 </ul>
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
@@ -45,7 +46,7 @@
 <div class="layui-collapse"  id="details">
     <div class="layui-colla-item">
         <h2 class="layui-colla-title">学校详情</h2>
-        <div class="layui-colla-content layui-show">
+        <div class="layui-colla-content">
             <div class="layui-card layui-field-title">
                 <div class="layui-card-body">
                     招生学校:{{enrollmentProject.schoolName}}
@@ -62,7 +63,7 @@
         </div>
     <div class="layui-colla-item">
         <h2 class="layui-colla-title">负责人详情</h2>
-        <div class="layui-colla-content layui-show">
+        <div class="layui-colla-content">
             <div class="layui-card">
                 <div class="layui-card-body">
                     负责人:{{enrollmentProject.tutorName}}
@@ -76,7 +77,7 @@
     </div>
     <div class="layui-colla-item">
         <h2 class="layui-colla-title">招生计划详情</h2>
-        <div class="layui-colla-content layui-show">
+        <div class="layui-colla-content">
             <div class="layui-card">
                 <div class="layui-card-body">
                     招生人数:{{enrollmentProject.count}}
@@ -98,7 +99,7 @@
 
     <div class="layui-colla-item">
         <h2 class="layui-colla-title">考生要求</h2>
-        <div class="layui-colla-content layui-show">
+        <div class="layui-colla-content">
             <div class="layui-card">
                 <div class="layui-card-body">
                     政治要求:{{examRequirement.politicalDemand}}

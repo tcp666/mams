@@ -14,8 +14,8 @@
     <li class="layui-nav-item"><a href="tutor.html">个人信息完善与认证</a></li>
     <li class="layui-nav-item"><a href="examrequirement.html">发布考试要求</a></li>
     <li class="layui-nav-item"><a href="entrollementproject.html">发布招生计划</a></li>
-    <li class="layui-nav-item layui-this"><a href="studentMange.html">初试管理</a></li>
-    <li class="layui-nav-item"><a href="examtwo.html">复试管理</a></li>
+    <li class="layui-nav-item"><a href="studentMange.html">初试管理</a></li>
+    <li class="layui-nav-item layui-this"><a href="examtwo.html">复试管理</a></li>
 </ul>
 <table class="layui-hide layui-container" id="enrollmentProjectList" lay-filter="enrollmentProjectList">
 
@@ -23,19 +23,21 @@
 
 <script id="toolbarDemo" type="text/html">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="examtwo">
-          复试管理
-        </button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">
-            录取管理
-        </button>
+<!--        <button class="layui-btn layui-btn-sm" lay-event="getCheckedData">-->
+<!--           查看初试结果-->
+<!--        </button>-->
+<!--        <button class="layui-btn layui-btn-sm" lay-event="getCheckedLength">-->
+<!--           查看复试结果-->
+<!--        </button>-->
+<!--        <button class="layui-btn layui-btn-sm" lay-event="isAll">-->
+<!--            查看录取结果-->
+<!--        </button>-->
     </div>
 
 </script>
 
 <script id="barDemo" type="text/html">
-    <a class="layui-btn layui-btn-xs" lay-event="sendExamSuccess">点击发送面试通知</a>
-    <a class="layui-btn layui-btn-xs" lay-event="sendRefuse">点击发送拒绝通知</a>
+    <a class="layui-btn layui-btn-xs" lay-event="sendExamSuccess">点击发送录用通知</a>
 </script>
 
 <script type="text/javascript">
@@ -46,7 +48,7 @@
         let table = layui.table;
         table.render({
             elem: "#enrollmentProjectList",
-            url: "http://localhost:8083/student/getExamResult",
+            url: "http://localhost:8083/student/getSecondExamResult",
             method: "post",
             contentType: "application/json",
             Accept: "application/json, */*; q=0.01",
@@ -76,7 +78,7 @@
                 {field: 'majorCourse2', title: "专业课2"},
                 {field: 'majorCourse3', title: "专业课3", hide: true},
                 // 设置表头操作栏
-                {field: '详情', toolbar: "#barDemo",width:258}
+                {field: '详情', toolbar: "#barDemo"}
             ]],
             toolbar: "#toolbarDemo"
         });
@@ -87,8 +89,8 @@
 
             //获取事件名
             switch (obj.event) {
-                case "examtwo":
-                  window.location.href="examtwo.html"
+                case "getCheckedData":
+                    console.log(obj);
                     break;
                 case "getCheckedLength":
                     console.log(typeof checkStatus.data);
@@ -118,22 +120,12 @@
             switch (eventName) {
                 case "sendExamSuccess":
                     axios({
-                        url:"http://localhost:8083/student/sendExamSuccess",
+                        url:"http://localhost:8083/student/accept",
                         method: "post",
                         contentType: "application/json",
                         Accept: "application/json, */*; q=0.01",
                         dataType: "json",
-                        data: obj.data
-                    });
-                    break;
-                case "sendRefuse":
-                    axios({
-                        url:"http://localhost:8083/student/sendRefuse",
-                        method: "post",
-                        contentType: "application/json",
-                        Accept: "application/json, */*; q=0.01",
-                        dataType: "json",
-                        data: obj.data
+                        data: {studentId:obj.data.studentId}
                     });
                     break;
 

@@ -201,10 +201,15 @@
                     dataType: "json",
                     data: {email: email, password: password}
                 }).then((data) => {
+                    console.log(data)
+                    if (data.data.success==false){
+                        alert("帐号不存在或者密码错误")
+                        return;
+                    }
                     var tutor = data.data.value;
-                    localStorage.setItem("tutor", JSON.stringify(tutor));
-                    if (tutor.checked==0)
-                        window.location.href="tutor.html"
+                    localStorage.setItem("tutor", JSON.stringify(tutor))
+                     window.location.href="tutor.html"
+
                 })
             }
         }

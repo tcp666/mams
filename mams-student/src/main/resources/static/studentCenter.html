@@ -17,8 +17,8 @@
     <li class="layui-nav-item"><a href="contact.html">联系方式</a></li>
     <li class="layui-nav-item"><a href="studentrewardandpunishment.html">奖惩信息</a></li>
     <li class="layui-nav-item"><a href="studyandworkexperience.html">教育和工作经历</a></li>
-    <li class="layui-nav-item"><a href="projectscan.html">志愿管理</a></li>
-    <li class="layui-nav-item   layui-this" style="display: block;float: right;"><a href="studentCenter.html">个人中心</a>
+    <li class="layui-nav-item"><a href="projectscan.html">招生计划浏览</a></li>
+    <li class="layui-nav-item layui-this" style="display: block;float: right;"><a href="studentCenter.html">个人中心</a>
     </li>
 </ul>
 
@@ -26,7 +26,7 @@
 <div class="layui-collapse" id="studentInformation">
     <div class="layui-colla-item">
         <h2 class="layui-colla-title">个人信息</h2>
-        <div class="layui-colla-content layui-show">
+        <div class="layui-colla-content">
             <div class="layui-card">
                 <div class="layui-card-body">
                     姓名:{{studentRealNameInfo.userName}}
@@ -57,7 +57,7 @@
     </div>
     <div class="layui-colla-item">
         <h2 class="layui-colla-title">档案信息</h2>
-        <div class="layui-colla-content layui-show">
+        <div class="layui-colla-content">
             <div class="layui-card">
                 <div class="layui-card-body">
                     学校:{{background.graduateSchool}}
@@ -85,7 +85,7 @@
     </div>
     <div class="layui-colla-item">
         <h2 class="layui-colla-title">联系方式</h2>
-        <div class="layui-colla-content layui-show">
+        <div class="layui-colla-content">
             <div class="layui-card">
                 <div class="layui-card-body">
                     个人邮箱:{{studentRealNameInfo.email}}
@@ -134,22 +134,30 @@
         dataType: "json",
     }).then((data) => {
         let map = data.data.value;
+
+        var studentRealNameInfo = map.studentRealNameInfo;
+        var studentCensusRegisterDocument = map.studentCensusRegisterDocument;
+        var background = map.background;
+        var studentContactInformation = map.studentContactInformation;
+        var studentBaseInfo = map.studentBaseInfo;
         var center = new Vue({
+
+
             el: "#studentInformation",
             data: {
-                studentRealNameInfo: null,
-                studentCensusRegisterDocument: null,
-                studentContactInformation: null,
-                background: null,
-                studentBaseInfo: null
+                studentRealNameInfo: studentRealNameInfo,
+                studentCensusRegisterDocument: studentCensusRegisterDocument,
+                studentContactInformation: studentContactInformation,
+                background: background,
+                studentBaseInfo: studentBaseInfo
             }
         });
 
-        center.studentRealNameInfo = map.studentRealNameInfo;
-        center.studentCensusRegisterDocument = map.studentCensusRegisterDocument;
-        center.background = map.background;
-        center.studentContactInformation = map.studentContactInformation;
-        center.studentBaseInfo = map.studentBaseInfo;
+        // center.studentRealNameInfo = map.studentRealNameInfo;
+        // center.studentCensusRegisterDocument = map.studentCensusRegisterDocument;
+        // center.background = map.background;
+        // center.studentContactInformation = map.studentContactInformation;
+        // center.studentBaseInfo = map.studentBaseInfo;
     })
 
 

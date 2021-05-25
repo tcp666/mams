@@ -53,6 +53,7 @@ public class Result<T> implements Serializable {
 		result.value=t;
 		result.message="success";
 		result.status="10000";
+		result.success=true;
 		return result;
 	}
 	 public static Result fail(Object t){
