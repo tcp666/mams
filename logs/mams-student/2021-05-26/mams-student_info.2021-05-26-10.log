@@ -1,3 +1,4 @@
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:03:31,813 WARN [HikariPool-1 housekeeper][HikariPool.java:766] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m40s806ms985µs200ns).
 [mams-student][${env:SERVER_PORT}] 2021-05-26 10:08:39,643 ERROR [http-nio-8083-exec-1][DirectJDKLog.java:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DuplicateKeyException: 
 ### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '18' for key 'student_id'
 ### The error may exist in com/mams/mamsstudent/mapper/StudentApplicationMapper.java (best guess)
@@ -460,6 +461,27 @@ java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '18' for key 
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:745)
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:45,809 INFO [main][StartupInfoLogger.java:50] - Starting MamsStudentApplication on DESKTOP-U5SUJ4I with PID 37996 (D:\graduation\mams\mams-student\target\classes started by tcp666 in D:\graduation\mams)
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:45,875 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:48,036 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$88993a3e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:48,668 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8083 (http)
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:48,694 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8083"]
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:48,710 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:48,711 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:48,723 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:49,089 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:49,090 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 3159 ms
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:51,228 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:51,418 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:51,986 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:52,111 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8083"]
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:52,158 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8083 (http) with context path ''
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:52,164 INFO [main][StartupInfoLogger.java:59] - Started MamsStudentApplication in 6.932 seconds (JVM running for 8.532)
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:52,251 INFO [http-nio-8083-exec-1][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:52,251 INFO [http-nio-8083-exec-1][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:52,264 INFO [http-nio-8083-exec-1][FrameworkServlet.java:546] - Completed initialization in 12 ms
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:52,393 INFO [RMI TCP Connection(1)-192.168.43.156][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-student][${env:SERVER_PORT}] 2021-05-26 10:33:52,929 INFO [RMI TCP Connection(1)-192.168.43.156][HikariDataSource.java:123] - HikariPool-1 - Start completed.
 [mams-student][${env:SERVER_PORT}] 2021-05-26 10:34:02,049 ERROR [http-nio-8083-exec-2][DirectJDKLog.java:175] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DuplicateKeyException: 
 ### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '18' for key 'student_id'
 ### The error may exist in com/mams/mamsstudent/mapper/StudentApplicationMapper.java (best guess)

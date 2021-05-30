@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     <link href="layui/css/layui.css" rel="stylesheet">
     <script src="layui/layui.js"></script>
     <script src="js/vueresource/vuejs-2.5.16.js"></script>
@@ -26,11 +25,7 @@
         <button class="layui-btn layui-btn-sm" lay-event="examtwo">
           复试管理
         </button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">
-            录取管理
-        </button>
     </div>
-
 </script>
 
 <script id="barDemo" type="text/html">
@@ -101,10 +96,7 @@
                         dataType: "json",
                         data: checkStatus.data
                     }).then((data) => {
-
                     });
-
-
                     break;
                 case "isAll":
                     console.log("isAll");
@@ -136,10 +128,7 @@
                         data: obj.data
                     });
                     break;
-
             }
-
-
         })
     })
 </script>

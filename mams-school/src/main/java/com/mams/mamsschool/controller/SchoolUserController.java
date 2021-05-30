@@ -122,8 +122,6 @@ class SchoolUserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return Result.success(tutor);
 	}
 	
@@ -266,7 +264,7 @@ class SchoolUserController {
 		return Result.success(integer);
 	}
 	
-	
+
 	
 	@RequestMapping("/changeTutorModFail")
 	@ResponseBody
@@ -275,8 +273,6 @@ class SchoolUserController {
 		int checked = 0;
 		tutor.setChecked(checked);
 		Integer integer = tutorService.updateChecked(tutor);
-		
-		
 		try {
 			Verify.sendNotice(tutor.getEmail(), "" +
 					"您好，您的身份信息没有通过mams平台的认证");

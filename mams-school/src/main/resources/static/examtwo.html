@@ -38,6 +38,7 @@
 
 <script id="barDemo" type="text/html">
     <a class="layui-btn layui-btn-xs" lay-event="sendExamSuccess">点击发送录用通知</a>
+    <a class="layui-btn layui-btn-xs" lay-event="sendRefuse">点击发送拒绝通知</a>
 </script>
 
 <script type="text/javascript">
@@ -71,14 +72,14 @@
                 {field: 'projectId', title: 'projectId', hide: true},
                 {field: 'examLevel', title: 'examLevel'},
                 {field: 'sumScore', title: 'sumScore', sort: true},
-                {field: 'publicCourse1', title: "公共课1"},
-                {field: 'publicCourse2', title: "公共课2"},
+                {field: 'publicCourse1', title: "公共课1",hide:true},
+                {field: 'publicCourse2', title: "公共课2",hide:true},
                 {field: 'publicCourse3', title: "公共课3", hide: true},
                 {field: 'majorCourse1', title: "专业课1"},
                 {field: 'majorCourse2', title: "专业课2"},
                 {field: 'majorCourse3', title: "专业课3", hide: true},
                 // 设置表头操作栏
-                {field: '详情', toolbar: "#barDemo"}
+                {field: '详情', toolbar: "#barDemo",width:366}
             ]],
             toolbar: "#toolbarDemo"
         });
@@ -120,18 +121,25 @@
             switch (eventName) {
                 case "sendExamSuccess":
                     axios({
-                        url:"http://localhost:8083/student/accept",
+                        url: "http://localhost:8083/student/accept",
                         method: "post",
                         contentType: "application/json",
                         Accept: "application/json, */*; q=0.01",
                         dataType: "json",
-                        data: {studentId:obj.data.studentId}
+                        data: obj.data
                     });
                     break;
-
+                case "sendRefuse":
+                    axios({
+                        url: "http://localhost:8083/student/sendRefuse",
+                        method: "post",
+                        contentType: "application/json",
+                        Accept: "application/json, */*; q=0.01",
+                        dataType: "json",
+                        data: obj.data
+                    });
+                    break;
             }
-
-
         })
     })
 </script>

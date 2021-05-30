@@ -1,0 +1,141 @@
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:04:26,657 WARN [HikariPool-1 housekeeper][HikariPool.java:766] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8h44m5s259ms567µs200ns).
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:38,005 INFO [main][StartupInfoLogger.java:50] - Starting MamsCommonApplication on DESKTOP-U5SUJ4I with PID 27512 (D:\graduation\mams\mams-common\target\classes started by tcp666 in D:\graduation\mams)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:38,055 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:38,907 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$67b7196e] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:39,169 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8081 (http)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:39,182 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:39,190 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:39,191 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:39,198 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:39,275 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:39,276 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1189 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:39,855 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:39,941 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:40,190 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:40,246 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:40,276 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8081 (http) with context path ''
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:40,279 INFO [main][StartupInfoLogger.java:59] - Started MamsCommonApplication in 2.708 seconds (JVM running for 3.696)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:40,726 INFO [RMI TCP Connection(2)-192.168.1.106][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:40,726 INFO [RMI TCP Connection(1)-192.168.1.106][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:40,726 INFO [RMI TCP Connection(2)-192.168.1.106][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:40,732 INFO [RMI TCP Connection(2)-192.168.1.106][FrameworkServlet.java:546] - Completed initialization in 6 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:31:41,029 INFO [RMI TCP Connection(1)-192.168.1.106][HikariDataSource.java:123] - HikariPool-1 - Start completed.
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:48,858 INFO [main][StartupInfoLogger.java:50] - Starting MamsCommonApplication on DESKTOP-U5SUJ4I with PID 40056 (D:\graduation\mams\mams-common\target\classes started by tcp666 in D:\graduation\mams)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:48,909 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:49,773 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5838840] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:50,012 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8081 (http)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:50,025 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:50,034 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:50,035 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:50,042 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:50,130 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:50,131 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1188 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:50,757 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:50,835 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:51,043 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:51,081 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:51,099 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8081 (http) with context path ''
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:51,102 INFO [main][StartupInfoLogger.java:59] - Started MamsCommonApplication in 2.627 seconds (JVM running for 3.869)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:51,291 INFO [http-nio-8081-exec-1][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:51,291 INFO [http-nio-8081-exec-1][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:51,296 INFO [http-nio-8081-exec-1][FrameworkServlet.java:546] - Completed initialization in 5 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:51,567 INFO [RMI TCP Connection(2)-192.168.1.106][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:32:51,901 INFO [RMI TCP Connection(2)-192.168.1.106][HikariDataSource.java:123] - HikariPool-1 - Start completed.
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:50,793 INFO [main][StartupInfoLogger.java:50] - Starting MamsCommonApplication on DESKTOP-U5SUJ4I with PID 41976 (D:\graduation\mams\mams-common\target\classes started by tcp666 in D:\graduation\mams)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:50,880 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:51,897 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$63cf8945] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:52,114 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8081 (http)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:52,126 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:52,133 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:52,133 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:52,138 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:52,222 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:52,222 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1239 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:52,878 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:52,958 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:53,144 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:53,181 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:53,198 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8081 (http) with context path ''
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:53,201 INFO [main][StartupInfoLogger.java:59] - Started MamsCommonApplication in 2.914 seconds (JVM running for 3.968)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:53,740 INFO [RMI TCP Connection(2)-192.168.1.106][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:53,740 INFO [RMI TCP Connection(1)-192.168.1.106][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:53,741 INFO [RMI TCP Connection(1)-192.168.1.106][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:53,747 INFO [RMI TCP Connection(1)-192.168.1.106][FrameworkServlet.java:546] - Completed initialization in 6 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:37:54,040 INFO [RMI TCP Connection(2)-192.168.1.106][HikariDataSource.java:123] - HikariPool-1 - Start completed.
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:47:31,908 WARN [HikariPool-1 housekeeper][HikariPool.java:766] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=7m28s396ms699µs900ns).
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:49:21,298 WARN [RMI TCP Accept-0][Log.java:237] - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=59108] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:49:21,505 WARN [RMI TCP Accept-0][Log.java:237] - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=59108] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:49:21,668 WARN [RMI TCP Accept-0][Log.java:237] - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=59108] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:49:21,793 WARN [RMI TCP Accept-0][Log.java:237] - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=59108] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:49:22,785 WARN [RMI TCP Accept-0][Log.java:237] - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=59108] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:49:22,897 WARN [RMI TCP Accept-0][Log.java:237] - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=59108] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:49:23,012 WARN [RMI TCP Accept-0][Log.java:237] - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=59108] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:49:25,048 WARN [RMI TCP Accept-0][Log.java:237] - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=59108] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:49:25,163 WARN [RMI TCP Accept-0][Log.java:237] - RMI TCP Accept-0: accept loop for ServerSocket[addr=0.0.0.0/0.0.0.0,localport=59108] throws
+java.io.IOException: The server sockets created using the LocalRMIServerSocketFactory only accept connections from clients running on the host where the RMI remote objects have been exported.
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:114)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+	at java.lang.Thread.run(Thread.java:745)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:14,088 WARN [HikariPool-1 housekeeper][HikariPool.java:766] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m12s187ms65µs900ns).
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:36,605 INFO [main][StartupInfoLogger.java:50] - Starting MamsCommonApplication on DESKTOP-U5SUJ4I with PID 3216 (D:\graduation\mams\mams-common\target\classes started by tcp666 in D:\graduation\mams)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:36,654 INFO [main][SpringApplication.java:675] - No active profile set, falling back to default profiles: default
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:37,479 INFO [main][PostProcessorRegistrationDelegate.java:330] - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$f32c4d7d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:37,684 INFO [main][TomcatWebServer.java:90] - Tomcat initialized with port(s): 8081 (http)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:37,696 INFO [main][DirectJDKLog.java:173] - Initializing ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:37,702 INFO [main][DirectJDKLog.java:173] - Starting service [Tomcat]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:37,702 INFO [main][DirectJDKLog.java:173] - Starting Servlet engine: [Apache Tomcat/9.0.16]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:37,707 INFO [main][DirectJDKLog.java:173] - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [D:\java\jdk1.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\mysql\mysql-8.0.15-winx64\mysql-8.0.15-winx64\bin;D:\java\jdk1.8\bin\;D:\java\jdk1.8\jre\bin\;C:\Users\tcp666\AppData\Local\Microsoft\WindowsApps;;.]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:37,783 INFO [main][DirectJDKLog.java:173] - Initializing Spring embedded WebApplicationContext
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:37,783 INFO [main][ServletWebServerApplicationContext.java:296] - Root WebApplicationContext: initialization completed in 1098 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:38,307 INFO [main][ExecutorConfigurationSupport.java:171] - Initializing ExecutorService 'applicationTaskExecutor'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:38,376 INFO [main][WelcomePageHandlerMapping.java:56] - Adding welcome page: class path resource [static/index.html]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:38,560 INFO [main][EndpointLinksResolver.java:59] - Exposing 2 endpoint(s) beneath base path '/actuator'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:38,598 INFO [main][DirectJDKLog.java:173] - Starting ProtocolHandler ["http-nio-8081"]
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:38,616 INFO [main][TomcatWebServer.java:204] - Tomcat started on port(s): 8081 (http) with context path ''
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:38,619 INFO [main][StartupInfoLogger.java:59] - Started MamsCommonApplication in 2.429 seconds (JVM running for 3.443)
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:38,956 INFO [RMI TCP Connection(1)-127.0.0.1][HikariDataSource.java:110] - HikariPool-1 - Starting...
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:38,956 INFO [RMI TCP Connection(2)-127.0.0.1][DirectJDKLog.java:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:38,956 INFO [RMI TCP Connection(2)-127.0.0.1][FrameworkServlet.java:524] - Initializing Servlet 'dispatcherServlet'
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:38,963 INFO [RMI TCP Connection(2)-127.0.0.1][FrameworkServlet.java:546] - Completed initialization in 7 ms
+[mams-common][${env:SERVER_PORT}] 2021-05-26 09:57:39,219 INFO [RMI TCP Connection(1)-127.0.0.1][HikariDataSource.java:123] - HikariPool-1 - Start completed.
